@@ -1,26 +1,113 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Volunteer Tracker</title>
+    <link rel="stylesheet" href="{% static 'hourTracker/css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'hourTracker/css/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
+
+
 </head>
 <body>
   {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }} | 
-       <form action="{% url 'logout' %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
-            {% if user.is_staff %}
-            {% comment %} Admin Link {% endcomment %}
-             | <a href="/admin/">Admin</a>
-            {% endif %}
-        </form>
+  
 
-    </p>
+      
+
+      <!--==================== HEADER ====================-->
+      <header class="header">
+         <nav class="nav container">
+            <a href="#" class="nav__logo">Logo</a>
+
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  <li>
+                     <a href="{% url 'dashboard' %}" class="nav__link">Hours</a>
+                  </li>
+                  {% if user.is_staff %}
+                  <li>
+                     <a href="/admin/" class="nav__link">Admin</a>
+                  </li>
+                  {% endif %}
+
+               </ul>
+
+               <!-- Close button -->
+               <div class="nav__close" id="nav-close">
+                  <i class="ri-close-large-line"></i>
+               </div>
+            </div>
+
+            <div class="nav__actions">
+               <!-- Dropdown -->
+               <div class="dropdown" id="dropdown">
+                  <div class="dropdown__profile">
+                     <div class="dropdown__names">
+                        <h3>{{ user.username }}</h3>
+                        <span>{{ user.role }}</span>
+                     </div>
+      
+                     <div class="dropdown__image">
+                        <img src="assets/img/perfil.png" alt="image">
+                     </div>
+                  </div>
+   
+                  <div class="dropdown__list">
+                     <a href="#" class="dropdown__link">
+                        <i class="ri-user-line"></i>
+                        <span>Profile</span>
+                     </a>
+   
+                     <!-- <a href="#" class="dropdown__link">
+                        <i class="ri-time-line"></i>
+                        <span>Activity</span>
+                     </a>
+   
+                     <a href="#" class="dropdown__link">
+                        <i class="ri-bookmark-line"></i>
+                        <span>Saved</span> -->
+                     </a>
+   
+                     <a href="#" class="dropdown__link">
+                        <i class="ri-settings-3-line"></i>
+                        <span>Settings</span>
+                     </a>
+   
+                     <a href="#" class="dropdown__link" id="logout-link">
+                        <i class="ri-logout-box-r-line"></i>
+                        <span>Logout</span>
+                     </a>
+                     <!-- This is hidden by JS -->
+                     <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                        {% csrf_token %}
+                     </form>
+                  </div>
+               </div>
+
+               <!-- Toggle button -->
+               <div class="nav__toggle" id="nav-toggle">
+                  <i class="ri-menu-line"></i>
+               </div>
+            </div>
+         </nav>
+      </header>
+      
+
+  
   {% else %}
     <p><a href="{% url 'login' %}">Login</a></p>
   {% endif %}
   <hr>
-  {% block content %}{% endblock %}
+   <main style="padding-top: 3.5rem;">
+   {% block content %}
+   {% endblock %}
+   </main>
+  <script src="{% static 'hourTracker/js/navbar.js' %}"></script>
+
 </body>
 </html>
+

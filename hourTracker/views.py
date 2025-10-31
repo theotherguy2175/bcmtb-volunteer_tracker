@@ -43,7 +43,13 @@ def edit_entry(request, pk):
             return redirect('dashboard')
     else:
         form = VolunteerEntryForm(instance=entry)
-    return render(request, 'hourTracker/form.html', {'form': form})
+
+    # Pass username to the template for display
+    return render(request, 'hourTracker/form.html', {
+        'form': form,
+        'username': entry.user.username,  # 👈 add this
+    })
+
 
 
 @login_required

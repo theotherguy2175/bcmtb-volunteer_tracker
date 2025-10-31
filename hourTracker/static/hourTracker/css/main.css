@@ -1,0 +1,39 @@
+.main-container {
+    max-width: 900px;   /* or whatever looks good */
+    margin: 2rem auto;  /* centers horizontally */
+    padding: 1rem;
+}
+
+
+
+.header-row {
+    display: flex;
+    justify-content: space-between; /* pushes items to left and right */
+    align-items: center;             /* vertical alignment */
+    margin: .5rem auto;
+    padding: 0 1rem;
+    width: 50%
+}
+.btn-add {
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+.btn-add:hover {
+    background-color: #0056b3;
+}
+
+.form-container {
+    align-items: center;             /* vertical alignment */
+    margin: .5rem auto;
+    padding: 0 1rem;
+    width: 50%
+}
+
+table{
+    margin: 0 auto;
+}

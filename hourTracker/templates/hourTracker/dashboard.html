@@ -1,42 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Volunteer Hours</h2>
-<p><a href="{% url 'add_entry' %}">Add New Entry</a></p>
+<div class="main-container">
 
-<table border="1" cellpadding="6">
-  <tr>
-    {% if user.is_staff %}
-      <th>Username</th>
-    {% endif %}
-    <th>Date</th>
-    <th>Hours</th>
-    <th>Category</th>
-    {% if not user.is_staff %}
-      <th>Actions</th>
-    {% else %}
-      <th>Actions</th>
-    {% endif %}
-  </tr>
-
-  {% for e in entries %}
-  <tr>
-    {% if user.is_staff %}
-      <td>{{ e.user.username }}</td>
-    {% endif %}
-    <td>{{ e.date }}</td>
-    <td>{{ e.hours }}</td>
-    <td>{{ e.get_category_display }}</td>
-    <td>
-    {% if user.is_staff or user.is_superuser or e.user == user %}
-        <a href="{% url 'edit_entry' e.pk %}">Edit</a> |
-        <a href="{% url 'delete_entry' e.pk %}">Delete</a>
-    {% endif %}
-    </td>
+    <div class="header-row">
+        <h2>Volunteer Hours</h2>
+        <a href="{% url 'add_entry' %}" class="btn-add">Add New Entry</a>
+    </div>
 
 
-  </tr>
-  {% empty %}
-  <tr><td colspan="5">No entries yet.</td></tr>
-  {% endfor %}
-</table>
+    <table border="1" cellpadding="6">
+    <tr>
+        {% if user.is_staff %}
+        <th>Username</th>
+        {% endif %}
+        <th>Date</th>
+        <th>Hours</th>
+        <th>Category</th>
+        {% if not user.is_staff %}
+        <th>Actions</th>
+        {% else %}
+        <th>Actions</th>
+        {% endif %}
+    </tr>
+
+    {% for e in entries %}
+    <tr>
+        {% if user.is_staff %}
+        <td>{{ e.user.username }}</td>
+        {% endif %}
+        <td>{{ e.date }}</td>
+        <td>{{ e.hours }}</td>
+        <td>{{ e.get_category_display }}</td>
+        <td>
+        {% if user.is_staff or user.is_superuser or e.user == user %}
+            <a href="{% url 'edit_entry' e.pk %}">Edit</a> |
+            <a href="{% url 'delete_entry' e.pk %}">Delete</a>
+        {% endif %}
+        </td>
+
+
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No entries yet.</td></tr>
+    {% endfor %}
+    </table>
+</div>
 {% endblock %}
