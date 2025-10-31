@@ -1,3 +1,6 @@
+
+
+
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -27,7 +30,7 @@
 <div class="main-container">
 
   <div class="header-row title">
-      <h2>Login</h2>
+      <h2>Register</h2>
   </div>
 
   <div class="form-container">
@@ -37,13 +40,27 @@
 
     <form method="post">
         {% csrf_token %}
-        {{ form|crispy }}
+      
+      <div class="columns">
+        <div class="column">
+          {{ form.first_name|as_crispy_field }}
+        </div>
+        <div class="column">
+          {{ form.last_name|as_crispy_field }}
+        </div>
+      </div>
+
+      {{ form.email|as_crispy_field }}
+      {{ form.password|as_crispy_field }}
+      {{ form.confirm_password|as_crispy_field }}
+
+
+
         <div class="field">
             <p class="control">
-                <div class="is-flex" style="justify-content: space-between;">
-                    <button class="button is-success" type="submit">Login</button>
-                    <a href="{% url 'register' %}" class="button is-info">Register</a>
-                    <a href="{% url 'add_entry' %}" class="button is-warning">Forgot Password</a>
+                <div class="is-flex">
+                    <button class="button is-success" type="submit">Register</button>
+
                 </div>
 
             </p>

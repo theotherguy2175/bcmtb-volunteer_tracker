@@ -1,0 +1,31 @@
+.tableSortable th {
+    cursor: pointer;
+}
+
+/* default on page load */
+.tableSortable th::after {
+    content: "\25b4";  
+}
+
+.tableSortable .th-sort-asc::after {
+    content: "\25b4";  
+}
+.tableSortable .th-sort-desc::after {
+    content: "\25be"; 
+}
+
+.tableSortable .th-sort-asc::after,
+.tableSortable .th-sort-desc::after {
+
+    margin-left: 5px;
+}
+
+.tableSortable .th-sort-asc,
+.tableSortable .th-sort-desc {
+    background: rgbsa(0, 0, 0, 0.01);
+}
+
+
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 1em; /* adjust spacing as needed */
+}

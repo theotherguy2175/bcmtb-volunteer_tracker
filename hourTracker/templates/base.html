@@ -7,6 +7,8 @@
   <title>Volunteer Tracker</title>
     <link rel="stylesheet" href="{% static 'hourTracker/css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'hourTracker/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'hourTracker/css/tablesort.css' %}">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
 
@@ -15,13 +17,10 @@
 <body>
   {% if user.is_authenticated %}
   
-
-      
-
       <!--==================== HEADER ====================-->
       <header class="header">
          <nav class="nav container">
-            <a href="#" class="nav__logo">Logo</a>
+            <a href="/" class="nav__logo">Logo</a>
 
             <div class="nav__menu" id="nav-menu">
                <ul class="nav__list">
@@ -107,6 +106,9 @@
    {% endblock %}
    </main>
   <script src="{% static 'hourTracker/js/navbar.js' %}"></script>
+  <!-- <script type="text/javascript" src="/path/to/jquery-latest.js"></script>
+  <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> -->
+  <script src="{% static 'hourTracker/js/tablesort.js' %}"></script> 
 
 </body>
 </html>
