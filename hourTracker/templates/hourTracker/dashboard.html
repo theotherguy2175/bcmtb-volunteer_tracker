@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Your Volunteer Hours</h2>
+<p><a href="{% url 'add_entry' %}">Add New Entry</a></p>
+
+<table border="1" cellpadding="6">
+  <tr>
+    <th>Date</th>
+    <th>Hours</th>
+    <th>Category</th>
+    <th>Actions</th>
+  </tr>
+  {% for e in entries %}
+  <tr>
+    <td>{{ e.date }}</td>
+    <td>{{ e.hours }}</td>
+    <td>{{ e.get_category_display }}</td>
+    <td>
+      <a href="{% url 'edit_entry' e.pk %}">Edit</a> |
+      <a href="{% url 'delete_entry' e.pk %}">Delete</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">No entries yet.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
