@@ -7,7 +7,15 @@
 <body>
   {% if user.is_authenticated %}
     <p>Welcome, {{ user.username }} | 
-       <a href="{% url 'logout' %}">Logout</a>
+       <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Logout</button>
+            {% if user.is_staff %}
+            {% comment %} Admin Link {% endcomment %}
+             | <a href="/admin/">Admin</a>
+            {% endif %}
+        </form>
+
     </p>
   {% else %}
     <p><a href="{% url 'login' %}">Login</a></p>

@@ -5,7 +5,13 @@ from .forms import VolunteerEntryForm
 
 @login_required
 def dashboard(request):
-    entries = VolunteerEntry.objects.filter(user=request.user)
+    if request.user.is_staff:  # or request.user.is_superuser
+        # Admin sees all entries
+        entries = VolunteerEntry.objects.all()
+    else:
+        # Regular user sees only their entries
+        entries = VolunteerEntry.objects.filter(user=request.user)
+    
     return render(request, 'hourTracker/dashboard.html', {'entries': entries})
 
 @login_required
@@ -23,7 +29,13 @@ def add_entry(request):
 
 @login_required
 def edit_entry(request, pk):
-    entry = get_object_or_404(VolunteerEntry, pk=pk, user=request.user)
+    if request.user.is_staff or request.user.is_superuser:
+        # Admins can edit any entry
+        entry = get_object_or_404(VolunteerEntry, pk=pk)
+    else:
+        # Regular users can only edit their own entries
+        entry = get_object_or_404(VolunteerEntry, pk=pk, user=request.user)
+
     if request.method == 'POST':
         form = VolunteerEntryForm(request.POST, instance=entry)
         if form.is_valid():
@@ -33,8 +45,14 @@ def edit_entry(request, pk):
         form = VolunteerEntryForm(instance=entry)
     return render(request, 'hourTracker/form.html', {'form': form})
 
+
 @login_required
 def delete_entry(request, pk):
-    entry = get_object_or_404(VolunteerEntry, pk=pk, user=request.user)
+    if request.user.is_staff or request.user.is_superuser:
+        entry = get_object_or_404(VolunteerEntry, pk=pk)
+    else:
+        entry = get_object_or_404(VolunteerEntry, pk=pk, user=request.user)
+    
     entry.delete()
     return redirect('dashboard')
+
