@@ -3,13 +3,13 @@
 
 /*=============== VARIABLES CSS ===============*/
 :root {
-  --header-height: 3.5rem;
+  --header-height: 4.5rem;
 
   /*========== Colors ==========*/
   /*Color mode HSL(hue, saturation, lightness)*/
-  --first-color: hsl(216, 96%, 64%);
-  --white-color: hsl(0, 0%, 100%);
-  --dark-color: hsl(216, 26%, 11%);
+  --first-color: #7f392c;
+  --white-color: #c7ae86;
+  --dark-color: #7f392c;
   --dark-color-light: hsl(216, 14%, 24%);
   --body-color: hsl(216, 96%, 98%);
 
@@ -64,7 +64,8 @@ a {
 img {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: 3rem !important;
+  margin-left: 1rem;
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -106,6 +107,7 @@ img {
   display: flex;
   font-size: 1.5rem;
   cursor: pointer;
+  margin-right: 1rem;;
 }
 
 /* Navigation for mobile devices */

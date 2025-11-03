@@ -21,9 +21,9 @@
       <header class="header">
          <nav class="nav container">
             <a href="/" class="nav__logo">
-               <figure class="image is-48x48">
-               <img src="{% static 'hourTracker/images/bcmb_logo.png' %}"/>
-               </figure>
+               <!-- <figure  style="height: 3rem;"> -->
+               <img src="{% static 'hourTracker/images/bcmb_logo_full.png' %}"/>
+               <!-- </figure> -->
             </a>
 
             <div class="nav__menu" id="nav-menu">
@@ -53,12 +53,17 @@
                <div class="dropdown" id="dropdown">
                   <div class="dropdown__profile">
                      <div class="dropdown__names">
-                        <h3>{{ user.first_name }}</h3>
+                        <!-- <h3>{{ user.first_name }}</h3> -->
                         <span>{{ user.role }}</span>
                      </div>
       
-                     <div class="dropdown__image">
-                        <img src="assets/img/perfil.png" alt="image">
+                     <div class="dropdown__image avatar">
+                        {% with user.first_name|slice:":1" as first %}
+                        {% with user.last_name|slice:":1" as last %}
+                           {{ first|upper }}{{ last|upper }}
+                        {% endwith %}
+                        {% endwith %}
+                        <!-- <img src="assets/img/perfil.png" alt="image"> -->
                      </div>
                   </div>
    

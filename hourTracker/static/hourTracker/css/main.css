@@ -17,6 +17,21 @@
     padding: 0 1rem;
     width: 98%
 }
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #4CAF50; /* or randomize per user */
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+
 .btn-add {
     background-color: #007bff;
     color: white;
