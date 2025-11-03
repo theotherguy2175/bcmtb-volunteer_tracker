@@ -53,6 +53,7 @@ $(document).ready(function() {
     });
 
     $('#table tbody').on('click', 'tr', function() {
+        
         // Don’t trigger on the action row itself
         if ($(this).hasClass('action-row')) return;
 
@@ -80,6 +81,7 @@ $(document).ready(function() {
                 </td>
             </tr>
         `;
+        console.log("HEY",pk)
         $this.after(actionRow);
     });
 });

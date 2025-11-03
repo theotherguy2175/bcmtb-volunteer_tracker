@@ -28,7 +28,7 @@
     </thead>
     <tbody>
         {% for e in entries %}
-        <tr class="clickable-row">
+        <tr class="clickable-row" data-pk="{{ e.pk }}">
             {% if user.is_staff %}
             <td>{{e.user.last_name}}, {{ e.user.first_name }}</td>
             {% endif %}
