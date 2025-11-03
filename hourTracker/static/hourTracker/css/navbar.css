@@ -258,6 +258,7 @@ img {
   transform: translateY(0);
   opacity: 1;
   pointer-events: initial;
+  transform: translateX(-37%);
 }
 
 /*=============== BREAKPOINTS ===============*/
