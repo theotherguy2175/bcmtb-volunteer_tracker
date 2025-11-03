@@ -4,6 +4,7 @@
 
 
 .main-container {
+    background-color: none;
     max-width: 900px;   /* or whatever looks good */
     margin: 2rem auto;  /* centers horizontally */
     padding: 1rem;

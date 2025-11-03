@@ -4,9 +4,11 @@
 
     <div class="header-row">
         <h2 class="title">Volunteer Hours</h2>
+        {% if not user.is_staff %}
         <div class="box">
             Total hours for {{ current_year }}: <strong>{{ total_hours }}</strong> hours
         </div>
+        {% endif %}
         <a href="{% url 'add_entry' %}" class="btn-add button is-primary">Add New Entry</a>
     </div>
 
@@ -36,8 +38,8 @@
             <td>{{ e.hours }}</td>
             <td>{{ e.category.name }}</td>
             <td class="actions-col">
-                <a href="{% url 'edit_entry' e.pk %}">Edit</a> |
-                <a href="{% url 'delete_entry' e.pk %}">Delete</a>
+                <a href="{% url 'edit_entry' e.pk %}" class="button is-warning" style="height:1rem">Edit</a> 
+                <a href="{% url 'delete_entry' e.pk %}" class="button is-danger" style="height:1rem">Delete</a>
             </td>
             <td class="mobile-only text-center">⋮</td>
         </tr>
