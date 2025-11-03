@@ -43,13 +43,62 @@ document.querySelectorAll(".tableSortable th").forEach(headerCell => {
 });
 
 $(document).ready(function() {
-    $('#table').DataTable({
+    var table = $('#table').DataTable({
         paging: true,
-        pageLenth: 50,
-        lengthMenu: [ [10, 100, 1000], [10, 100, 1000] ],
-        searching: true, // enables the search box automatically
-        ordering: true,   // enables column sorting
-        order: [[0, 'asc']] // default sorting on the first column
-        
+        pageLength: 50,
+        lengthMenu: [[10, 100, 1000], [10, 100, 1000]],
+        searching: true,
+        ordering: true,
+        order: [[0, 'asc']]
     });
+
+    $('#table tbody').on('click', 'tr', function() {
+        // Don’t trigger on the action row itself
+        if ($(this).hasClass('action-row')) return;
+
+        var $this = $(this);
+        var pk = $this.data('pk'); // each row should have data-pk="{{ e.pk }}"
+        var nextRow = $this.next('.action-row');
+
+        // If the next row is already the action row and visible, toggle it off
+        if (nextRow.length && nextRow.is(':visible')) {
+            nextRow.remove();
+            return;
+        }
+
+        // Otherwise, remove any other open action rows
+        $('#table tbody tr.action-row').remove();
+
+        // Insert a new action row after this row
+        var actionRow = `
+            <tr class="action-row">
+                <td colspan="${$this.children().length}">
+                    <div class="action-box" style="text-align:center;">
+                        <a href="/edit/${pk}/" class="button is-warning">Edit</a>
+                        <a href="/delete/${pk}/" class="button is-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        `;
+        $this.after(actionRow);
+    });
+});
+
+
+
+//mobile row expansion
+document.addEventListener("DOMContentLoaded", () => {
+  const rows = document.querySelectorAll(".clickable-row");
+
+  rows.forEach((row, index) => {
+    row.addEventListener("click", () => {
+      // Only on mobile
+      if (window.innerWidth <= 768) {
+        const actionRow = row.nextElementSibling;
+        if (actionRow && actionRow.classList.contains("action-row")) {
+          actionRow.style.display = actionRow.style.display === "table-row" ? "none" : "table-row";
+        }
+      }
+    });
+  });
 });

@@ -20,7 +20,11 @@
       <!--==================== HEADER ====================-->
       <header class="header">
          <nav class="nav container">
-            <a href="/" class="nav__logo">Logo</a>
+            <a href="/" class="nav__logo">
+               <figure class="image is-48x48">
+               <img src="{% static 'hourTracker/images/bcmb_logo.png' %}"/>
+               </figure>
+            </a>
 
             <div class="nav__menu" id="nav-menu">
                <ul class="nav__list">
@@ -49,7 +53,7 @@
                <div class="dropdown" id="dropdown">
                   <div class="dropdown__profile">
                      <div class="dropdown__names">
-                        <h3>{{ user.username }}</h3>
+                        <h3>{{ user.first_name }}</h3>
                         <span>{{ user.role }}</span>
                      </div>
       

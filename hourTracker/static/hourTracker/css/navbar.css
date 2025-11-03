@@ -29,7 +29,7 @@
 }
 
 /*========== Responsive typography ==========*/
-@media screen and (min-width: 1150px) {
+@media screen and (min-width: 900px) {
   :root {
     --normal-font-size: 1rem;
     --small-font-size: .875rem;
@@ -109,7 +109,7 @@ img {
 }
 
 /* Navigation for mobile devices */
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 900px) {
   .nav__menu {
     position: fixed;
     top: -120%;
@@ -267,7 +267,7 @@ img {
 }
 
 /* For large devices */
-@media screen and (min-width: 1150px) {
+@media screen and (min-width: 900px) {
   .container {
     margin-inline: auto;
   }

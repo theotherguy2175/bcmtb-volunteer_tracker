@@ -26,9 +26,9 @@
 
 <div class="main-container">
 
-  <div class="header-row title">
+  <!-- <div class="header-row title">
       <h2>Login</h2>
-  </div>
+  </div> -->
 
   <div class="form-container">
     {% if username %}
@@ -40,10 +40,13 @@
         {{ form|crispy }}
         <div class="field">
             <p class="control">
-                <div class="is-flex" style="justify-content: space-between;">
+                <div class="is-flex button-container" style="justify-content: space-between;">
                     <button class="button is-success" type="submit">Login</button>
-                    <a href="{% url 'register' %}" class="button is-info">Register</a>
-                    <a href="{% url 'add_entry' %}" class="button is-warning">Forgot Password</a>
+                </div>
+                <div class="is-flex is-justify-content-center is-align-items-center mt-2">
+                    <a href="{% url 'register' %}" class="mr-2">Register</a>
+                    <span>|</span>
+                    <a href="{% url 'add_entry' %}" class="ml-2">Forgot Password</a>
                 </div>
 
             </p>

@@ -12,7 +12,8 @@
 
 
     <!-- https://bulma.io/documentation/elements/table/ -->
-<table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable">
+     <div class="responsive-table-container">
+<table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable responsive-table">
     <thead>
         <tr>
             {% if user.is_staff %}
@@ -21,23 +22,26 @@
             <th>Date</th>
             <th>Hours</th>
             <th>Category</th>
-            <th>Actions</th>
+            <th class="actions-col">Actions</th>
+            <th class="mobile-only"></th>
         </tr>
     </thead>
     <tbody>
         {% for e in entries %}
-        <tr>
+        <tr class="clickable-row">
             {% if user.is_staff %}
-            <td>{{ e.user.email }}</td>
+            <td>{{e.user.last_name}}, {{ e.user.first_name }}</td>
             {% endif %}
             <td>{{ e.date }}</td>
             <td>{{ e.hours }}</td>
             <td>{{ e.category.name }}</td>
-            <td>
+            <td class="actions-col">
                 <a href="{% url 'edit_entry' e.pk %}">Edit</a> |
                 <a href="{% url 'delete_entry' e.pk %}">Delete</a>
             </td>
+            <td class="mobile-only text-center">⋮</td>
         </tr>
+
         {% empty %}
         <tr>
             {% if user.is_staff %}
@@ -51,7 +55,7 @@
         {% endfor %}
     </tbody>
 </table>
-    
+     </div>
 </div>
 
 

@@ -1,3 +1,8 @@
+.mobile-only {
+    display: none;
+}   
+
+
 .main-container {
     max-width: 900px;   /* or whatever looks good */
     margin: 2rem auto;  /* centers horizontally */
@@ -36,7 +41,7 @@ table{
     margin: 0 auto;
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 900px) {
     .header-row {
         flex-direction: column;    /* stack items */
         align-items: center;   /* optional: left-align items */
@@ -45,5 +50,47 @@ table{
 
     .header-row > * {
         margin-bottom: 1rem;       /* spacing between items */
+    }
+
+
+
+
+    .responsive-table .actions-col {
+    display: none;
+    }
+
+    .action-box {
+        display: flex;
+        gap: 1rem;
+        padding: 0.5rem;
+        background-color: #f0f0f0;
+        justify-content: center;
+        border-radius: 0.25rem;
+    }
+
+    .clickable-row {
+        cursor: pointer;
+    }
+    .action-box a {
+        height: 1.5rem
+    }
+    .mobile-only {
+    display: table-cell;
+    cursor: pointer;
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+
+    .form-container {
+        align-items: center;             /* vertical alignment */
+        margin: .5rem auto;
+        padding: 0 1rem;
+        width: 90%
+    }
+    .button-container {
+        margin-top: 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 }
