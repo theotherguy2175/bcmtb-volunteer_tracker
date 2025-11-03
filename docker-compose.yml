@@ -22,6 +22,7 @@ services:
     ports:
       - "8333:8000"
     environment:
+      MODE: dev
       POSTGRES_DB: django
       POSTGRES_USER: django
       POSTGRES_PASSWORD: django
