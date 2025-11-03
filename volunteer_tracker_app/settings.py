@@ -80,12 +80,40 @@ WSGI_APPLICATION = 'volunteer_tracker_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'django',
+#         'USER': 'django',
+#         'PASSWORD': 'django',
+#         'HOST': '10.0.10.102',  # or the container name if using Docker
+#         'PORT': '5432',
+#     }
+# }
+
+import os
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_DB', 'django'),
+        'USER': os.environ.get('POSTGRES_USER', 'django'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'django'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
     }
 }
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
+DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
+
 
 
 # Password validation

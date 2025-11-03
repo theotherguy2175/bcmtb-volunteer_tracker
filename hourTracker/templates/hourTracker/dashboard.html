@@ -4,6 +4,9 @@
 
     <div class="header-row">
         <h2 class="title">Volunteer Hours</h2>
+        <div class="box">
+            Total hours for {{ current_year }}: <strong>{{ total_hours }}</strong> hours
+        </div>
         <a href="{% url 'add_entry' %}" class="btn-add button is-primary">Add New Entry</a>
     </div>
 
@@ -29,7 +32,7 @@
             {% endif %}
             <td>{{ e.date }}</td>
             <td>{{ e.hours }}</td>
-            <td>{{ e.get_category_display }}</td>
+            <td>{{ e.category.name }}</td>
             <td>
                 <a href="{% url 'edit_entry' e.pk %}">Edit</a> |
                 <a href="{% url 'delete_entry' e.pk %}">Delete</a>
@@ -51,9 +54,7 @@
     
 </div>
 
-<div class="notification is-info">
-    Total hours for {{ now.year }}: <strong>{{ total_hours }}</strong> hours
-</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">

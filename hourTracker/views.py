@@ -14,6 +14,11 @@ def dashboard(request):
     if request.user.is_staff:  # or request.user.is_superuser
         # Admin sees all entries
         entries = VolunteerEntry.objects.all()
+        context = {
+            'entries': entries,
+            # 'total_hours': total_hours,
+            # 'current_year': current_year,
+        }
     else:
         # Regular user sees only their entries
         entries = VolunteerEntry.objects.filter(user=request.user)

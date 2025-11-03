@@ -10,7 +10,7 @@
     align-items: center;             /* vertical alignment */
     margin: .5rem auto;
     padding: 0 1rem;
-    width: 50%
+    width: 98%
 }
 .btn-add {
     background-color: #007bff;
@@ -34,4 +34,16 @@
 
 table{
     margin: 0 auto;
+}
+
+@media (max-width: 1150px) {
+    .header-row {
+        flex-direction: column;    /* stack items */
+        align-items: center;   /* optional: left-align items */
+        width: 90%;                /* optional: take more width on small screens */
+    }
+
+    .header-row > * {
+        margin-bottom: 1rem;       /* spacing between items */
+    }
 }
