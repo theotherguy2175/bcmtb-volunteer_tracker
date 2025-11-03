@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -103,7 +105,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+AUTH_USER_MODEL = 'hourTracker.CustomUser'
+AUTHENTICATION_BACKENDS = ['hourTracker.backends.EmailBackend']
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

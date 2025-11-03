@@ -9,8 +9,9 @@
   </div>
 
   <div class="form-container">
-    {% if username %}
-        <p><strong>User:</strong> {{ username }}</p>
+    {% if user %}
+        <p><strong>Volunteer:</strong> </p>
+        <p>{{user.first_name}} {{user.last_name}} - {{user.email}}</p>
     {% endif %}
 
     <form method="post">

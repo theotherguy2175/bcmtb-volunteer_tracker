@@ -9,45 +9,45 @@
 
 
     <!-- https://bulma.io/documentation/elements/table/ -->
-    <table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable">
-        <thead>
-            <tr background-color="#f5f5f5">
-                {% if user.is_staff %}
-                <th>Username</th>
-                {% endif %}
-                <th>Date</th>
-                <th>Hours</th>
-                <th>Category</th>
-                {% if not user.is_staff %}
-                <th>Actions</th>
-                {% else %}
-                <th>Actions</th>
-                {% endif %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for e in entries %}
-            <tr>
-                {% if user.is_staff %}
-                <td>{{ e.user.username }}</td>
-                {% endif %}
-                <td>{{ e.date }}</td>
-                <td>{{ e.hours }}</td>
-                <td>{{ e.get_category_display }}</td>
-                <td>
-                {% if user.is_staff or user.is_superuser or e.user == user %}
-                    <a href="{% url 'edit_entry' e.pk %}">Edit</a> |
-                    <a href="{% url 'delete_entry' e.pk %}">Delete</a>
-                {% endif %}
-                </td>
-
-
-            </tr>
-            {% empty %}
-            <tr><td colspan="5">No entries yet.</td></tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable">
+    <thead>
+        <tr>
+            {% if user.is_staff %}
+            <th>eMail</th>
+            {% endif %}
+            <th>Date</th>
+            <th>Hours</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in entries %}
+        <tr>
+            {% if user.is_staff %}
+            <td>{{ e.user.email }}</td>
+            {% endif %}
+            <td>{{ e.date }}</td>
+            <td>{{ e.hours }}</td>
+            <td>{{ e.get_category_display }}</td>
+            <td>
+                <a href="{% url 'edit_entry' e.pk %}">Edit</a> |
+                <a href="{% url 'delete_entry' e.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            {% if user.is_staff %}
+            <td>&nbsp;</td>
+            {% endif %}
+            <td colspan="1">No entries yet.</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
     
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

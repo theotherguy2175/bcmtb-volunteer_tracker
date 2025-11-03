@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import VolunteerEntry
-from .forms import VolunteerEntryForm
+from .forms import VolunteerEntryForm, CustomUserCreationForm
 
 
 
@@ -49,7 +49,7 @@ def edit_entry(request, pk):
     # Pass username to the template for display
     return render(request, 'hourTracker/form.html', {
         'form': form,
-        'username': entry.user.username,  # 👈 add this
+        'username': entry.user.email,  # 👈 add this
     })
 
 
@@ -66,21 +66,21 @@ def delete_entry(request, pk):
 
 
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 from django.contrib import messages
-from .forms import RegisterForm
+# from .forms import RegisterForm
 
 def register_view(request):
+    User = get_user_model()  # ✅ ensures we are using CustomUser
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
-            user.save()
-            messages.success(request, "Account created successfully!")
+            form.save()  # creates a CustomUser instance
             return redirect('login')
     else:
-        form = RegisterForm()
+        form = CustomUserCreationForm()
 
     return render(request, 'hourTracker/register.html', {'form': form})
 
