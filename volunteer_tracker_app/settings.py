@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,14 +21,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ytu@ckohy(ieunx=cyqxwoljel_wr@%a60!d_b!b8!^v=ii9(b'
+# SECRET_KEY = 'django-insecure-ytu@ckohy(ieunx=cyqxwoljel_wr@%a60!d_b!b8!^v=ii9(b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
-
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
+DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
+if ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ALLOWED_HOSTS.split(",")
+else:
+    ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -97,7 +103,6 @@ WSGI_APPLICATION = 'volunteer_tracker_app.wsgi.application'
 #     }
 # }
 
-import os
 
 DATABASES = {
     'default': {
@@ -110,13 +115,7 @@ DATABASES = {
     }
 }
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
-DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
-if ALLOWED_HOSTS:
-    ALLOWED_HOSTS = ALLOWED_HOSTS.split(",")
-else:
-    ALLOWED_HOSTS = ["*"]
+
 
 
 
