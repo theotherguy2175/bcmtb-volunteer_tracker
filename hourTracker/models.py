@@ -48,18 +48,20 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 
-# --- VolunteerEntry ---
-class VolunteerEntry(models.Model):
-    CATEGORY_CHOICES = [
-        ("sawyer", "Sawyer"),
-        ("trail", "Trail"),
-        ("other", "Other"),
-    ]
+class VolunteerTask(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    verbose_name = "Volunteer Task Category"
+    verbose_name_plural = "Vounteer Task Categories"
 
+    def __str__(self):
+        return self.name
+
+
+class VolunteerEntry(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date = models.DateField()
     hours = models.DecimalField(max_digits=5, decimal_places=2)
-    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES)
+    category = models.ForeignKey(VolunteerTask, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f"{self.user.email} - {self.date} ({self.hours}h)"

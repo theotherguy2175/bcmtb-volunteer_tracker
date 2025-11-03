@@ -1,3 +1,5 @@
+from django.utils import timezone
+from django.db.models import Sum
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import VolunteerEntry
@@ -7,14 +9,31 @@ from .forms import VolunteerEntryForm, CustomUserCreationForm
 
 @login_required
 def dashboard(request):
+    current_year = timezone.now().year
+
     if request.user.is_staff:  # or request.user.is_superuser
         # Admin sees all entries
         entries = VolunteerEntry.objects.all()
     else:
         # Regular user sees only their entries
         entries = VolunteerEntry.objects.filter(user=request.user)
+        #current year
+        current_year = timezone.now().year
+        #Sum all hours for the current user in the current year
+        total_hours = VolunteerEntry.objects.filter(
+            user=request.user,
+            date__year=current_year
+            ).aggregate(total=Sum('hours'))['total'] or 0  # Defaults to 0 if no entries
+
+        context = {
+            'entries': entries,
+            'total_hours': total_hours,
+            'current_year': current_year,
+        }
+
+        print(context)
     
-    return render(request, 'hourTracker/dashboard.html', {'entries': entries})
+    return render(request, 'hourTracker/dashboard.html', context)
 
 @login_required
 def add_entry(request):
