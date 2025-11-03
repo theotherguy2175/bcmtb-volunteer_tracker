@@ -24,8 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-ytu@ckohy(ieunx=cyqxwoljel_wr@%a60!d_b!b8!^v=ii9(b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+MODE = os.environ.get("MODE")
+if MODE == "dev":
+    DEBUG = True
+else:
+    DEBUG = False
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
 DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
@@ -35,6 +38,13 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
 # else:
 #     ALLOWED_HOSTS = ["*"]
 ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")
+if CSRF_TRUSTED_ORIGINS:
+    CSRF_TRUSTED_ORIGINS = CSRF_TRUSTED_ORIGINS.split(",")
+else:
+    # fallback for local testing
+    CSRF_TRUSTED_ORIGINS = ["https://localhost", "https://127.0.0.1", "https://mtbtest.casteel.pw"]
 
 
 # Application definition
