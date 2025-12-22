@@ -9,16 +9,26 @@
   </div>
 
   <div class="form-container">
-    {% if user %}
-        <p><strong>Volunteer:</strong> </p>
-        <p>{{user.first_name}} {{user.last_name}} - {{user.email}}</p>
-    {% endif %}
+    <!-- {% if user %} -->
+        <p><strong>Volunteer: </strong>{{vol_firstname}} {{vol_lastname}}</p>
+        <p><strong>eMail: </strong><a href="mailto:{{ vol_email }}">{{ vol_email }}</a></p>
+        <br>
+    <!-- {% endif %} -->
 
     <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit">Save</button>
-    </form>
+      {% csrf_token %}
+      
+      <input type="hidden" name="next" value="{{ next_url }}">
+
+      <div class="field">
+          {{ form.as_p }}
+      </div>
+
+      <div class="buttons">
+          <button type="submit" class="button is-primary">Save Changes</button>
+          <a href="{{ next_url|default:'/dashboard/' }}" class="button is-light">Cancel</a>
+      </div>
+  </form>
   <div class="header-row"></div>
 <div>
   

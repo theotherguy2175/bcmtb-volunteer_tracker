@@ -3,27 +3,22 @@
 <div class="main-container">
 
     <div class="header-row">
-        <h2 class="title">Volunteer Hours</h2>
+        <h2 class="title">ADMIN Volunteer Hours</h2>
+        {% if not user.is_staff %}
         <div class="box">
-            Total hours for {{ current_year }}: <strong>{{ total_hours }}</strong> hours
+            ADMIN Total hours for {{ current_year }}: <strong>{{ total_hours }}</strong> hours
         </div>
+        {% endif %}
         <a href="{% url 'add_entry' %}" class="btn-add button is-primary">Add New Entry</a>
     </div>
 
 
     <!-- https://bulma.io/documentation/elements/table/ -->
      <div class="responsive-table-container">
-
-
-<div id="editNotification" class="notification is-danger" style="display: none; margin-top: 1rem;">
-    <button class="delete"> </button>
-    Editting hours is not supported. Please contact the trail team if you need to edit your hours.
-</div>
-
-
 <table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable responsive-table">
     <thead>
         <tr>
+            <th>eMail</th>
             <th>Date</th>
             <th>Hours</th>
             <th>Category</th>
@@ -34,15 +29,13 @@
     <tbody>
         {% for e in entries %}
         <tr class="clickable-row" data-pk="{{ e.pk }}">
+
+            <td>{{e.user.last_name}}, {{ e.user.first_name }}</td>
             <td>{{ e.date }}</td>
             <td>{{ e.hours }}</td>
             <td>{{ e.category.name }}</td>
             <td class="actions-col">
-                {% if user.is_staff %}
-                <a href="{% url 'edit_entry' e.pk %}?next={{ request.get_full_path }}" class="button is-warning" style="height:1rem">Edit</a>
-                {% else %}
-                <a onclick="editNofication()" class="button is-warning openModalBtn" style="height:1rem">Edit</a> 
-                {% endif %}
+                <a href="{% url 'edit_entry' e.pk %}?next={{ request.get_full_path }}" class="button is-warning" style="height:1rem">Edit</a> 
                 <a href="{% url 'delete_entry' e.pk %}" class="button is-danger" style="height:1rem">Delete</a>
             </td>
             <td class="mobile-only text-center">⋮</td>
@@ -50,6 +43,7 @@
 
         {% empty %}
         <tr>
+            <td>&nbsp;</td>
             <td colspan="1">No entries yet.</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -57,7 +51,6 @@
         </tr>
         {% endfor %}
     </tbody>
-
 </table>
      </div>
 </div>

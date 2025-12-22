@@ -1,3 +1,5 @@
+django
+gunicorn
 django-crispy-forms
 crispy-bulma
 psycopg2-binary

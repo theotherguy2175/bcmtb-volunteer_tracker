@@ -4,6 +4,37 @@
 * @param {boolean}
 */
 
+// console.log("Staff:", isStaff);
+// Capture the current page URL to send as the "next" destination
+const currentPath = encodeURIComponent(window.location.pathname + window.location.search);
+
+
+//close notification
+document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    const $notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});
+
+// const modal = document.querySelector("#myModal");
+// const closeModal = document.querySelector("#closeModal");
+
+// Use querySelectorAll and a loop to attach to ALL edit buttons
+document.querySelectorAll(".openModalBtn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevents the row-click injection from firing too
+        // modal.showModal();
+    });
+});
+
+// closeModal.addEventListener("click", () => {
+//     modal.close();
+// });
+
 function sortTableByColumn(table, column, asc = true) {
     const dirModifier = asc ? 1 : -1;
     const tBody = table.tBodies[0];
@@ -70,12 +101,30 @@ $(document).ready(function() {
         // Otherwise, remove any other open action rows
         $('#table tbody tr.action-row').remove();
 
+        // Create the button only if isStaff is true
+        if (isStaff) {
+            // Button for Admins
+            editButton = `<a href="/edit/${pk}/?next=${currentPath}" class="button is-warning">Edit</a>`;
+            
+        } else {
+            // Button for Regular Users
+            editButton = `<a class="button is-warning openModalBtn" onclick="editNofication()">Edit</a>`;          
+        }
+
+        $('#table').on('click', '.openModalBtn', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Prevents the mobile row from closing
+            
+            const modal = document.querySelector("#myModal");
+            // modal.showModal();
+        });
+
         // Insert a new action row after this row
         var actionRow = `
             <tr class="action-row">
                 <td colspan="${$this.children().length}">
                     <div class="action-box" style="text-align:center;">
-                        <a href="/edit/${pk}/" class="button is-warning">Edit</a>
+                        ${editButton}
                         <a href="/delete/${pk}/" class="button is-danger">Delete</a>
                     </div>
                 </td>
@@ -103,3 +152,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+function editNofication() {
+    const div = document.getElementById("editNotification");
+    
+    if (div.style.display === "none") {
+        div.style.display = "block";
+    } else {
+        div.style.display = "none";
+    }
+}
+// Frunction to close notification
+function showBulmaNotification(message) {
+    const container = document.getElementById('notification-container');
+
+    // Create the notification element
+    const notification = document.createElement('div');
+    notification.className = 'notification is-danger';
+    notification.innerHTML = `
+        <button class="delete"></button>
+        ${message}
+    `;
+
+    // Add logic to the "delete" button inside the notification
+    notification.querySelector('.delete').addEventListener('click', () => {
+        notification.remove();
+    });
+
+    // Add to the container
+    container.appendChild(notification);
+
+    // Optional: Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+}
+

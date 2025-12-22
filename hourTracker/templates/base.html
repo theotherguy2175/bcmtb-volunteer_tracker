@@ -29,8 +29,13 @@
             <div class="nav__menu" id="nav-menu">
                <ul class="nav__list">
                   <li>
-                     <a href="{% url 'dashboard' %}" class="nav__link">Hours</a>
+                     <a href="{% url 'dashboard' %}" class="nav__link">My Hours</a>
                   </li>
+                  {% if user.is_staff %}
+                  <li>
+                     <a href="/admin_dashboard/" class="nav__link">All Hours</a>
+                  </li>
+                  {% endif %}
                   <li>
                      <a href="https://images.squarespace-cdn.com/content/v1/6421e015566ba11c10666b68/f59c7e62-0cd3-4a89-8909-072d5eb011d4/Volunteer+Rewards.JPG?format=750w"  target="_blank" class="nav__link">Rewards</a>
                   </li>

@@ -57,6 +57,9 @@ table{
     margin: 0 auto;
 }
 
+
+
+
 @media (max-width: 900px) {
     .header-row {
         flex-direction: column;    /* stack items */
