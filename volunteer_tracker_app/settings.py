@@ -134,6 +134,9 @@ DATABASES = {
 print(f"DB CONFIG: {DATABASES}")
 
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
 
 
 
@@ -155,7 +158,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 AUTH_USER_MODEL = 'hourTracker.CustomUser'
-AUTHENTICATION_BACKENDS = ['hourTracker.backends.EmailBackend']
+AUTHENTICATION_BACKENDS = [
+    'hourTracker.backends.CustomEmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
@@ -189,3 +195,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+

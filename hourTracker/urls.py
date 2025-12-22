@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -11,7 +11,7 @@ urlpatterns = [
     path('delete/<int:pk>/', views.delete_entry, name='delete_entry'),
 
     path('register/', views.register_view, name='register'),
-    # path('forgot-password/', views.forgot_password, name='forgot_password'),
+    
 
     path('export-csv/', views.export_csv, name='export_csv'),
 ]
