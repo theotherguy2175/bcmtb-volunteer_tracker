@@ -138,3 +138,34 @@ def register_view(request):
 
     return render(request, 'hourTracker/register.html', {'form': form})
 
+
+#Export Table to CSV
+import csv
+from django.http import HttpResponse
+
+from django.db.models import Q
+
+def export_csv(request):
+    search_query = request.GET.get('search', '')
+    print(search_query)
+    # Start with all entries
+    entries = VolunteerEntry.objects.all()
+
+    # If there is a search term, filter the results
+    if search_query:
+        entries = entries.filter(
+            Q(user__email__icontains=search_query) | 
+            Q(date__icontains=search_query) |
+            Q(hours__icontains=search_query)
+        )
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="filtered_hours.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Date', 'Hours', 'User'])
+
+    for entry in entries:
+        writer.writerow([entry.date, entry.hours, entry.user.email])
+
+    return response

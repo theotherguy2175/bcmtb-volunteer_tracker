@@ -74,63 +74,86 @@ document.querySelectorAll(".tableSortable th").forEach(headerCell => {
 });
 
 $(document).ready(function() {
+    // 1. Initialize the table with Export Buttons
     var table = $('#table').DataTable({
-        paging: true,
-        pageLength: 50,
-        lengthMenu: [[10, 100, 1000], [10, 100, 1000]],
-        searching: true,
-        ordering: true,
-        order: [[0, 'asc']]
+    // l = Length (show X lines)
+    // B = Buttons (Export CSV)
+    // f = Filter (Search bar)
+    // r = pRocessing
+    // t = Table
+    // i = Info (Showing 1 of 50...)
+    // p = Pagination
+    dom: '<"columns is-mobile is-vcentered"<"column"l><"column has-text-centered"B><"column"f>>rtip',
+    buttons: [
+        {
+            extend: 'csvHtml5',
+            text: 'Export CSV',
+            className: 'button is-info is-small',
+            exportOptions: {
+                rows: function (idx, data, node) {
+                    return !$(node).hasClass('action-row');
+                }
+            }
+        }
+    ],
+    paging: true,
+    pageLength: 50,
+    lengthMenu: [[10, 100, 1000], [10, 100, 1000]],
     });
 
+    // 2. Handle the Row Clicks for the Expandable Edit/Delete buttons
     $('#table tbody').on('click', 'tr', function() {
-
-        // Don’t trigger on the action row itself
         if ($(this).hasClass('action-row')) return;
 
         var $this = $(this);
-        var pk = $this.data('pk'); // each row should have data-pk="{{ e.pk }}"
+        var pk = $this.data('pk');
         var nextRow = $this.next('.action-row');
 
-        // If the next row is already the action row and visible, toggle it off
         if (nextRow.length && nextRow.is(':visible')) {
             nextRow.remove();
             return;
         }
 
-        // Otherwise, remove any other open action rows
         $('#table tbody tr.action-row').remove();
 
-        // Create the button only if isStaff is true
+        // Define currentPath for the "next" redirect
+        const currentPath = encodeURIComponent(window.location.pathname + window.location.search);
+
+        let editButton = '';
+
         if (isStaff) {
-            // Button for Admins
+            // Button for Admins - uses the 'next' parameter we built
             editButton = `<a href="/edit/${pk}/?next=${currentPath}" class="button is-warning">Edit</a>`;
-            
         } else {
-            // Button for Regular Users
-            editButton = `<a class="button is-warning openModalBtn" onclick="editNofication()">Edit</a>`;          
+            // Button for Regular Users - triggers your notification/modal
+            editButton = `<a class="button is-warning openModalBtn">Edit</a>`;          
         }
 
-        $('#table').on('click', '.openModalBtn', function(e) {
-            e.preventDefault();
-            e.stopPropagation(); // Prevents the mobile row from closing
-            
-            const modal = document.querySelector("#myModal");
-            // modal.showModal();
-        });
-
-        // Insert a new action row after this row
         var actionRow = `
             <tr class="action-row">
                 <td colspan="${$this.children().length}">
-                    <div class="action-box" style="text-align:center;">
+                    <div class="action-box" style="text-align:center; padding: 10px; background: #f5f5f5;">
                         ${editButton}
-                        <a href="/delete/${pk}/" class="button is-danger">Delete</a>
+                        <a href="/delete/${pk}/?next=${currentPath}" class="button is-danger">Delete</a>
                     </div>
                 </td>
             </tr>
         `;
         $this.after(actionRow);
+    });
+
+    // 3. Delegation for the openModalBtn (placed outside the row click)
+    $('#table').on('click', '.openModalBtn', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Trigger your Bulma notification or Modal here
+        if (typeof editNofication === "function") {
+            editNofication(); 
+        }
+        
+        // If you want the browser <dialog>:
+        // document.querySelector("#myModal").showModal();
     });
 });
 
