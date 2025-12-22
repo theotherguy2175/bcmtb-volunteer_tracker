@@ -18,6 +18,8 @@ RUN pip install --upgrade pip && \
 # Copy project
 COPY . /app/
 
+RUN python3 manage.py collectstatic --noinput
+
 # Expose port
 EXPOSE 8000
 

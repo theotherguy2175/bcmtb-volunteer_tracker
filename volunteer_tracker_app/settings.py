@@ -25,11 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 MODE = os.environ.get("MODE")
+
+print(f"ENVS:")
+print(f"MODE: {MODE}")
+
 if MODE == "dev":
     DEBUG = True
 else:
     DEBUG = False
-DEBUG = True    
+
+
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
 ######DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
 # ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
@@ -66,6 +71,7 @@ CRISPY_TEMPLATE_PACK = "bulma"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,6 +131,7 @@ DATABASES = {
         'PORT': os.environ.get('POSTGRES_PORT', '5432'),
     }
 }
+print(f"DB CONFIG: {DATABASES}")
 
 
 
@@ -172,6 +179,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"  # used in production
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
