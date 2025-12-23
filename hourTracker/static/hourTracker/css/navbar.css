@@ -61,7 +61,7 @@ a {
   text-decoration: none;
 }
 
-img {
+nav a img {
   display: block;
   max-width: 100%;
   height: 3rem !important;

@@ -18,6 +18,7 @@ from django.views.generic.base import RedirectView
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'images/bcmb_logo.ico')),
@@ -25,3 +26,6 @@ urlpatterns = [
     path('', include('hourTracker.urls')),  # main app
     path('accounts/', include('django.contrib.auth.urls')),  # login/logout
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

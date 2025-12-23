@@ -3,11 +3,7 @@ from .models import CustomUser, VolunteerEntry, VolunteerTask
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
-
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, VolunteerEntry, VolunteerLocation
-from django.utils.translation import gettext_lazy as _
+from .models import CustomUser, VolunteerEntry, VolunteerLocation, VolunteerReward
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
@@ -58,3 +54,10 @@ class VolunteerEntryAdmin(admin.ModelAdmin):
 class VolunteerLocationAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+
+@admin.register(VolunteerReward)
+class RewardAdmin(admin.ModelAdmin):
+    # This makes the admin list view show the name and the hours required
+    list_display = ('name', 'hours_required')
+    # This allows you to click the name to edit the reward
+    list_display_links = ('name',)

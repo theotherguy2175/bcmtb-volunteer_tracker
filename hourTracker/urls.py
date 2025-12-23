@@ -11,7 +11,7 @@ urlpatterns = [
     path('delete/<int:pk>/', views.delete_entry, name='delete_entry'),
 
     path('register/', views.register_view, name='register'),
-    
+    path('rewards/', views.rewards, name='rewards'),
 
     path('export-csv/', views.export_csv, name='export_csv'),
 ]

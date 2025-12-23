@@ -4,3 +4,4 @@ whitenoise
 django-crispy-forms
 crispy-bulma
 psycopg2-binary
+Pillow

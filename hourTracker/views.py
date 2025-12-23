@@ -169,3 +169,32 @@ def export_csv(request):
         writer.writerow([entry.date, entry.hours, entry.user.email])
 
     return response
+
+from django.shortcuts import render
+from .models import VolunteerReward, VolunteerEntry
+from django.db.models import Sum
+
+def rewards(request):
+    # Get all rewards, ordered by the hours required
+    rewards = VolunteerReward.objects.all().order_by('hours_required')
+    #current_year = timezone.now().year
+    # Regular user sees only their entries
+    entries = VolunteerEntry.objects.filter(user=request.user)
+    #current year
+    current_year = timezone.now().year
+    #Sum all hours for the current user in the current year
+    total_hours = VolunteerEntry.objects.filter(
+        user=request.user,
+        date__year=current_year
+        ).aggregate(total=Sum('hours'))['total'] or 0  # Defaults to 0 if no entries
+
+    context = {
+        'rewards': rewards,
+        'entries': entries,
+        'total_hours': total_hours,
+        'current_year': current_year,
+    }
+
+    print(context)
+
+    return render(request, 'rewards.html', context)

@@ -73,4 +73,13 @@ class VolunteerEntry(models.Model): #Add everything together in one model
 
     def __str__(self):
         return f"{self.user.email} - {self.date} ({self.hours}h)"
+
+class VolunteerReward(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='reward-images/')
+    hours_required = models.IntegerField(default=0) # To know when to show it
+
+    def __str__(self):
+        return self.name
     

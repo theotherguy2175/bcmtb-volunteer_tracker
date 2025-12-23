@@ -40,7 +40,8 @@
                   </li>
                   {% endif %}
                   <li>
-                     <a href="https://images.squarespace-cdn.com/content/v1/6421e015566ba11c10666b68/f59c7e62-0cd3-4a89-8909-072d5eb011d4/Volunteer+Rewards.JPG?format=750w"  target="_blank" class="nav__link">Rewards</a>
+                     <!-- <a href="https://images.squarespace-cdn.com/content/v1/6421e015566ba11c10666b68/f59c7e62-0cd3-4a89-8909-072d5eb011d4/Volunteer+Rewards.JPG?format=750w"  target="_blank" class="nav__link">Rewards</a> -->
+                     <a href="{% url 'rewards' %}" class="nav__link">Rewards</a>
                   </li>
                   {% if user.is_staff %}
                   <li>
