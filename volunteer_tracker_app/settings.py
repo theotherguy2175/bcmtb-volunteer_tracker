@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'crispy_forms',
     'crispy_bulma',
     # custom apps
@@ -179,7 +180,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-import os
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # optional global static dir
 ]
