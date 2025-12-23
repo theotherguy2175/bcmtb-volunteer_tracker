@@ -14,47 +14,53 @@
 
 
     <!-- https://bulma.io/documentation/elements/table/ -->
-     <div class="responsive-table-container">
-<table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable responsive-table">
-    <thead>
-        <tr>
-            <th>eMail</th>
-            <th>Date</th>
-            <th>Hours</th>
-            <th>Category</th>
-            <th>Location</th>
-            <th class="actions-col">Actions</th>
-            <th class="mobile-only"></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for e in entries %}
-        <tr class="clickable-row" data-pk="{{ e.pk }}">
+    <div class="responsive-table-container">
+        {% if entries %}
+        <table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable responsive-table">
+            <thead>
+                <tr>
+                    <th>eMail</th>
+                    <th>Date</th>
+                    <th>Hours</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th class="actions-col">Actions</th>
+                    <th class="mobile-only"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in entries %}
+                <tr class="clickable-row" data-pk="{{ e.pk }}">
 
-            <td>{{e.user.last_name}}, {{ e.user.first_name }}</td>
-            <td>{{ e.date }}</td>
-            <td>{{ e.hours }}</td>
-            <td>{{ e.category.name }}</td>
-            <td>{{ e.location.name }}</td>
-            <td class="actions-col">
-                <a href="{% url 'edit_entry' e.pk %}?next={{ request.get_full_path }}" class="button is-warning" style="height:1rem">Edit</a> 
-                <a href="{% url 'delete_entry' e.pk %}" class="button is-danger" style="height:1rem">Delete</a>
-            </td>
-            <td class="mobile-only text-center">⋮</td>
-        </tr>
+                    <td>{{e.user.last_name}}, {{ e.user.first_name }}</td>
+                    <td>{{ e.date }}</td>
+                    <td>{{ e.hours }}</td>
+                    <td>{{ e.category.name }}</td>
+                    <td>{{ e.location.name }}</td>
+                    <td class="actions-col">
+                        <a href="{% url 'edit_entry' e.pk %}?next={{ request.get_full_path }}" class="button is-warning" style="height:1rem">Edit</a> 
+                        <a href="{% url 'delete_entry' e.pk %}" class="button is-danger" style="height:1rem">Delete</a>
+                    </td>
+                    <td class="mobile-only text-center">⋮</td>
+                </tr>
 
-        {% empty %}
-        <tr>
-            <td>&nbsp;</td>
-            <td colspan="1">No entries yet.</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                {% empty %}
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="1">No entries yet.</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="box">
+            <p>No entries yet.</p>
+        </div>
+        {% endif %}
      </div>
 </div>
 
