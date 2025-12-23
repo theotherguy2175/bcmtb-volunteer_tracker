@@ -6,29 +6,30 @@
         
          <div class="box">
             <h1 class="title">Voulenteer Rewards</h1>
-            <p class="subtitle">Total hours for {{ current_year }}: <strong class="has-text-primary">{{ total_hours }}</strong> hours</p>
+            <p class="subtitle">Total hours for <strong>{{ current_year }} -</strong>  <span class="tag is-large is-success">{{ total_hours }}</span> </p>
         </div>
 
         <div class="columns is-multiline">
             {% for reward in rewards %}
             <div class="column is-4">
                 <div class="card {% if total_hours < reward.hours_required %}is-opacity-50{% endif %}">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
+                    <div class="card-image image-container"> <figure class="image is-square">
                             <img src="{{ reward.image.url }}" alt="{{ reward.name }}">
                         </figure>
+                        
+                        <div class="status-overlay">
+                            {% if total_hours >= reward.hours_required %}
+                                <span class="tag is-medium is-success">Earned</span>
+                            {% else %}
+                                <span class="tag is-medium is-light">Unearned</span>
+                            {% endif %}
+                        </div>
                     </div>
                     <div class="card-content">
                         <p class="title is-4">{{ reward.name }}</p>
                         <p class="subtitle is-6">{{ reward.hours_required }} Hours Required</p>
                         <div class="content">
                             {{ reward.description }}
-                            <br>
-                            {% if total_hours >= reward.hours_required %}
-                                <span class="tag is-success">Unlocked!</span>
-                            {% else %}
-                                <span class="tag is-light">Locked</span>
-                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -43,5 +44,36 @@
         opacity: 0.5;
         filter: grayscale(100%);
     }
+
+    .image img {
+        padding: 1rem;
+        border-radius: 2em !important;
+    }
+    
+    /* 1. Make the container the reference point for absolute positioning */
+    .image-container {
+        position: relative;
+    }
+
+    /* 2. Position the tag over the image */
+    .status-overlay {
+        position: absolute;
+        bottom: 25px; /* Distance from bottom */
+        left: 25px;   /* Distance from left */
+        z-index: 10;  /* Ensures it stays on top */
+    }
+
+    /* Adjusting your existing image style to ensure the radius looks good */
+    .image img {
+        padding: 1rem;
+        border-radius: 2em !important;
+        display: block;
+    }
+
+    .is-opacity-50 {
+        opacity: 0.5;
+        filter: grayscale(100%);
+    }
+
 </style>
 {% endblock %}
