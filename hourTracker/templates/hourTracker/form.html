@@ -1,36 +1,42 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
 <div class="main-container">
+  <div class="form-container">
+
 
   <div class="header-row">
-      <h2>Edit Entry</h2>
+      <h2 class="title has-text-centered is-1">Edit Entry</h2>
       
   </div>
 
-  <div class="form-container">
-    <!-- {% if user %} -->
-        <p><strong>Volunteer: </strong>{{vol_firstname}} {{vol_lastname}}</p>
-        <p><strong>eMail: </strong><a href="mailto:{{ vol_email }}">{{ vol_email }}</a></p>
+
+        {% if vol_firstname %}
+            <p class="title">Volunteer:</p>
+            <p class="subtitle">{{vol_firstname}} {{vol_lastname}}
+            <br><a href="mailto:{{ vol_email }}">{{ vol_email }}</a></p>
+            <br>
+        {% endif %}
+
+        <form method="post">
+        {% csrf_token %}
+        
+        {{ form|crispy }}
+        
+        <input type="hidden" name="next" value="{{ next_url }}">
+
         <br>
-    <!-- {% endif %} -->
+        <div class="buttons">
+            <button type="submit" class="button is-primary">Save Changes</button>
+            <a href="{{ next_url|default:'/dashboard/' }}" class="button is-light">Cancel</a>
+        </div>
+        </form>
+        <div class="header-row"></div>
 
-    <form method="post">
-      {% csrf_token %}
-      
-      <input type="hidden" name="next" value="{{ next_url }}">
 
-      <div class="field">
-          {{ form.as_p }}
-      </div>
-
-      <div class="buttons">
-          <button type="submit" class="button is-primary">Save Changes</button>
-          <a href="{{ next_url|default:'/dashboard/' }}" class="button is-light">Cancel</a>
-      </div>
-  </form>
-  <div class="header-row"></div>
-<div>
+</div>
+</div>
   
 
 {% endblock %}

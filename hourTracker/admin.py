@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, VolunteerEntry
+from .models import CustomUser, VolunteerEntry, VolunteerLocation
 from django.utils.translation import gettext_lazy as _
 
 @admin.register(CustomUser)
@@ -53,3 +53,8 @@ class VolunteerEntryAdmin(admin.ModelAdmin):
     list_display = ('user', 'date', 'hours', 'category')
     list_filter = ('category', 'date')
     search_fields = ('user__email',)
+
+@admin.register(VolunteerLocation)
+class VolunteerLocationAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)

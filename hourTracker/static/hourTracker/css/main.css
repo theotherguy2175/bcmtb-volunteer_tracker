@@ -53,6 +53,21 @@
     width: 50%
 }
 
+input[type="date"]{
+    width: auto;
+}
+input[type="number"]{
+    width: auto;
+}
+
+.select {
+    width: 100% !important;
+}
+.select select{
+    width: 100% !important;
+}
+
+
 table{
     margin: 0 auto;
 }

@@ -4,7 +4,7 @@ from .models import VolunteerEntry
 class VolunteerEntryForm(forms.ModelForm):
     class Meta:
         model = VolunteerEntry
-        fields = ['date', 'hours', 'category']
+        fields = ['date', 'hours', 'category', 'location']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
         }
