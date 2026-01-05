@@ -5,3 +5,5 @@ django-crispy-forms
 crispy-bulma
 psycopg2-binary
 Pillow
+django-q2 
+croniter

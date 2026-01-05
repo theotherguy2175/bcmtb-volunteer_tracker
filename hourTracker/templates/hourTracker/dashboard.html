@@ -4,8 +4,28 @@
 
     <div class="header-row">
         <h2 class="title">Volunteer Hours</h2>
+        
+        <div class="field">
+            <div class="control">
+                <form method="GET" id="yearForm">
+                    <div class="select">
+                        <select name="year" onchange="document.getElementById('yearForm').submit();">
+                            <option value="all" {% if selected_year == 'all' %}selected{% endif %}>
+                                All Years
+                            </option>
+                            {% for y in year_list %}
+                                <option value="{{ y }}" {% if selected_year == y|stringformat:"i" or selected_year == y %}selected{% endif %}>
+                                    {{ y }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div class="box">
-            Total hours for {{ current_year }}: <strong>{{ total_hours }}</strong> hours
+            Total hours for {{ selected_year }}: <strong>{{ total_hours }}</strong> hours
         </div>
         <a href="{% url 'add_entry' %}" class="btn-add button is-primary">Add New Entry</a>
     </div>
@@ -25,7 +45,7 @@
         <table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable responsive-table">
             <thead>
                 <tr>
-                    <th>Date</th>
+                    <th class="default-sort">Date</th>
                     <th>Hours</th>
                     <th>Category</th>
                     <th>Location</th>
@@ -36,7 +56,7 @@
             <tbody>
                 {% for e in entries %}
                 <tr class="clickable-row" data-pk="{{ e.pk }}">
-                    <td>{{ e.date }}</td>
+                    <td data-order="{{ e.date|date:'Ymd' }}">{{ e.date }}</td>
                     <td>{{ e.hours }}</td>
                     <td>{{ e.category.name }}</td>
                     <td>{{ e.location.name }}</td>

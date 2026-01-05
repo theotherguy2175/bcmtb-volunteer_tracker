@@ -74,6 +74,9 @@ document.querySelectorAll(".tableSortable th").forEach(headerCell => {
 });
 
 $(document).ready(function() {
+    // Find the index of the column with the 'default-sort' class
+    var sortIndex = $('#table thead th.default-sort').index();
+    console.log("Default sort index:", sortIndex);
     // 1. Initialize the table with Export Buttons
     var table = $('#table').DataTable({
     // l = Length (show X lines)
@@ -96,6 +99,11 @@ $(document).ready(function() {
             }
         }
     ],
+
+    order: [[sortIndex, 'desc']],  // Default sort by first column descending
+    columnDefs: [
+            { "type": "num", "targets": sortIndex } // Tells DataTables to treat data-order as a number
+        ],
     paging: true,
     pageLength: 50,
     lengthMenu: [[10, 100, 1000], [10, 100, 1000]],

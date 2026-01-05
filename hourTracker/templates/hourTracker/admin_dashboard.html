@@ -20,7 +20,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Date</th>
+                    <th class="default-sort">Date</th>
                     <th>Hours</th>
                     <th>Category</th>
                     <th>Location</th>
@@ -33,7 +33,7 @@
                 <tr class="clickable-row" data-pk="{{ e.pk }}">
 
                     <td>{{e.user.last_name}}, {{ e.user.first_name }}</td>
-                    <td>{{ e.date }}</td>
+                    <td data-order="{{ e.date|date:'Ymd' }}">{{ e.date }}</td>
                     <td>{{ e.hours }}</td>
                     <td>{{ e.category.name }}</td>
                     <td>{{ e.location.name }}</td>

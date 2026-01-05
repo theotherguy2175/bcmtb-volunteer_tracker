@@ -10,24 +10,38 @@ from .forms import VolunteerEntryForm, CustomUserCreationForm
 @login_required
 def dashboard(request):
     current_year = timezone.now().year
-    # Regular user sees only their entries
+    selected_year = request.GET.get('year', str(current_year))
+    
+    # 1. Base queryset for this user
     entries = VolunteerEntry.objects.filter(user=request.user)
-    #current year
-    current_year = timezone.now().year
-    #Sum all hours for the current user in the current year
-    total_hours = VolunteerEntry.objects.filter(
-        user=request.user,
-        date__year=current_year
-        ).aggregate(total=Sum('hours'))['total'] or 0  # Defaults to 0 if no entries
+    
+    # 2. Get unique years for the dropdown (always ordered newest first)
+    years_available = entries.dates('date', 'year', order='DESC')
+    year_list = [d.year for d in years_available]
+    
+    # Ensure current year is in the list even if no entries exist yet
+    if current_year not in year_list:
+        year_list.insert(0, current_year)
+
+    # 3. Apply year filtering ONLY if not "all"
+    if selected_year != 'all':
+        try:
+            entries = entries.filter(date__year=int(selected_year))
+        except (ValueError, TypeError):
+            # Fallback to current year if something goes wrong
+            entries = entries.filter(date__year=current_year)
+            selected_year = str(current_year)
+
+    # 4. Final ordering and calculation
+    entries = entries.order_by('-date', '-pk')
+    total_hours = entries.aggregate(total=Sum('hours'))['total'] or 0
 
     context = {
         'entries': entries,
         'total_hours': total_hours,
-        'current_year': current_year,
+        'selected_year': selected_year, # This could be an int or the string 'all'
+        'year_list': year_list,
     }
-
-    print(context)
-    
     return render(request, 'hourTracker/dashboard.html', context)
 
 @login_required
@@ -44,7 +58,8 @@ def admin_dashboard(request):
         }
     else:
         # Regular user sees only their entries
-        entries = VolunteerEntry.objects.filter(user=request.user)
+        entries = VolunteerEntry.objects.filter(
+            user=request.user)
         #current year
         current_year = timezone.now().year
         #Sum all hours for the current user in the current year

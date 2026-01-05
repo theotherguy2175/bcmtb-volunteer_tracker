@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'crispy_forms',
     'crispy_bulma',
+    'django_q',
     # custom apps
     'hourTracker',
 ]
@@ -135,8 +136,23 @@ DATABASES = {
 print(f"DB CONFIG: {DATABASES}")
 
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+#EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "msgraphbackend.MSGraphBackend"
+EMAIL_CHARSET = 'utf-8'
 
+
+MSGRAPH_TENANT_ID = os.environ.get("MSGRAPH_TENANT_ID")
+MSGRAPH_CLIENT_ID = os.environ.get("MSGRAPH_CLIENT_ID")
+MSGRAPH_CLIENT_SECRET = os.environ.get("MSGRAPH_CLIENT_SECRET")
+
+# The email address that has the mailbox
+DEFAULT_FROM_EMAIL = 'cody.casteel@browncountymtb.org'
+# else:
+    # Fallback to console for local dev
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+import ssl
+EMAIL_SSL_CONTEXT = ssl._create_unverified_context()
 
 
 
@@ -199,3 +215,14 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 
+
+
+Q_CLUSTER = {
+    'name': 'DjangORM',
+    'workers': 4,       # Number of background processes
+    'timeout': 90,      # Max seconds a task can run
+    'retry': 120,       # When to retry a task if it fails
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default',   # Uses your Django database as the broker
+}
