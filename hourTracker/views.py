@@ -88,12 +88,19 @@ def add_entry(request):
             entry.save()
             return redirect('dashboard')
     else:
-        form = VolunteerEntryForm()
-    return render(request, 'hourTracker/form.html', {'form': form})
+        form = VolunteerEntryForm(initial={'date': timezone.now().date()})
+    
+    # Adding the context variables here
+    context = {
+        'form': form,
+        'form_title': 'Add New Entry',
+        'button_text': 'Add Entry'
+    }
+    return render(request, 'hourTracker/entry_form.html', context)
 
 @login_required
 def edit_entry(request, pk):
-    # ... (Your existing entry lookup logic stays the same) ...
+    # Security check: Staff see anything, users see only their own
     if request.user.is_staff or request.user.is_superuser:
         entry = get_object_or_404(VolunteerEntry, pk=pk)
     else:
@@ -103,25 +110,28 @@ def edit_entry(request, pk):
         form = VolunteerEntryForm(request.POST, instance=entry)
         if form.is_valid():
             form.save()
-            # 1. Look for 'next' in the POST data
+            # Redirect to the 'next' URL if it exists, otherwise back to dashboard
             next_url = request.POST.get('next')
             if next_url:
                 return redirect(next_url)
-            return redirect('dashboard') # Fallback
+            return redirect('dashboard')
     else:
         form = VolunteerEntryForm(instance=entry)
 
-    # 2. Get 'next' from the URL (to pass it into the hidden form field)
+    # Get 'next' from the GET parameters to maintain the return path
     next_url = request.GET.get('next', '')
-    print(next_url)
-    return render(request, 'hourTracker/form.html', {
+
+    context = {
         'form': form,
         'vol_email': entry.user.email,
         'vol_firstname': entry.user.first_name,
         'vol_lastname': entry.user.last_name,
-        'next_url': next_url, # 3. Pass it to the template
-    })
+        'next_url': next_url,
+        'form_title': 'Edit Entry',       # The dynamic title
+        'button_text': 'Save Changes'     # The dynamic button label
+    }
 
+    return render(request, 'hourTracker/entry_form.html', context)
 
 @login_required
 def delete_entry(request, pk):

@@ -7,7 +7,7 @@
 
 
   <div class="header-row">
-      <h2 class="title has-text-centered is-1">Edit Entry</h2>
+      <h2 class="title has-text-centered is-1">{{ form_title }}</h2>
       
   </div>
 
@@ -28,7 +28,7 @@
 
         <br>
         <div class="buttons">
-            <button type="submit" class="button is-primary">Save Changes</button>
+            <button type="submit" class="button is-primary">{{ button_text }}</button>
             <a href="{{ next_url|default:'/dashboard/' }}" class="button is-light">Cancel</a>
         </div>
         </form>
