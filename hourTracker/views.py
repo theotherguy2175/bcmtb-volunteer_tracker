@@ -93,7 +93,7 @@ def add_entry(request):
     # Adding the context variables here
     context = {
         'form': form,
-        'form_title': 'Add New Entry',
+        'form_title': 'Add Entry',
         'button_text': 'Add Entry'
     }
     return render(request, 'hourTracker/entry_form.html', context)
@@ -123,13 +123,15 @@ def edit_entry(request, pk):
 
     context = {
         'form': form,
-        'vol_email': entry.user.email,
         'vol_firstname': entry.user.first_name,
         'vol_lastname': entry.user.last_name,
         'next_url': next_url,
         'form_title': 'Edit Entry',       # The dynamic title
-        'button_text': 'Save Changes'     # The dynamic button label
+        'button_text': 'Edity Entry'     # The dynamic button label
     }
+
+    if request.user.is_staff or request.user.is_superuser: #only render username if admin, no need for regular users
+        context['vol_email'] = entry.user.email
 
     return render(request, 'hourTracker/entry_form.html', context)
 
