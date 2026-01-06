@@ -4,7 +4,6 @@
 * @param {boolean}
 */
 
-// console.log("Staff:", isStaff);
 // Capture the current page URL to send as the "next" destination
 const currentPath = encodeURIComponent(window.location.pathname + window.location.search);
 
@@ -20,9 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// const modal = document.querySelector("#myModal");
-// const closeModal = document.querySelector("#closeModal");
-
 // Use querySelectorAll and a loop to attach to ALL edit buttons
 document.querySelectorAll(".openModalBtn").forEach(btn => {
     btn.addEventListener("click", (e) => {
@@ -30,10 +26,6 @@ document.querySelectorAll(".openModalBtn").forEach(btn => {
         // modal.showModal();
     });
 });
-
-// closeModal.addEventListener("click", () => {
-//     modal.close();
-// });
 
 function sortTableByColumn(table, column, asc = true) {
     const dirModifier = asc ? 1 : -1;
@@ -76,38 +68,66 @@ document.querySelectorAll(".tableSortable th").forEach(headerCell => {
 $(document).ready(function() {
     // Find the index of the column with the 'default-sort' class
     var sortIndex = $('#table thead th.default-sort').index();
-    console.log("Default sort index:", sortIndex);
-    // 1. Initialize the table with Export Buttons
+    
+    // 1. Initialize the table
     var table = $('#table').DataTable({
-    // l = Length (show X lines)
-    // B = Buttons (Export CSV)
-    // f = Filter (Search bar)
-    // r = pRocessing
-    // t = Table
-    // i = Info (Showing 1 of 50...)
-    // p = Pagination
-    dom: '<"columns is-mobile is-vcentered"<"column"l><"column has-text-centered"B><"column"f>>rtip',
-    buttons: [
-        {
-            extend: 'csvHtml5',
-            text: 'Export CSV',
-            className: 'button is-info is-small',
-            exportOptions: {
-                rows: function (idx, data, node) {
-                    return !$(node).hasClass('action-row');
+        // We simplified 'dom'. 
+        // 'lBfrtip' puts everything in a plain list so we can grab them easily.
+        dom: 'lBfrtip',
+        
+        language: {
+            search: "", // Removes the "Search:" label
+            searchPlaceholder: "Search...", // Text inside the box
+            lengthMenu: "_MENU_" // Removes "entries" text to keep it tight
+        },
+        // This runs as soon as the table is finished building
+        initComplete: function() {
+            // Add Bulma 'input' class to the search box
+            $('.dataTables_filter input').addClass('input');
+            
+            // Add Bulma 'select' wrapper and class to the length dropdown
+            $('.dataTables_length select').addClass('select dropdown');
+            $('.dataTables_length').addClass('select');
+        },
+        
+        buttons: [
+            {
+                extend: 'csvHtml5',
+                text: '<span class="button is-info">Export CSV</span>',
+                className: 'button is-info is-small is-rounded', 
+                    init: function(api, node, config) {
+                        // This targets the <button> tag you highlighted in your screenshot
+                        $(node).attr('style', 'border: none !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; outline: none !important;');
+                    },
+                exportOptions: {
+                    rows: function (idx, data, node) {
+                        return !$(node).hasClass('action-row');
+                    }
                 }
             }
-        }
-    ],
-
-    order: [[sortIndex, 'desc']],  // Default sort by first column descending
-    columnDefs: [
-            { "type": "num", "targets": sortIndex } // Tells DataTables to treat data-order as a number
         ],
-    paging: true,
-    pageLength: 50,
-    lengthMenu: [[10, 100, 1000], [10, 100, 1000]],
+        order: [[sortIndex, 'desc']],
+        columnDefs: [
+            { "type": "num", "targets": sortIndex }
+        ],
+        paging: true,
+        pageLength: 50,
+        lengthMenu: [[10, 100, 1000], [10, 100, 1000]],
     });
+
+    var $controls = $('<div class="columns is-mobile is-vcentered"></div>');
+    // 1. Left: Narrow column (only as wide as the dropdown)
+    var $leftCol = $('<div class="column is-narrow"></div>').append($('.dataTables_length'));
+    $controls.append($leftCol);
+    // 2. Center: Narrow column (only as wide as the button)
+    var $centerCol = $('<div class="column is-narrow" style="border:none"></div>').append($('.dt-buttons'));
+    $controls.append($centerCol);
+    // 3. Right: Flex column (takes up 100% of the REMAINING space)
+    var $rightCol = $('<div class="column"></div>').append($('.dataTables_filter'));
+    $controls.append($rightCol);
+
+    $('#datatable-controls').empty().append($controls);
+
 
     // 2. Handle the Row Clicks for the Expandable Edit/Delete buttons
     $('#table tbody').on('click', 'tr', function() {
@@ -124,23 +144,19 @@ $(document).ready(function() {
 
         $('#table tbody tr.action-row').remove();
 
-        // Define currentPath for the "next" redirect
         const currentPath = encodeURIComponent(window.location.pathname + window.location.search);
-
         let editButton = '';
 
         if (isStaff) {
-            // Button for Admins - uses the 'next' parameter we built
             editButton = `<a href="/edit/${pk}/?next=${currentPath}" class="button is-warning">Edit</a>`;
         } else {
-            // Button for Regular Users - triggers your notification/modal
             editButton = `<a class="button is-warning openModalBtn">Edit</a>`;          
         }
 
         var actionRow = `
             <tr class="action-row">
                 <td colspan="${$this.children().length}">
-                    <div class="action-box" style="text-align:center; padding: 10px; background: #f5f5f5;">
+                    <div class="action-box" style="text-align:center; padding: 10px; background: #363636; border-radius: 4px;">
                         ${editButton}
                         <a href="/delete/${pk}/?next=${currentPath}" class="button is-danger">Delete</a>
                     </div>
@@ -150,21 +166,16 @@ $(document).ready(function() {
         $this.after(actionRow);
     });
 
-    // 3. Delegation for the openModalBtn (placed outside the row click)
+    // 3. Delegation for the openModalBtn
     $('#table').on('click', '.openModalBtn', function(e) {
         e.preventDefault();
         e.stopPropagation();
         
-        // Trigger your Bulma notification or Modal here
         if (typeof editNofication === "function") {
             editNofication(); 
         }
-        
-        // If you want the browser <dialog>:
-        // document.querySelector("#myModal").showModal();
     });
 });
-
 
 
 //mobile row expansion

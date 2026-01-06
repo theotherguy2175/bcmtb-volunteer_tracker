@@ -29,3 +29,8 @@
 .dataTables_wrapper .dataTables_filter {
     margin-bottom: 1em; /* adjust spacing as needed */
 }
+
+/* Remove the default DataTables button border and background gradients */
+.dt-butttons {
+    border: pink;
+}
