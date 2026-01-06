@@ -2,6 +2,8 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+
+
 <div class="main-container">
   <div class="form-container">
 
@@ -20,23 +22,47 @@
         {% endif %}
 
         <form method="post">
-        {% csrf_token %}
-        
-        {{ form|crispy }}
-        
-        <input type="hidden" name="next" value="{{ next_url }}">
+            {% csrf_token %}
+            
+            {{ form|crispy }}
+            
+            <input type="hidden" name="next" value="{{ next_url }}">
 
-        <br>
-        <div class="buttons">
-            <button type="submit" class="button is-primary">{{ button_text }}</button>
-            <a href="{{ next_url|default:'/dashboard/' }}" class="button is-light">Cancel</a>
-        </div>
+            <br>
+            <div class="buttons">
+                <button type="submit" class="button is-primary">{{ button_text }}</button>
+                <a href="{{ next_url|default:'/dashboard/' }}" class="button is-light">Cancel</a>
+            </div>
+
         </form>
+        
         <div class="header-row"></div>
-
 
 </div>
 </div>
   
+<!-- search box -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+{{ users_list_json|json_script:"volunteers-data" }}
+<script>
+$(document).ready(function() {
+    // 2. Parse the data from the script tag above
+    const volunteers = JSON.parse(document.getElementById('volunteers-data').textContent);
+
+    // 3. Attach autocomplete
+    $("input[name='user_search']").autocomplete({
+        source: volunteers,
+        select: function(event, ui) {
+            $("input[name='user']").val(ui.item.id);
+        }
+    });
+});
+</script>
+</script>
+
 
 {% endblock %}

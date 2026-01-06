@@ -98,6 +98,35 @@ def add_entry(request):
     }
     return render(request, 'hourTracker/entry_form.html', context)
 
+from django.contrib.admin.views.decorators import staff_member_required
+from .forms import AdminVolunteerEntryForm
+
+@login_required
+@staff_member_required
+def admin_add_entry(request):
+    User = get_user_model()
+    if request.method == 'POST':
+        form = AdminVolunteerEntryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_dashboard')
+    else:
+        form = AdminVolunteerEntryForm(initial={'date': timezone.now().date()})
+
+    # Prepare the data for JavaScript
+    users_list_json = [
+        {'label': f"{u.first_name} {u.last_name}", 'value': f"{u.first_name} {u.last_name}", 'id': u.id}
+        for u in User.objects.all()
+    ]
+
+    context = {
+        'form': form,
+        'users_list_json': users_list_json, # Use this for the script
+        'form_title': 'Admin: Add Entry',
+        'button_text': 'Add Entry'
+    }
+    return render(request, 'hourTracker/entry_form.html', context)
+
 @login_required
 def edit_entry(request, pk):
     # Security check: Staff see anything, users see only their own
