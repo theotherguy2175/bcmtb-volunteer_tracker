@@ -2,8 +2,10 @@
 =auto set new entry date today
 =auto sort table to most recent
 =Add Admin ADD Enty include user
+=make table on mobile better | https://codepen.io/corbpie/pen/rNWNyyM
 
 Add reset password for logged in user
 fix password reset email
 setup auto email at the end of the year 30 days prior
-make table on mobile better | https://codepen.io/corbpie/pen/rNWNyyM
+
+add footer

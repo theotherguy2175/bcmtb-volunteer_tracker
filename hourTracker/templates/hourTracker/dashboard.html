@@ -32,9 +32,7 @@
 
 
     <!-- https://bulma.io/documentation/elements/table/ -->
-     <div class="responsive-table-container">
-
-
+     <div class="table-container">
         <div id="editNotification" class="notification is-danger" style="display: none; margin-top: 1rem;">
             <button class="delete"> </button>
             Editting hours is not supported. Please contact the trail team if you need to edit your hours.
@@ -42,7 +40,7 @@
 
         {% if entries %}
 
-        <table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable responsive-table">
+        <table cellpadding="6" id="table" class="table is-fullwidth is-striped is-hoverable tableSortable">
             <thead>
                 <tr>
                     <th class="default-sort">Date</th>
