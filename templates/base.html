@@ -80,12 +80,12 @@
                   </div>
    
                   <div class="dropdown__list">
-                     <a href="/admin/password_change/" class="dropdown__link">
+                     <a href="{% url 'profile' %}" class="dropdown__link">
                         <i class="ri-user-line"></i>
                         <span>Profile</span>
                      </a>
       
-                     <a href="/admin/password_change/" class="dropdown__link">
+                     <a href="{% url 'password_change' %}" class="dropdown__link">
                         <i class="ri-settings-3-line"></i>
                         <span>Settings</span>
                      </a>
@@ -125,8 +125,8 @@
   <footer class="footer custom-footer">
     <div class="content has-text-centered">
       <p>
-        &copy; {{ current_year }} BCMTB Volunteer Tracker. 
-        <span class="is-size-7"> | v1.7.1</span>
+        &copy; {{ current_year_footer }} BCMTB Volunteer Tracker. 
+        <span class="is-size-7"> | {{ app_version }}</span>
       </p>
       <p>
          Contact us at <a href="mailto:trails@browncountymtb.org">trails@browncountymtb.org</a>

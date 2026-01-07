@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'django_q',
     # custom apps
     'hourTracker',
+
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = ("bulma",)
 CRISPY_TEMPLATE_PACK = "bulma"
@@ -94,6 +95,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'hourTracker.context_processor.global_context',
             ],
         },
     },

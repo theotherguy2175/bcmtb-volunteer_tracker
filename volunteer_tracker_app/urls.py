@@ -21,12 +21,25 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.views.static import serve
 from django.urls import re_path
+from django.contrib.auth import views as auth_views
+from volunteer_tracker_app import views
+
+from django.contrib.auth import views as auth_views
+from django.urls import path, reverse_lazy # Import reverse_lazy
+from . import views
 
 urlpatterns = [
+
+    path('profile/', views.profile_view, name='profile'),
+    path('password_change/', views.password_change_view, name='password_change'),
+
+
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'images/bcmb_logo.ico')),
     path('admin/', admin.site.urls),
     path('', include('hourTracker.urls')),  # main app
     path('accounts/', include('django.contrib.auth.urls')),  # login/logout
+
+    
 ]
 
 if settings.DEBUG:

@@ -240,6 +240,7 @@ from .models import VolunteerReward, VolunteerEntry
 from django.db.models import Sum
 
 def rewards(request):
+
     # Get all rewards, ordered by the hours required
     rewards = VolunteerReward.objects.all().order_by('hours_required')
     #current_year = timezone.now().year

@@ -81,8 +81,6 @@ table{
 }
 
 
-
-
 /* This ensures the footer stays at the end of the flex column */
 .custom-footer {
     flex-shrink: 0;
@@ -111,9 +109,6 @@ table{
         margin-bottom: 1rem;       /* spacing between items */
     }
 
-
-
-
     .responsive-table .actions-col {
     display: none;
     }
@@ -134,13 +129,18 @@ table{
         height: 1.5rem
     }
     .mobile-only {
-    display: table-cell;
-    cursor: pointer;
-    font-size: 1.5em;
-    text-align: center;
-  }
+        display: table-cell;
+        cursor: pointer;
+        font-size: 1.5em;
+        text-align: center;
+    }
 
-
+    .container {
+        align-items: center;             /* vertical alignment */
+        margin: .5rem auto;
+        padding: 0 1rem;
+        width: 90%
+    }
     .form-container {
         align-items: center;             /* vertical alignment */
         margin: .5rem auto;
