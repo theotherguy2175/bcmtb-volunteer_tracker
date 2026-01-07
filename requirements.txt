@@ -7,3 +7,4 @@ psycopg2-binary
 Pillow
 django-q2 
 croniter
+django-phonenumber-field[phonenumbers]

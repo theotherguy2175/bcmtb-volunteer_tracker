@@ -5,33 +5,50 @@ from django.utils.translation import gettext_lazy as _
 
 from .models import CustomUser, VolunteerEntry, VolunteerLocation, VolunteerReward
 
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import gettext_lazy as _
+from .models import CustomUser
+from .forms import CustomUserCreationForm  # Ensure this import is correct
+
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
+    
+    # 1. Link your custom creation form
+    add_form = CustomUserCreationForm
 
-    # Fields to display in the list view
-    list_display = ('email', 'first_name', 'last_name', 'is_staff', 'is_active')
+    # 2. Add phone_number to the list view table
+    list_display = ('email', 'first_name', 'last_name', 'phone_number', 'is_staff', 'is_active')
 
-    # Fields to filter by
     list_filter = ('is_staff', 'is_active')
 
-    # Fields to display in the user detail/edit page
+    # 3. Update Edit View (fieldsets)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'phone_number')}), # Added here
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
 
-    # Fields to use when creating a new user in admin
+    # 4. Update Creation View (add_fieldsets)
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'first_name', 'last_name', 'password1', 'password2', 'is_staff', 'is_active')}
-        ),
+            'fields': (
+                'email', 
+                'phone_number', 
+                'first_name', 
+                'last_name', 
+                'password1', 
+                'password2', 
+                'is_staff', 
+                'is_active'
+            )
+        }),
     )
 
-    search_fields = ('email', 'first_name', 'last_name')
+    search_fields = ('email', 'first_name', 'last_name', 'phone_number')
     ordering = ('email',)
 
 

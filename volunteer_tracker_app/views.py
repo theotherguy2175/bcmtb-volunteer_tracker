@@ -5,9 +5,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 
 # volunteer_tracker_app/views.py
-from django.contrib.auth.views import PasswordChangeView
-from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
@@ -15,22 +13,22 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
 
-from django.contrib.auth.views import PasswordChangeView
-from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 
-# # The Custom View
-# class MyPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
-#     template_name = 'password_change.html'
-#     success_url = reverse_lazy('profile')
-#     success_message = "Your password was changed successfully!"
+from .forms import UserProfileForm
 
-# The Profile View
 @login_required
 def profile_view(request):
-    return render(request, 'profile.html')
+    if request.method == 'POST':
+        # Pass instance=request.user so it updates the existing record
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=request.user)
+
+    return render(request, 'profile.html', {'profile_form': form})
 
 @login_required
 def password_change_view(request):

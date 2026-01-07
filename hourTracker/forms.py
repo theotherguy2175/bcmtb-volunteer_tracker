@@ -1,5 +1,5 @@
 from django import forms
-from .models import VolunteerEntry
+from .models import VolunteerEntry, CustomUser
 
 class VolunteerEntryForm(forms.ModelForm):
     class Meta:
@@ -58,10 +58,5 @@ from django.contrib.auth import get_user_model
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ("email", "first_name", "last_name", "password1", "password2")
+        fields = ("email", "first_name", "last_name", "phone_number")
 
-# #EDIT FORM LATER
-# class CustomUserChangeForm(forms.ModelForm):
-#     class Meta:
-#         model = CustomUser
-#         fields = ("email", "first_name", "last_name", "is_active", "is_staff")

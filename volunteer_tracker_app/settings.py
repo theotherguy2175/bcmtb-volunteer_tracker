@@ -228,3 +228,5 @@ Q_CLUSTER = {
     'bulk': 10,
     'orm': 'default',   # Uses your Django database as the broker
 }
+
+PHONENUMBER_DEFAULT_REGION = "US"
