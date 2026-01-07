@@ -31,7 +31,8 @@
             <br>
             <div class="buttons">
                 <button type="submit" class="button is-primary">{{ button_text }}</button>
-                <a href="{{ next_url|default:'/dashboard/' }}" class="button is-light">Cancel</a>
+                <a href="{% url 'dashboard' %}" class="button is-light">Cancel</a>
+                <!-- maybe try to add logic to go back to the next_url? -->
             </div>
 
         </form>

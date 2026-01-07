@@ -2,33 +2,51 @@
 {% block content %}
 <div class="main-container">
 
-    <div class="header-row">
-        <h2 class="title">Volunteer Hours</h2>
-        
-        <div class="field">
-            <div class="control">
-                <form method="GET" id="yearForm">
-                    <div class="select">
-                        <select name="year" onchange="document.getElementById('yearForm').submit();">
-                            <option value="all" {% if selected_year == 'all' %}selected{% endif %}>
-                                All Years
-                            </option>
-                            {% for y in year_list %}
-                                <option value="{{ y }}" {% if selected_year == y|stringformat:"i" or selected_year == y %}selected{% endif %}>
-                                    {{ y }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </form>
+   <div class="level mb-5">
+    <div class="level-left">
+        <div class="level-item">
+            <h2 class="title is-3 mb-0">Volunteer Hours</h2>
+        </div>
+    </div>
+
+    <div class="level-right">
+        <div class="level-item">
+            <form method="GET" id="yearForm">
+                <div class="field has-addons">
+                    <p class="control">
+                        <span class="button is-static">Year</span>
+                    </p>
+                    <p class="control">
+                        <span class="select">
+                            <select name="year" onchange="this.form.submit();">
+                                <option value="all" {% if selected_year == 'all' %}selected{% endif %}>All</option>
+                                {% for y in year_list %}
+                                    <option value="{{ y }}" {% if selected_year == y|stringformat:"i" or selected_year == y %}selected{% endif %}>
+                                        {{ y }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </span>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <div class="level-item">
+            <div class="tags has-addons">
+                <span class="tag is-dark is-large">Total for {{ selected_year }}</span>
+                <span class="tag is-info is-large">{{ total_hours }}h</span>
             </div>
         </div>
 
-        <div class="box">
-            Total hours for {{ selected_year }}: <strong>{{ total_hours }}</strong> hours
+        <div class="level-item">
+            <a href="{% url 'add_entry' %}" id='mobile-button' class="button is-primary is-fab-mobile">
+                <span class="icon"><i class="fas fa-plus"></i></span>
+                <span>Add Entry</span>
+            </a>
         </div>
-        <a href="{% url 'add_entry' %}" class="btn-add button is-primary">Add New Entry</a>
     </div>
+</div>
 
     <!-- data table buttons and search on top -->
     <div id="datatable-controls" class="mb-4"></div>

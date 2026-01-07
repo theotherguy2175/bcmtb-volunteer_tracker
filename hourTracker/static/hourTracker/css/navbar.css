@@ -28,13 +28,7 @@
   --z-fixed: 100;
 }
 
-/*========== Responsive typography ==========*/
-@media screen and (min-width: 900px) {
-  :root {
-    --normal-font-size: 1rem;
-    --small-font-size: .875rem;
-  }
-}
+
 
 /*=============== BASE ===============*/
 * {
@@ -262,15 +256,17 @@ nav a img {
 }
 
 /*=============== BREAKPOINTS ===============*/
-/* For small devices */
-@media screen and (max-width: 320px) {
-  .container {
-    margin-inline: 1rem;
-  }
-}
+/*========== Responsive typography ==========*/
+
+
 
 /* For large devices */
 @media screen and (min-width: 900px) {
+  :root {
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+  }
+
   .container {
     margin-inline: auto;
   }
@@ -296,5 +292,44 @@ nav a img {
   }
   .dropdown__list {
     top: 5.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .is-fab-mobile {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000; /* Ensure it stays above the table */
+        
+        /* Turn it into a circle */
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        
+        /* Add a nice shadow so it "pops" off the page */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        
+        /* Center the icon and hide the text */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Hide the text label on mobile, keep only the plus icon */
+    .is-fab-mobile span:not(.icon) {
+        display: none;
+    }
+
+    .is-fab-mobile .icon {
+        margin: 0 !important;
+        font-size: 1.5rem;
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 320px) {
+  .container {
+    margin-inline: 1rem;
   }
 }
