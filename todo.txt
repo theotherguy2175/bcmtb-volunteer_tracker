@@ -6,5 +6,7 @@
 =add footer
 =Add reset password for logged in user
 =Add phone number
+
+fix edit buttons showing on mobile
 fix password reset email
 setup auto email at the end of the year 30 days prior
