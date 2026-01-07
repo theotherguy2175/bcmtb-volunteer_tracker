@@ -43,38 +43,47 @@ def dashboard(request):
         'year_list': year_list,
     }
     return render(request, 'hourTracker/dashboard.html', context)
-
 @login_required
 def admin_dashboard(request):
     current_year = timezone.now().year
-
-    if request.user.is_staff:  # or request.user.is_superuser
-        # Admin sees all entries
-        entries = VolunteerEntry.objects.all()
-        context = {
-            'entries': entries,
-            # 'total_hours': total_hours,
-            # 'current_year': current_year,
-        }
+    selected_year = request.GET.get('year', str(current_year))
+    
+    # 1. Determine the Base Queryset
+    if request.user.is_staff:
+        # Admin sees everything
+        base_entries = VolunteerEntry.objects.all()
     else:
-        # Regular user sees only their entries
-        entries = VolunteerEntry.objects.filter(
-            user=request.user)
-        #current year
-        current_year = timezone.now().year
-        #Sum all hours for the current user in the current year
-        total_hours = VolunteerEntry.objects.filter(
-            user=request.user,
-            date__year=current_year
-            ).aggregate(total=Sum('hours'))['total'] or 0  # Defaults to 0 if no entries
+        # Regular user sees only their own
+        base_entries = VolunteerEntry.objects.filter(user=request.user)
+    
+    # 2. Get unique years for the dropdown based on the base queryset
+    years_available = base_entries.dates('date', 'year', order='DESC')
+    year_list = [d.year for d in years_available]
+    
+    if current_year not in year_list:
+        year_list.insert(0, current_year)
 
-        context = {
-            'entries': entries,
-            'total_hours': total_hours,
-            'current_year': current_year,
-        }
+    # 3. Apply Year Filtering to a working queryset
+    filtered_entries = base_entries
+    if selected_year != 'all':
+        try:
+            filtered_entries = filtered_entries.filter(date__year=int(selected_year))
+        except (ValueError, TypeError):
+            filtered_entries = filtered_entries.filter(date__year=current_year)
+            selected_year = str(current_year)
 
-        print(context)
+    # 4. Final ordering and calculation
+    # Note: total_hours will respect the selected year and the user permissions
+    filtered_entries = filtered_entries.order_by('-date', '-pk')
+    total_hours = filtered_entries.aggregate(total=Sum('hours'))['total'] or 0
+
+    context = {
+        'entries': filtered_entries,
+        'total_hours': total_hours,
+        'selected_year': selected_year,
+        'year_list': year_list,
+        'is_admin': request.user.is_staff, # Useful for template logic
+    }
     
     return render(request, 'hourTracker/admin_dashboard.html', context)
 

@@ -1,20 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="main-container">
-
-    <div class="header-row">
-        <h2 class="title">ADMIN Volunteer Hours</h2>
-        {% if not user.is_staff %}
-        <div class="box">
-            ADMIN Total hours for {{ current_year }}: <strong>{{ total_hours }}</strong> hours
+    <div class="level mb-5">
+        <div class="level-left">
+            <div class="level-item">
+                <h2 class="title is-3 mb-0">ADMINVolunteer Hours</h2>
+            </div>
         </div>
-        {% endif %}
-        <a href="{% url 'admin_add_entry' %}" class="btn-add button is-primary">Add New Entry</a>
+
+        <div class="level-right">
+            <div class="level-item">
+                <form method="GET" id="yearForm">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <span class="button is-static">Year</span>
+                        </p>
+                        <p class="control">
+                            <span class="select">
+                                <select name="year" onchange="this.form.submit();">
+                                    <option value="all" {% if selected_year == 'all' %}selected{% endif %}>All</option>
+                                    {% for y in year_list %}
+                                        <option value="{{ y }}" {% if selected_year == y|stringformat:"i" or selected_year == y %}selected{% endif %}>
+                                            {{ y }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </span>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="level-item">
+                <a href="{% url 'admin_add_entry' %}" id='mobile-button' class="button is-primary is-fab-mobile">
+                    <span class="icon"><i class="fas fa-plus"></i></span>
+                    <span>Add Entry</span>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- data table buttons and search on top -->
     <div id="datatable-controls" class="mb-4"></div>
-    
+
     <!-- https://bulma.io/documentation/elements/table/ -->
     <div class="table-container">
         {% if entries %}
