@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import VolunteerEntry
 from .forms import VolunteerEntryForm, CustomUserCreationForm
-
+from django.contrib.auth.decorators import user_passes_test
 
 
 @login_required
@@ -208,7 +208,7 @@ def register_view(request):
 import csv
 from django.http import HttpResponse
 
-from django.db.models import Q
+from django.db.models import Q,Sum
 
 def export_csv(request):
     search_query = request.GET.get('search', '')
@@ -235,6 +235,7 @@ def export_csv(request):
 
     return response
 
+#=======================Rewards Views========================
 from django.shortcuts import render
 from .models import VolunteerReward, VolunteerEntry
 from django.db.models import Sum
@@ -264,3 +265,96 @@ def rewards(request):
     print(context)
 
     return render(request, 'rewards.html', context)
+
+#=======================Reports Views========================
+import csv
+from django.http import HttpResponse
+from django.shortcuts import render
+from .models import CustomUser, VolunteerEntry, VolunteerTask # Use your actual models
+from django.core.exceptions import PermissionDenied
+
+def if_staff_check(user):
+    if user.is_authenticated and user.is_staff:
+        return True
+    # If they aren't staff, stop here and throw the 403 error
+    raise PermissionDenied
+
+
+@user_passes_test(if_staff_check)
+def reports_page(request):
+    return render(request, 'reports.html')
+
+@user_passes_test(if_staff_check)
+def export_volunteer_entries_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="volunteer_hours_report.csv"'
+
+    writer = csv.writer(response)
+    # Header row matching your VolunteerEntry fields
+    writer.writerow(['User Email', 'Date', 'Hours', 'Category', 'Location'])
+
+    # Fetch data and use 'select_related' to make the query faster
+    entries = VolunteerEntry.objects.select_related('user', 'category', 'location').all()
+    
+    for entry in entries:
+        writer.writerow([
+            entry.user.email, 
+            entry.date, 
+            entry.hours, 
+            entry.category.name if entry.category else 'N/A', 
+            entry.location.name if entry.location else 'N/A'
+        ])
+
+    return response
+
+@user_passes_test(if_staff_check)
+def export_users_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="volunteer_users_list.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Email', 'First Name', 'Last Name', 'Phone', 'Date Joined'])
+
+    users = CustomUser.objects.all()
+    for user in users:
+        writer.writerow([
+            user.email, 
+            user.first_name, 
+            user.last_name, 
+            user.phone_number, 
+            user.date_joined
+        ])
+
+    return response
+
+@user_passes_test(if_staff_check)
+def export_user_yearly_totals_csv(request):
+    current_year = timezone.now().year
+    
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="user_totals_{current_year}.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Email', 'First Name', 'Last Name', f'Total Hours ({current_year})'])
+
+    # Annotate: This creates a virtual field called 'total_hours' on each user
+    # It only sums VolunteerEntry records where the date's year matches current_year
+    users = CustomUser.objects.annotate(
+        total_hours=Sum(
+            'volunteerentry__hours',
+            filter=Q(volunteerentry__date__year=current_year)
+        )
+    )
+
+    for user in users:
+        # If a user has no entries, total_hours will be None. We convert that to 0.
+        hours = user.total_hours if user.total_hours is not None else 0
+        
+        writer.writerow([
+            user.email,
+            user.first_name,
+            user.last_name,
+            hours
+        ])
+
+    return response

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .report-card {
+        background-color: #e2dedb;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 1rem;
+    }
+</style>
+
+
+<section class="section">
+    <div class="container">
+
+<h1 class="title">Database Report Exports</h1>
+
+<div class="report-card">
+    <h3 class="title is-4">Volunteer Hours Log</h3>
+    <p>Download every entry submitted by volunteers (Date, Hours, Category).</p>
+    <br>
+    <a href="{% url 'export_entries' %}" class="button is-primary">Download Entries CSV</a>
+</div>
+
+<div class="report-card">
+    <h3 class="title is-4">Volunteer Directory</h3>
+    <p>Download a list of all registered users and their contact info.</p>
+    <br>
+    <a href="{% url 'export_users' %}" class="button is-primary">Download Users CSV</a>
+</div>
+
+<div class="report-card">
+    <h3 class="title is-4">Annual Volunteer Impact</h3>
+    <p>Export a list of all volunteers and their total hours for the current calendar year.</p>
+    <br>
+    <a href="{% url 'export_yearly_totals' %}" class="button is-primary">Download Yearly Totals</a>
+</div>
+
+{% endblock %}
+
