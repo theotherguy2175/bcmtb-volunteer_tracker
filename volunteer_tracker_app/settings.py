@@ -148,7 +148,7 @@ MSGRAPH_CLIENT_ID = os.environ.get("MSGRAPH_CLIENT_ID")
 MSGRAPH_CLIENT_SECRET = os.environ.get("MSGRAPH_CLIENT_SECRET")
 
 # The email address that has the mailbox
-DEFAULT_FROM_EMAIL = 'cody.casteel@browncountymtb.org'
+DEFAULT_FROM_EMAIL = 'noreply@browncountymtb.org'
 # else:
     # Fallback to console for local dev
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

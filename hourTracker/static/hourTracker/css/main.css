@@ -1,3 +1,9 @@
+:root {
+  --bulma-primary-h: 9deg;
+  --bulma-primary-s: 49%;
+  --bulma-primary-l: 34%;
+}
+
 /* Ensure the body fills the whole screen height */
 .site-wrapper {
     display: flex;
