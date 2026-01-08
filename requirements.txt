@@ -2,6 +2,7 @@ django
 gunicorn
 whitenoise
 django-crispy-forms
+django-msgraph-sdk
 crispy-bulma
 psycopg2-binary
 Pillow
