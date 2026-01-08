@@ -313,7 +313,11 @@ def export_users_csv(request):
     response['Content-Disposition'] = 'attachment; filename="volunteer_users_list.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Email', 'First Name', 'Last Name', 'Phone', 'Date Joined'])
+    # Added address headers
+    writer.writerow([
+        'Email', 'First Name', 'Last Name', 'Phone', 
+        'Address 1', 'Address 2', 'City', 'State', 'Zip'
+    ])
 
     users = CustomUser.objects.all()
     for user in users:
@@ -321,8 +325,12 @@ def export_users_csv(request):
             user.email, 
             user.first_name, 
             user.last_name, 
-            user.phone_number, 
-            user.date_joined
+            user.phone_number,
+            user.address_line_1,
+            user.address_line_2,
+            user.city,
+            user.state,
+            user.zip_code
         ])
 
     return response

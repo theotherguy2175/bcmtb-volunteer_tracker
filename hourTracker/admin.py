@@ -11,6 +11,12 @@ from django.utils.translation import gettext_lazy as _
 from .models import CustomUser
 from .forms import CustomUserCreationForm  # Ensure this import is correct
 
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import gettext_lazy as _
+from .models import CustomUser
+from .forms import CustomUserCreationForm
+
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
@@ -18,15 +24,18 @@ class CustomUserAdmin(UserAdmin):
     # 1. Link your custom creation form
     add_form = CustomUserCreationForm
 
-    # 2. Add phone_number to the list view table
-    list_display = ('email', 'first_name', 'last_name', 'phone_number', 'is_staff', 'is_active')
+    # 2. Add address fields to the list view table
+    # Added city and state here so you can sort/see them at a glance
+    list_display = ('email', 'first_name', 'last_name', 'phone_number', 'city', 'state', 'is_staff', 'is_active')
 
-    list_filter = ('is_staff', 'is_active')
+    # Added city and state to filters for easier volunteer management
+    list_filter = ('is_staff', 'is_active', 'state', 'city')
 
     # 3. Update Edit View (fieldsets)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'phone_number')}), # Added here
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'phone_number')}),
+        (_('Address Details'), {'fields': ('address_line_1', 'address_line_2', 'city', 'state', 'zip_code')}), # New Section
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
@@ -37,9 +46,14 @@ class CustomUserAdmin(UserAdmin):
             'classes': ('wide',),
             'fields': (
                 'email', 
-                'phone_number', 
                 'first_name', 
                 'last_name', 
+                'phone_number', 
+                'address_line_1',
+                'address_line_2',
+                'city',
+                'state',
+                'zip_code',
                 'password1', 
                 'password2', 
                 'is_staff', 
@@ -48,7 +62,8 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
 
-    search_fields = ('email', 'first_name', 'last_name', 'phone_number')
+    # Expanded search to include city and zip
+    search_fields = ('email', 'first_name', 'last_name', 'phone_number', 'city', 'zip_code')
     ordering = ('email',)
 
 

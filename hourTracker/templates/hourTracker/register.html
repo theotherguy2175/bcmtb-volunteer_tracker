@@ -1,30 +1,9 @@
 
 
 
-{% extends "base.html" %}
+{% extends "base_unauth.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-
-<header class="header">
-         <nav class="nav container">
-            <a href="/" class="nav__logo">Logo</a>
-
-            <div class="nav__menu" id="nav-menu">
-               <ul class="nav__list">
-                  <li>
-                     <a href="{% url 'dashboard' %}" class="nav__link">Hours</a>
-                  </li>
-               </ul>
-
-               <!-- Close button -->
-               <div class="nav__close" id="nav-close">
-                  <i class="ri-close-large-line"></i>
-               </div>
-            </div>
-
-            
-         </nav>
-      </header>
 
 
 <div class="main-container">
@@ -34,9 +13,6 @@
   </div>
 
   <div class="form-container">
-    {% if username %}
-        <p><strong>User:</strong> {{ username }}</p>
-    {% endif %}
 
     <form method="post">
         {% csrf_token %}
@@ -50,12 +26,17 @@
         </div>
       </div>
 
-      {{ form.email|as_crispy_field }}
-      {{ form.phone_number|as_crispy_field }}
-      {{ form.password1|as_crispy_field }}
-      {{ form.password2|as_crispy_field }}
+          {{ form.email|as_crispy_field }}
+          {{ form.phone_number|as_crispy_field }}
 
+          
+          {{ form.address_line_1|as_crispy_field }}
+          {{ form.city|as_crispy_field }}
+          {{ form.state|as_crispy_field }}
+          {{ form.zip_code|as_crispy_field }}
 
+          {{ form.password1|as_crispy_field }}
+          {{ form.password2|as_crispy_field }}
 
         <div class="field">
             <p class="control">

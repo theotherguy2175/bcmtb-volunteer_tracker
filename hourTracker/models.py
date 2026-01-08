@@ -31,10 +31,10 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class CustomUser(AbstractBaseUser, PermissionsMixin): #blank=True makes it optional
     email = models.EmailField(unique=True)
-    first_name = models.CharField(max_length=30, blank=True)
-    last_name = models.CharField(max_length=30, blank=True)
+    first_name = models.CharField(max_length=30,)
+    last_name = models.CharField(max_length=30,)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -44,8 +44,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True, null=True) # validators should be a list
 
+    address_line_1 = models.CharField(max_length=255, null=True)
+    address_line_2 = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=100, null=True)
+    state = models.CharField(max_length=100, null=True)
+    zip_code = models.CharField(max_length=20, null=True)
+
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["first_name", "last_name"]
+    REQUIRED_FIELDS = ["first_name", "last_name", "address_line_1", "city", "state", "zip_code"]
 
     objects = CustomUserManager()
 
