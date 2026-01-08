@@ -18,7 +18,7 @@ urlpatterns = [
 
     path('export-csv/', views.export_csv, name='export_csv'),
 
-    path('reports/', views.reports_page, name='reports_page'),
+    path('reports/', views.reports_page, name='reports'),
     path('reports/export-entries/', views.export_volunteer_entries_csv, name='export_entries'),
     path('reports/export-users/', views.export_users_csv, name='export_users'),
     path('reports/export-yearly-totals/', views.export_user_yearly_totals_csv, name='export_yearly_totals'),

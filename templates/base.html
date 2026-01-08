@@ -48,6 +48,8 @@
                   </li>
                   {% if user.is_staff %}
                   <li>
+                     <a href="{% url 'reports' %}" class="nav__link">Reports</a>
+                  <li>
                      <a href="/admin/" class="nav__link">Admin</a>
                   </li>
                   {% endif %}
