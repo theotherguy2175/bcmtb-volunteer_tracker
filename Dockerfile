@@ -10,10 +10,15 @@ ENV PATH="/home/app/.local/bin:${PATH}"
 # Set work directory
 WORKDIR /app
 
-# Install dependencies
+# Install system-level dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt /app/
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
+
 
 # Copy project
 COPY . /app/
