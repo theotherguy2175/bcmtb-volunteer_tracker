@@ -1,23 +1,44 @@
 {% extends "base_unauth.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    /* Positions the eye icon correctly inside the Bulma input */
+    .password-container {
+        position: relative;
+    }
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 10;
+        pointer-events: all;
+        font-size: 0.85rem;
+        color: #4a4a4a;
+        font-weight: bold;
+        user-select: none;
+    }
+    .toggle-password i {
+    pointer-events: none; /* This ensures the click registers on the 'span', not the 'i' */
+    display: inline-block;
+    min-width: 20px;
+}
+</style>
 
 <div class="main-container">
   <div class="form-container">
-
     <h1 class="title has-text-centered">Volunteer Hour Tracker</h1>
     <br>
     <h2 class="subtitle has-text-centered">
         Welcome to the Brown County Mountain Biking Volunteer Hour Tracker.
     </h2>
 
-    {% if username %}
-        <p><strong>User:</strong> {{ username }}</p>
-    {% endif %}
-
-    <form method="post">
+    <form method="post" id="loginForm">
         {% csrf_token %}
         {{ form|crispy }}
+        
         <div class="field">
             <p class="control">
                 <div class="is-flex button-container" style="justify-content: space-between;">
@@ -28,10 +49,46 @@
                     <span>|</span>
                     <a href="/accounts/password_reset/" class="ml-2">Forgot Password</a>
                 </div>
-
             </p>
         </div>
     </form>
-  <div class="header-row"></div>
-<div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Find the password input (Django usually names it 'password')
+        const passwordField = document.querySelector('input[name="password"]');
+        
+        if (passwordField) {
+            // 2. Create a wrapper and the toggle button
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('password-container');
+
+            const toggleBtn = document.createElement('span');
+            toggleBtn.classList.add('toggle-password');
+            // Set the initial icon
+            toggleBtn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+
+            // 3. Insert the wrapper and move the field inside it
+            passwordField.parentNode.insertBefore(wrapper, passwordField);
+            wrapper.appendChild(passwordField);
+            wrapper.appendChild(toggleBtn);
+
+            // 4. Add the click logic
+            toggleBtn.addEventListener('click', function() {
+                const isPassword = passwordField.getAttribute('type') === 'password';
+                passwordField.setAttribute('type', isPassword ? 'text' : 'password');
+                
+                // Switch between the eye and the eye-slash icon
+                if (isPassword) {
+                    this.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+                } else {
+                    this.innerHTML = '<i class="fa-solid fa-eye"></i>';
+                }
+            });
+        }
+    });
+</script>
+
 {% endblock %}
