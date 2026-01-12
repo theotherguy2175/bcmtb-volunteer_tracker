@@ -88,6 +88,7 @@ $(document).ready(function() {
             // Add Bulma 'select' wrapper and class to the length dropdown
             $('.dataTables_length select').addClass('select dropdown');
             $('.dataTables_length').addClass('select');
+            $('.dataTables_length select').val('100').change();
         },
         
         buttons: [
@@ -111,8 +112,11 @@ $(document).ready(function() {
             { "type": "num", "targets": sortIndex }
         ],
         paging: true,
-        pageLength: 50,
-        lengthMenu: [[10, 100, 1000], [10, 100, 1000]],
+        pageLength: 100,
+        lengthMenu: [
+        [10, 100, 1000], //actual values for logic
+        [10, 100, 1000] //displayed values on page
+    ],
     });
 
     var $controls = $('<div class="columns is-mobile is-vcentered"></div>');
