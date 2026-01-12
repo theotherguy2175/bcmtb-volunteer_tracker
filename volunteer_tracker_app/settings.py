@@ -72,7 +72,8 @@ SESSION_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 SESSION_COOKIE_AGE = 1209600
-PASSWORD_RESET_TIMEOUT = 259200  # 3 days in seconds (default)
+
+PASSWORD_RESET_TIMEOUT = 60 * 60 * 24 * 3  # 3 days in seconds (default)
 # If this is set too low (like 3600), a 5-hour timezone jump 
 # makes the link instantly expired.
 

@@ -27,26 +27,19 @@ from volunteer_tracker_app import views
 from django.contrib.auth import views as auth_views
 from django.urls import path, reverse_lazy # Import reverse_lazy
 from . import views
+from .views import MyCustomPasswordResetConfirmView
 
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth import get_user_model
-import logging
 
-logger = logging.getLogger(__name__)
-
-class DebugPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
-    def dispatch(self, request, *args, **kwargs):
-        print(f"COOKIES RECEIVED: {request.COOKIES}")
-        logger.debug(f"COOKIES RECEIVED: {request.COOKIES}")
-        return super().dispatch(request, *args, **kwargs)
 
 
 urlpatterns = [
 
-
-    path('accounts/reset/<uidb64>/<token>/', DebugPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    
+    path('accounts/reset/<uidb64>/<token>/', MyCustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
 
     path('profile/', views.profile_view, name='profile'),
     path('password_change/', views.password_change_view, name='password_change'),
