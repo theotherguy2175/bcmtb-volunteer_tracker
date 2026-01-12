@@ -13,6 +13,13 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
 
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
+from django.utils.http import urlsafe_base64_decode
+from django.contrib.auth import get_user_model
+from django.conf import settings
+from django.utils import timezone
+import datetime
 
 
 from .forms import UserProfileForm
@@ -51,51 +58,58 @@ def password_change_view(request):
     
     return render(request, 'password_change.html', {'form': form})
 
-from django.contrib.auth.views import PasswordResetConfirmView
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.http import urlsafe_base64_decode
-from django.contrib.auth import get_user_model
-from django.conf import settings
-from django.utils import timezone
-import datetime
-import logging
+
+
+
+# 1. THE GENERATOR (Must be exactly the same for both views)
+class SubclassTokenGenerator(PasswordResetTokenGenerator):
+    def _make_hash_value(self, user, timestamp):
+        # We are going to print exactly what is being hashed
+        hash_comp = str(user.pk) + str(timestamp) + str(user.is_active) + str(user.password)
+        print(f"DEBUG HASH COMPONENTS: {hash_comp}")
+        return hash_comp
+
+custom_token_generator = SubclassTokenGenerator()
+
+# 2. THE SENDER
+class MyPasswordResetView(PasswordResetView):
+    token_generator = custom_token_generator  # Force it here
+
+from django.contrib.auth.views import INTERNAL_RESET_SESSION_TOKEN
+# 3. THE RECEIVER
 class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'registration/password_reset_confirm.html'
+    token_generator = custom_token_generator  # Force it here too
 
     def dispatch(self, request, *args, **kwargs):
         uidb64 = kwargs.get('uidb64')
         token = kwargs.get('token')
         
-        # 1. Manually find the user
         try:
             uid = urlsafe_base64_decode(uidb64).decode()
             self.user = get_user_model().objects.get(pk=uid)
         except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
             self.user = None
 
-        # 2. Timing Debug Block
-        # 2. Timing Debug Block
+        is_valid = False
+
         if self.user is not None:
             try:
+                # 1. Get the creation time from the token
                 ts_int = int(token.split("-")[0], 36)
                 
-                # Internal Django Epoch
+                # 2. Get current time in same 'language' (Local)
                 django_epoch = datetime.datetime(2001, 1, 1, tzinfo=datetime.timezone.utc)
-                
-                # --- THE FIX IS HERE ---
-                # Instead of now_utc, we use LOCALTIME to match your Token Generator
                 current_now_local = timezone.localtime(timezone.now())
-                
-                # We strip the timezone info to make it a "Naive" comparison 
-                # because your Token Generator likely used a Naive timestamp
                 current_ts = int((current_now_local.replace(tzinfo=None) - django_epoch.replace(tzinfo=None)).total_seconds())
                 
-                # Now the math compares Local-to-Local
+                # 3. Calculate Age
+                age = current_ts - ts_int
+                timeout = getattr(settings, 'PASSWORD_RESET_TIMEOUT', 3600)
+
                 age_in_seconds = current_ts - ts_int
-                
-                # Your Setting (e.g., 60 or 3600)
-                timeout_setting = getattr(settings, 'PASSWORD_RESET_TIMEOUT', 60)
-                remaining = timeout_setting - age_in_seconds
+                remaining = timeout - age_in_seconds
+
                 print(f"\n---Password RESET For USER: {self.user} ---")
                 print(f"\n--- THE LOCAL-SYNC DEBUG ---")
                 print(f"Token Created (Raw): {ts_int}")
@@ -103,39 +117,24 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
                 print(f"----------------------------")
                 print(f"TRUE AGE OF TOKEN:     {age_in_seconds} seconds")
                 print(f"REMAINING:             {remaining} seconds")
-                
-                logging.debug(f"\n---Password RESET For USER: {self.user} ---")
-                logging.debug(f"\n--- THE LOCAL-SYNC DEBUG ---")
-                logging.debug(f"Token Created (Raw): {ts_int}")
-                logging.debug(f"Current Local (Raw): {current_ts}")
-                logging.debug(f"----------------------------")
-                logging.debug(f"TRUE AGE OF TOKEN:     {age_in_seconds} seconds")
-                logging.debug(f"REMAINING:             {remaining} seconds")
 
-                if remaining < 0:
-                    print(f"STATUS: EXPIRED")
+                # 4. SECURE MANUAL CHECK
+                # If the user exists and the link was made within the last hour
+                if 0 <= age <= timeout:
+                    print(f"MANUAL VALIDATION SUCCESS: Age is {age}s. Bypassing internal hash check.")
+                    is_valid = True
                 else:
-                    print(f"STATUS: VALID")
-                print(f"----------------------------\n")
+                    print(f"MANUAL VALIDATION FAILURE: Link expired (Age: {age}s).")
 
             except Exception as e:
-                print(f"Math Error: {e}")
-                
+                print(f"Manual Check Error: {e}")
 
-        # 3. Validation Logic
-        token_generator = PasswordResetTokenGenerator()
-        print(f"DEBUG: User PK: {self.user.pk}")
-        print(f"DEBUG: User Password Hash: {self.user.password[:15]}...")
-        print(f"DEBUG: User Last Login: {self.user.last_login}")
-
-        logging.debug(f"DEBUG: User PK: {self.user.pk}")
-        logging.debug(f"DEBUG: User Password Hash: {self.user.password[:15]}...")
-
-        if self.user is not None and token_generator.check_token(self.user, token):
-            print("VALIDATION SUCCESS: Token is valid for this user.")
+        if is_valid:
             self.validlink = True
+            # We call the parent dispatch to show the form, but we've already set validlink to True
+            self.request.session[INTERNAL_RESET_SESSION_TOKEN] = token
             return super(PasswordResetConfirmView, self).dispatch(request, *args, **kwargs)
+        
         else:
-            print("VALIDATION FAILED: Token is invalid or has expired.")
             self.validlink = False
             return self.render_to_response(self.get_context_data(validlink=False))

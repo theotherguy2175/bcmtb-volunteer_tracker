@@ -27,7 +27,7 @@ from volunteer_tracker_app import views
 from django.contrib.auth import views as auth_views
 from django.urls import path, reverse_lazy # Import reverse_lazy
 from . import views
-from .views import MyCustomPasswordResetConfirmView
+from .views import MyCustomPasswordResetConfirmView, MyPasswordResetView
 
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.tokens import default_token_generator
@@ -38,7 +38,7 @@ from django.contrib.auth import get_user_model
 
 urlpatterns = [
 
-    
+    path('accounts/password-reset/', MyPasswordResetView.as_view(), name='password_reset'),
     path('accounts/reset/<uidb64>/<token>/', MyCustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
 
     path('profile/', views.profile_view, name='profile'),
