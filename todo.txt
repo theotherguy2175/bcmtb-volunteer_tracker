@@ -7,6 +7,7 @@
 =Add reset password for logged in user
 =Add phone number
 =reports section 
+=auto populate a number for the page dropdown
 
 fix edit buttons showing on mobile
 remove edit buttons
@@ -18,5 +19,5 @@ new user email registraion
 add address for new registraion
 show password all feilds
 change hover color for menu
-auto populate a number for the page dropdown
+
 update export report per user total hours / include each location

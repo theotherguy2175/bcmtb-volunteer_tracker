@@ -335,34 +335,69 @@ def export_users_csv(request):
 
     return response
 
+import csv
+from django.utils import timezone
+from django.db.models import Sum
+from django.http import HttpResponse
+from django.contrib.auth.decorators import user_passes_test
+
 @user_passes_test(if_staff_check)
 def export_user_yearly_totals_csv(request):
     current_year = timezone.now().year
     
+    # 1. Get all unique locations that have entries this year for the header
+    locations = list(VolunteerEntry.objects.filter(date__year=current_year)
+                     .values_list('location__name', flat=True)
+                     .distinct().order_by('location__name'))
+    
+    # Handle cases where location might be null
+    locations = [loc if loc else "Unknown" for loc in locations]
+
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = f'attachment; filename="user_totals_{current_year}.csv"'
+    response['Content-Disposition'] = f'attachment; filename="user_totals_wide_{current_year}.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Email', 'First Name', 'Last Name', f'Total Hours ({current_year})'])
+    
+    # 2. Build Dynamic Header
+    # Format: Email, First, Last, Total, Location A, Location B...
+    header = ['Email', 'First Name', 'Last Name', f'Total Hours {current_year}'] + [f'Total Hours {current_year} - {loc}' for loc in locations]
+    writer.writerow(header)
 
-    # Annotate: This creates a virtual field called 'total_hours' on each user
-    # It only sums VolunteerEntry records where the date's year matches current_year
-    users = CustomUser.objects.annotate(
-        total_hours=Sum(
-            'volunteerentry__hours',
-            filter=Q(volunteerentry__date__year=current_year)
-        )
-    )
+    # 3. Fetch grouped data
+    stats = VolunteerEntry.objects.filter(date__year=current_year) \
+        .values('user__email', 'user__first_name', 'user__last_name', 'location__name') \
+        .annotate(total_hours=Sum('hours'))
 
-    for user in users:
-        # If a user has no entries, total_hours will be None. We convert that to 0.
-        hours = user.total_hours if user.total_hours is not None else 0
+    # 4. Process data into a user-centric dictionary
+    # Structure: { 'email': {'first': '...', 'last': '...', 'locations': {'Loc A': 10}} }
+    user_data = {}
+    for entry in stats:
+        email = entry['user__email']
+        loc_name = entry['location__name'] or "Unknown"
         
-        writer.writerow([
-            user.email,
-            user.first_name,
-            user.last_name,
-            hours
-        ])
+        if email not in user_data:
+            user_data[email] = {
+                'first': entry['user__first_name'],
+                'last': entry['user__last_name'],
+                'total_hours': 0,
+                'location_counts': {loc: 0 for loc in locations}
+            }
+        
+        user_data[email]['location_counts'][loc_name] = entry['total_hours']
+        user_data[email]['total_hours'] += entry['total_hours']
+
+    # 5. Write rows
+    for email, data in user_data.items():
+        row = [
+            email,
+            data['first'],
+            data['last'],
+            data['total_hours']
+        ]
+        # Append the hours for each location in the same order as the header
+        for loc in locations:
+            row.append(data['location_counts'].get(loc, 0))
+            
+        writer.writerow(row)
 
     return response
