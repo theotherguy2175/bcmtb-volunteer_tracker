@@ -14,8 +14,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 
-from .forms import UserProfileForm
 
+from .forms import UserProfileForm
 @login_required
 def profile_view(request):
     if request.method == 'POST':

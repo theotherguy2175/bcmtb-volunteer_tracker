@@ -9,9 +9,14 @@
 =reports section 
 
 fix edit buttons showing on mobile
+remove edit buttons
 fix password reset email
 setup auto email at the end of the year 30 days prior
 
 
 new user email registraion
 add address for new registraion
+show password all feilds
+change hover color for menu
+auto populate a number for the page dropdown
+update export report per user total hours / include each location

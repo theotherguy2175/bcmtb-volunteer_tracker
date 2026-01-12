@@ -165,7 +165,7 @@ def edit_entry(request, pk):
         'vol_lastname': entry.user.last_name,
         'next_url': next_url,
         'form_title': 'Edit Entry',       # The dynamic title
-        'button_text': 'Edity Entry'     # The dynamic button label
+        'button_text': 'Edit Entry'     # The dynamic button label
     }
 
     if request.user.is_staff or request.user.is_superuser: #only render username if admin, no need for regular users

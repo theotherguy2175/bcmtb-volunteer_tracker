@@ -59,13 +59,29 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 if MODE == "dev":
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_DOMAIN = None
 else:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+SESSION_COOKIE_AGE = 1209600
+PASSWORD_RESET_TIMEOUT = 259200  # 3 days in seconds (default)
+# If this is set too low (like 3600), a 5-hour timezone jump 
+# makes the link instantly expired.
+
+
+print(f"SESSION_COOKIE_SECURE: {SESSION_COOKIE_SECURE}")
+print(f"CSRF_COOKIE_SECURE: {CSRF_COOKIE_SECURE}")
 
 # Application definition
+# python manage.py shell -c "from django.contrib.sessions.models import Session; from django.utils import timezone; print(f'Total Sessions: {Session.objects.count()}'); print(f'Latest Session: {Session.objects.order_by(\"-expire_date\").first().session_key if Session.objects.exists() else \"None\"}')"
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -116,6 +132,41 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'volunteer_tracker_app.wsgi.application'
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO', # Set to DEBUG to see every SQL query
+        },
+        'django.security': {
+            'handlers': ['console'],
+            'level': 'DEBUG', # This catches token/link failures
+            'propagate': True,
+        },
+        # This will catch your custom prints/logs
+        'hourTracker': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 
 DATABASES = {
     'default': {
@@ -140,7 +191,7 @@ MSGRAPH_CLIENT_ID = os.environ.get("MSGRAPH_CLIENT_ID")
 MSGRAPH_CLIENT_SECRET = os.environ.get("MSGRAPH_CLIENT_SECRET")
 
 # The email address that has the mailbox
-DEFAULT_FROM_EMAIL = 'noreply@browncountymtb.org'
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", 'noreply@browncountymtb.org')
 # else:
     # Fallback to console for local dev
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -149,7 +200,7 @@ import ssl
 EMAIL_SSL_CONTEXT = ssl._create_unverified_context()
 
 
-PASSWORD_RESET_TIMEOUT = 3600
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -176,13 +227,9 @@ AUTHENTICATION_BACKENDS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'America/Indiana/Indianapolis'
-
 USE_I18N = True
-
 USE_TZ = True
 
 

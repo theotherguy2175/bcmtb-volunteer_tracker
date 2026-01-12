@@ -1,12 +1,16 @@
-import os
 from django.utils import timezone
-
-# Look for 'APP_VERSION' from Docker. 
-# Fallback to a "Dev" timestamp if running locally without Docker.
-VERSION = os.getenv('APP_VERSION', f"v.{timezone.now().strftime('%y.%m.%d.dev')}")
+import os
 
 def global_context(request):
+    # USE THIS: timezone.localtime(timezone.now()) 
+    # This forces Django to convert the UTC 'now' into Indianapolis time
+    now_local = timezone.localtime(timezone.now())
+    
+    app_version = os.getenv('APP_VERSION')
+    if not app_version:
+        app_version = f"v.{now_local.strftime('%y.%m.%d.%H.%M-dev')}"
+    
     return {
-        'current_year': timezone.now().year,
-        'app_version': VERSION,
+        'current_year': now_local.year,
+        'app_version': app_version,
     }
