@@ -93,7 +93,7 @@ nav a img {
 }
 
 .nav__logo:hover {
-  color: var(--first-color);
+  color: #daa550;
 }
 
 .nav__toggle, 
@@ -133,7 +133,7 @@ nav a img {
 }
 
 .nav__link:hover {
-  color: var(--first-color);
+  color: #daa550;
 }
 
 .nav__close {

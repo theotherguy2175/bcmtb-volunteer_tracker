@@ -11,6 +11,8 @@
 =update export report per user total hours / include each location
 =remove edit buttons
 =add address for new registraion
+=show password all feilds
+=change hover color for menu
 
 fix edit buttons showing on mobile
 
@@ -19,6 +21,6 @@ setup auto email at the end of the year 30 days prior
 new user email registraion
 
 
-show password all feilds
-change hover color for menu
+
+
 
