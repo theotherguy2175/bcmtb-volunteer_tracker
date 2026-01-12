@@ -82,7 +82,7 @@
                         {% if user.is_staff %}
                         <a href="{% url 'edit_entry' e.pk %}?next={{ request.get_full_path }}" class="button is-warning" style="height:1rem">Edit</a>
                         {% else %}
-                        <a onclick="editNofication()" class="button is-warning openModalBtn" style="height:1rem">Edit</a> 
+                        <!-- <a onclick="editNofication()" class="button is-warning openModalBtn" style="height:1rem">Edit</a>  -->
                         {% endif %}
                         <a href="{% url 'delete_entry' e.pk %}" class="button is-danger" style="height:1rem">Delete</a>
                     </td>
