@@ -70,8 +70,8 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
         token = kwargs.get('token')
 
         if '=' in token:
-            kwargs['token'] = token.replace('=', '')
-            print(f"Removed = from token, Corrected token to: {kwargs['token']}")
+            token = token.replace('=', '')
+            print(f"Removed = from token, Corrected token to: {token}")
         
         try:
             uid = urlsafe_base64_decode(uidb64).decode()
