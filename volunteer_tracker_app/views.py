@@ -60,13 +60,12 @@ class MyPasswordResetView(PasswordResetView):
     token_generator = custom_token_generator  # Force it here
 
 
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.contrib.auth import get_user_model
 from django.contrib.auth.views import PasswordResetConfirmView, INTERNAL_RESET_SESSION_TOKEN
 from django.utils.http import urlsafe_base64_decode
-from django.shortcuts import resolve_url
-from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
-from django.shortcuts import render
 
 class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'registration/password_reset_confirm.html'
@@ -74,8 +73,6 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
 
     def dispatch(self, request, *args, **kwargs):
         print(f"\n--- [DEBUG] DISPATCH START ---")
-        
-        # 1. Manual User Lookup
         try:
             uid = urlsafe_base64_decode(kwargs.get('uidb64')).decode()
             self.user = get_user_model().objects.get(pk=uid)
@@ -86,30 +83,32 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
             self.user = None
             self.validlink = False
 
-        # 2. IF GET: Don't call super(). Just show the form.
         if request.method == 'GET':
-            print("GET Request: Rendering form manually to bypass Django token check.")
-            context = self.get_context_data()
-            return render(request, self.template_name, context)
+            print("GET Request: Rendering manually to bypass token check.")
+            return render(request, self.template_name, self.get_context_data())
 
-        # 3. IF POST: Let it through to our custom post method
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        # Build context manually to avoid parent logic
+        # Build context manually
         context = {
             'validlink': self.validlink,
-            'form': self.get_form(),
+            'form': self.get_form() if self.validlink else None,
             'user': self.user,
         }
         context.update(kwargs)
-        print(f"Context Prepared: validlink={context['validlink']}")
         return context
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.user
+        return kwargs
 
     def get_form(self, form_class=None):
         if form_class is None:
             form_class = self.get_form_class()
-        return form_class(user=self.user, **self.get_form_kwargs())
+        # Removed user=self.user from here to fix the 'multiple values' error
+        return form_class(**self.get_form_kwargs())
 
     def post(self, request, *args, **kwargs):
         print(f"--- [DEBUG] POST RECEIVED ---")
@@ -121,6 +120,7 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
         else:
             print(f"FORM INVALID: {form.errors}")
             return self.render_to_response(self.get_context_data(form=form))
+    
     
 ###
 
