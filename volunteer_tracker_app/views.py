@@ -72,33 +72,46 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
     success_url = reverse_lazy('password_reset_complete')
 
     def dispatch(self, request, *args, **kwargs):
-        # 1. Get User ID from the URL
+        print(f"\n--- [DEBUG] DISPATCH START ---")
+        print(f"Method: {request.method} | Path: {request.path}")
+        
         try:
             uid = urlsafe_base64_decode(kwargs.get('uidb64')).decode()
             self.user = get_user_model().objects.get(pk=uid)
             self.validlink = True
-        except:
+            print(f"User Found: {self.user.email} (ID: {uid})")
+        except Exception as e:
             self.user = None
             self.validlink = False
+            print(f"User Lookup Failed: {e}")
+
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        # 2. Force the page to show the form no matter what
         context = super().get_context_data(**kwargs)
         context['validlink'] = self.validlink
+        print(f"Context Prepared: validlink={self.validlink}")
         return context
 
     def post(self, request, *args, **kwargs):
-        # 3. The Nuclear Save: Ignore tokens, just check if the passwords match
+        print(f"\n--- [DEBUG] POST RECEIVED ---")
+        # Extract form manually to see what's inside
         form = self.get_form()
-        if form.is_valid():
-            user = form.save() # This updates the password in the DB
-            print(f"!!! NUCLEAR SUCCESS: Password changed for {user.email} !!!")
-            return HttpResponseRedirect(self.get_success_url())
         
-        # If it fails (e.g. passwords didn't match), show the errors
-        print(f"!!! FORM INVALID: {form.errors} !!!")
-        return self.render_to_response(self.get_context_data(form=form))
+        if form.is_valid():
+            print("Form is valid! Attempting to save...")
+            user = form.save()
+            print(f"SUCCESS: Password changed for {user.email}")
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            print(f"FORM INVALID: {form.errors.as_json()}")
+            # This is the 'Reload' point - we need to know WHY
+            return self.render_to_response(self.get_context_data(form=form))
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.user
+        return kwargs
     
 ###
 
