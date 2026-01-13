@@ -16,8 +16,6 @@ import ssl
 import environ
 import dj_database_url
 
-SECRET_KEY = env('SECRET_KEY')
-DEBUG = env('DEBUG')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
