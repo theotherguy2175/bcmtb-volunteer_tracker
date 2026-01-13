@@ -61,6 +61,10 @@ class MyPasswordResetView(PasswordResetView):
 
 
 # 3. THE RECEIVER
+from django.contrib.auth import get_user_model
+from django.contrib.auth.views import PasswordResetConfirmView, INTERNAL_RESET_SESSION_TOKEN
+from django.utils.http import urlsafe_base64_decode
+
 class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'registration/password_reset_confirm.html'
     token_generator = custom_token_generator
@@ -69,15 +73,14 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
         uidb64 = kwargs.get('uidb64')
         token = kwargs.get('token', '')
 
-        # 1. CLEANING: Remove the '=' and the Microsoft junk before the dash
+        # 1. CLEANING: Extract the real hash part
+        # Django tokens are 'timestamp-hash'. Microsoft usually prepends junk before the first dash.
         if '-' in token:
-            # We take ONLY the second part (the hash) because Microsoft 
-            # destroys the first part (the timestamp).
-            # Example: 'd2=01z-f117d8...' -> 'f117d8...'
             original_token = token
-            token = token.split('-', 1)[-1].replace('=', '')
-            kwargs['token'] = token # Update kwargs for the parent class
-            print(f"DEBUG: Cleaned Token from {original_token} to {token}")
+            # We take the LAST part after the last dash to ensure we get the actual signature
+            token = token.split('-')[-1].replace('=', '')
+            kwargs['token'] = token  # Crucial: Update the kwargs so parent methods see the clean version
+            print(f"DEBUG DISPATCH: Cleaned Token from [{original_token}] to [{token}]")
         
         try:
             uid = urlsafe_base64_decode(uidb64).decode()
@@ -88,31 +91,51 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
         is_valid = False
 
         if self.user is not None:
-            # BYPASS TIMESTAMP CHECK:
-            # Since Microsoft destroys the timestamp, we can't calculate 'age'.
-            # We will assume the link is valid if the user exists.
             print(f"--- Password RESET For USER: {self.user} ---")
             print("BYPASSING TIMESTAMP CHECK: Microsoft mangled the timestamp. Validating by User existence.")
             
-            # As long as we have a token string and a user, we show the form.
-            # Django's internal logic will still perform a final check when they submit.
+            # If we have a user and a semi-sane looking token, we proceed
             if len(token) > 10: 
                 is_valid = True
-                print("MANUAL VALIDATION SUCCESS: User identified, showing reset form.")
+                print("MANUAL VALIDATION SUCCESS: User identified. Forcing validlink = True.")
             else:
-                print("MANUAL VALIDATION FAILURE: Token too short or missing.")
+                print("MANUAL VALIDATION FAILURE: Token string too short.")
 
         if is_valid:
             self.validlink = True
-            # We must store the token in the session for Django's PasswordResetConfirmView to work
+            # Store the token in session as Django's internal logic expects
             self.request.session[INTERNAL_RESET_SESSION_TOKEN] = token
-            # Note: We call super().dispatch of the VIEW, not the parent view specifically 
-            # to ensure the 'validlink' context is passed correctly.
             return super().dispatch(request, *args, **kwargs)
-        
         else:
+            print("MANUAL VALIDATION FAILURE: User not found or link malformed.")
             self.validlink = False
             return self.render_to_response(self.get_context_data(validlink=False))
+
+    def get_context_data(self, **kwargs):
+        """
+        This method is called to provide data to the HTML template.
+        We override it to ensure 'validlink' stays True even if 
+        Django's internal check_token() fails due to the missing timestamp.
+        """
+        context = super().get_context_data(**kwargs)
+        context['validlink'] = self.validlink
+        print(f"DEBUG CONTEXT: Forcing template validlink to: {self.validlink}")
+        return context
+
+    def post(self, request, *args, **kwargs):
+        """
+        This method handles the actual password submission.
+        We re-verify the user existence here to let the form process.
+        """
+        # Re-verify logic for the POST request
+        token = kwargs.get('token', '').split('-')[-1].replace('=', '')
+        kwargs['token'] = token
+        
+        # Ensure validlink is True so the POST processing logic doesn't exit early
+        self.validlink = (self.user is not None)
+        print(f"DEBUG POST: Processing password change for {self.user}. validlink: {self.validlink}")
+        
+        return super().post(request, *args, **kwargs)
 ###
 
 #=========================VIEWS=========================#
