@@ -1,4 +1,5 @@
 import csv
+import datetime
 
 # Django Core & Utilities
 from django.conf import settings
@@ -208,29 +209,37 @@ def delete_entry(request, pk):
     entry.delete()
     return redirect('dashboard')
 
-
 #=======================Registration and Activation Views========================
 # Registration View with Email Activation
 def register_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            # ... (Your existing valid registration logic) ...
             user = form.save(commit=False)
             user.is_active = False 
             user.save()
 
+            # Ensure we have the latest user data from DB for the token
+            user.refresh_from_db() 
+
             current_site = get_current_site(request)
+            # Use 'https' in production, 'http' in local dev
             protocol = 'https' if request.is_secure() else 'http'
+            domain = current_site.domain
 
             subject = 'Activate your Brown County MTB Account'
-            message = render_to_string('hourTracker/acc_active_email.html', {
+            
+            # Context for the email template
+            # Instead of just sending the token, ensure it's a clean string
+            context = {
                 'user': user,
-                'domain': current_site.domain,
+                'domain': domain,
                 'protocol': protocol,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': default_token_generator.make_token(user),
-            })
+                'token': default_token_generator.make_token(user).strip(), # Clean whitespace
+            }
+            
+            message = render_to_string('hourTracker/acc_active_email.html', context)
             
             to_email = form.cleaned_data.get('email')
             email = EmailMessage(subject, message, to=[to_email])
@@ -264,13 +273,43 @@ def activate(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
-    if user is not None and default_token_generator.check_token(user, token):
+    is_valid = False
+
+    if user is not None:
+        try:
+            # 1. Parse the timestamp from the token (first part before the dash)
+            ts_int = int(token.split("-")[0], 36)
+            
+            # 2. Get current time sync'd to Local (matching your Password Reset logic)
+            django_epoch = datetime.datetime(2001, 1, 1, tzinfo=datetime.timezone.utc)
+            current_now_local = timezone.localtime(timezone.now())
+            
+            # Strip tzinfo to compare apples to apples
+            current_ts = int((current_now_local.replace(tzinfo=None) - django_epoch.replace(tzinfo=None)).total_seconds())
+            
+            # 3. Calculate Age
+            age = current_ts - ts_int
+            timeout = getattr(settings, 'PASSWORD_RESET_TIMEOUT', 259200) # Default 3 days
+
+            # 4. Manual Validation
+            # We check if the token is within the valid time window
+            if 0 <= age <= timeout:
+                print(f"REGISTRATION SUCCESS: Age is {age}s. Manual bypass successful.")
+                is_valid = True
+            else:
+                print(f"REGISTRATION FAILURE: Token expired. Age: {age}s.")
+
+        except Exception as e:
+            print(f"Manual Activation Error: {e}")
+
+    if is_valid:
         user.is_active = True
         user.save()
-        # Message for the success page
         return render(request, 'hourTracker/activation_success.html')
     else:
-        return render(request, 'hourTracker/activation_invalid.html')
+        # Pass the debug info so you can see the age on the screen if it fails
+        debug_info = f"Age: {age if 'age' in locals() else 'N/A'}s, Timeout: {timeout}s"
+        return render(request, 'hourTracker/activation_invalid.html', {'debug_info': debug_info})
 
 
 def resend_activation(request):

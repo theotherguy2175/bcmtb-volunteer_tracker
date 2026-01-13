@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, re_path
 from . import views
 
 
@@ -12,7 +12,7 @@ urlpatterns = [
     path('delete/<int:pk>/', views.delete_entry, name='delete_entry'),
 
     path('register/', views.register_view, name='register'),
-    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('activate/<str:uidb64>/<path:token>/', views.activate, name='activate'),
     path('resend-activation/', views.resend_activation, name='resend_activation'),
 
     path('rewards/', views.rewards, name='rewards'),

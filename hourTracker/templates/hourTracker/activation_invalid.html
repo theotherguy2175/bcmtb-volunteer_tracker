@@ -1,6 +1,12 @@
 {% extends 'base_unauth.html' %}
 
 {% block content %}
+{% if debug_info %}
+    <div class="notification is-danger is-light mt-4">
+        <p><strong>Debug Info:</strong> {{ debug_info }}</p>
+        <p>Token: {{ token }}</p>
+    </div>
+{% endif %}
 <section class="section">
     <div class="container">
         <div class="columns is-centered">
