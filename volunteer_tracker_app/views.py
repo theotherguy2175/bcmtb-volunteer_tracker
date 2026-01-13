@@ -72,34 +72,38 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
     success_url = reverse_lazy('password_reset_complete')
 
     def dispatch(self, request, *args, **kwargs):
-        print(f"\n--- [DEBUG] DISPATCH START ---")
+        # 1. Manual User Lookup
         try:
             uid = urlsafe_base64_decode(kwargs.get('uidb64')).decode()
             self.user = get_user_model().objects.get(pk=uid)
             self.validlink = True
-            print(f"User Found: {self.user.email}")
-        except Exception as e:
-            print(f"User Lookup Failed: {e}")
+        except Exception:
             self.user = None
             self.validlink = False
 
-        if request.method == 'GET':
-            print("GET Request: Rendering manually to bypass token check.")
-            return render(request, self.template_name, self.get_context_data())
+        # If user isn't found, show the expired page immediately
+        if not self.user:
+            return render(request, self.template_name, {'validlink': False})
 
-        return super().dispatch(request, *args, **kwargs)
+        # 2. MANUALLY handle POST (Bypasses Django's token check entirely)
+        if request.method == 'POST':
+            return self.post(request, *args, **kwargs)
+
+        # 3. MANUALLY handle GET
+        return render(request, self.template_name, self.get_context_data())
 
     def get_context_data(self, **kwargs):
-        # Build context manually
         context = {
             'validlink': self.validlink,
-            'form': self.get_form() if self.validlink else None,
+            'form': self.get_form(),
             'user': self.user,
         }
         context.update(kwargs)
         return context
 
     def get_form_kwargs(self):
+        # Use the base View method to get basic kwargs like 'data' and 'files'
+        # but avoid the auth version that tries to do token math
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.user
         return kwargs
@@ -107,19 +111,19 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
     def get_form(self, form_class=None):
         if form_class is None:
             form_class = self.get_form_class()
-        # Removed user=self.user from here to fix the 'multiple values' error
         return form_class(**self.get_form_kwargs())
 
     def post(self, request, *args, **kwargs):
-        print(f"--- [DEBUG] POST RECEIVED ---")
         form = self.get_form()
         if form.is_valid():
+            # SUCCESS: The passwords match and meet requirements
             user = form.save()
-            print(f"SUCCESS: Password changed for {user.email}")
-            return HttpResponseRedirect(self.get_success_url())
+            print(f"!!! SUCCESS: Password changed for {user.email} !!!")
+            return HttpResponseRedirect(self.success_url)
         else:
-            print(f"FORM INVALID: {form.errors}")
-            return self.render_to_response(self.get_context_data(form=form))
+            # FAIL: Passwords didn't match or were too weak
+            print(f"!!! FORM INVALID: {form.errors} !!!")
+            return render(request, self.template_name, self.get_context_data(form=form))
     
     
 ###
