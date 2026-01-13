@@ -72,25 +72,60 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
     success_url = reverse_lazy('password_reset_complete')
 
     def dispatch(self, request, *args, **kwargs):
-        # 1. Manual User Lookup
+        print(f"\n--- [DEBUG] SECURITY CHECK START ---")
         try:
-            uid = urlsafe_base64_decode(kwargs.get('uidb64')).decode()
+            # 1. Decode User
+            uidb64 = kwargs.get('uidb64')
+            uid = urlsafe_base64_decode(uidb64).decode()
             self.user = get_user_model().objects.get(pk=uid)
-            self.validlink = True
-        except Exception:
+            
+            # 2. Extract and Clean the Token
+            raw_token = kwargs.get('token', '')
+            
+            # THE SURGERY:
+            # Microsoft adds junk like "d2cplv-" to the front. 
+            # We split by the dash and keep the LAST TWO parts (timestamp and hash).
+            if '-' in raw_token:
+                parts = raw_token.split('-')
+                # Grab the timestamp (second to last) and hash (last)
+                clean_token = f"{parts[-2]}-{parts[-1]}"
+                # Strip trailing '=' or other junk Microsoft might add
+                clean_token = clean_token.replace('=', '')
+            else:
+                clean_token = raw_token
+                
+            print(f"Original Token: {raw_token}")
+            print(f"Cleaned Token:  {clean_token}")
+
+            # 3. OFFICIAL SECURITY CHECK
+            # We pass the cleaned token to Django's official validator.
+            # This checks the math AND the expiration date (usually 3 days).
+            if self.token_generator.check_token(self.user, clean_token):
+                self.validlink = True
+                print(f"SECURITY PASS: Valid signature for {self.user.email}")
+            else:
+                self.validlink = False
+                print("SECURITY FAIL: Token is mathematically invalid or expired.")
+
+        except Exception as e:
+            print(f"SECURITY ERROR: {e}")
             self.user = None
             self.validlink = False
 
-        # If user isn't found, show the expired page immediately
-        if not self.user:
+        # 4. Enforce Access
+        if not self.validlink:
+            print("BLOCKING ACCESS: Showing 'Link Expired' page.")
             return render(request, self.template_name, {'validlink': False})
 
-        # 2. MANUALLY handle POST (Bypasses Django's token check entirely)
+        # 5. Handle Post vs Get
         if request.method == 'POST':
+            print("--- [DEBUG] POST RECEIVED ---")
             return self.post(request, *args, **kwargs)
 
-        # 3. MANUALLY handle GET
+        print("--- [DEBUG] GET RECEIVED: Showing Form ---")
         return render(request, self.template_name, self.get_context_data())
+            
+
 
     def get_context_data(self, **kwargs):
         context = {
