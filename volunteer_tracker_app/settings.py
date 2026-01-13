@@ -44,8 +44,10 @@ else:
     ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['.railway.app', 'localhost', '127.0.0.1'])
 
 CSRF_TRUSTED_ORIGINS = os.environ.get("RAILWAY_PUBLIC_DOMAIN")
+
 if CSRF_TRUSTED_ORIGINS:
-    CSRF_TRUSTED_ORIGINS = CSRF_TRUSTED_ORIGINS.split(",")
+    # Split the string and prepend https:// to each domain
+    CSRF_TRUSTED_ORIGINS = [f"https://{domain.strip()}" for domain in CSRF_TRUSTED_ORIGINS.split(",")]
     print(f"CSRF_TRUSTED_ORIGINS from ENV: {CSRF_TRUSTED_ORIGINS}")
 else:
     # fallback for local testing
