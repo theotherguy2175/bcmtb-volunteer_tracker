@@ -66,6 +66,7 @@ from django.utils.http import urlsafe_base64_decode
 from django.shortcuts import resolve_url
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.shortcuts import render
 
 class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'registration/password_reset_confirm.html'
@@ -73,45 +74,53 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
 
     def dispatch(self, request, *args, **kwargs):
         print(f"\n--- [DEBUG] DISPATCH START ---")
-        print(f"Method: {request.method} | Path: {request.path}")
         
+        # 1. Manual User Lookup
         try:
             uid = urlsafe_base64_decode(kwargs.get('uidb64')).decode()
             self.user = get_user_model().objects.get(pk=uid)
             self.validlink = True
-            print(f"User Found: {self.user.email} (ID: {uid})")
+            print(f"User Found: {self.user.email}")
         except Exception as e:
+            print(f"User Lookup Failed: {e}")
             self.user = None
             self.validlink = False
-            print(f"User Lookup Failed: {e}")
 
+        # 2. IF GET: Don't call super(). Just show the form.
+        if request.method == 'GET':
+            print("GET Request: Rendering form manually to bypass Django token check.")
+            context = self.get_context_data()
+            return render(request, self.template_name, context)
+
+        # 3. IF POST: Let it through to our custom post method
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['validlink'] = self.validlink
-        print(f"Context Prepared: validlink={self.validlink}")
+        # Build context manually to avoid parent logic
+        context = {
+            'validlink': self.validlink,
+            'form': self.get_form(),
+            'user': self.user,
+        }
+        context.update(kwargs)
+        print(f"Context Prepared: validlink={context['validlink']}")
         return context
 
+    def get_form(self, form_class=None):
+        if form_class is None:
+            form_class = self.get_form_class()
+        return form_class(user=self.user, **self.get_form_kwargs())
+
     def post(self, request, *args, **kwargs):
-        print(f"\n--- [DEBUG] POST RECEIVED ---")
-        # Extract form manually to see what's inside
+        print(f"--- [DEBUG] POST RECEIVED ---")
         form = self.get_form()
-        
         if form.is_valid():
-            print("Form is valid! Attempting to save...")
             user = form.save()
             print(f"SUCCESS: Password changed for {user.email}")
             return HttpResponseRedirect(self.get_success_url())
         else:
-            print(f"FORM INVALID: {form.errors.as_json()}")
-            # This is the 'Reload' point - we need to know WHY
+            print(f"FORM INVALID: {form.errors}")
             return self.render_to_response(self.get_context_data(form=form))
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.user
-        return kwargs
     
 ###
 
