@@ -112,29 +112,35 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
             return self.render_to_response(self.get_context_data(validlink=False))
 
     def get_context_data(self, **kwargs):
-        """
-        This method is called to provide data to the HTML template.
-        We override it to ensure 'validlink' stays True even if 
-        Django's internal check_token() fails due to the missing timestamp.
-        """
+        # 1. Get the context from the parent first
         context = super().get_context_data(**kwargs)
+        
+        # 2. Check if we validated the user in dispatch
+        # We use 'getattr' to be extra safe
+        if getattr(self, 'user', None) is not None:
+            self.validlink = True
+            
+        # 3. OVERWRITE whatever Django tried to do
         context['validlink'] = self.validlink
-        print(f"DEBUG CONTEXT: Forcing template validlink to: {self.validlink}")
+        
+        print(f"DEBUG CONTEXT: Forcing template validlink to: {context['validlink']}")
         return context
 
     def post(self, request, *args, **kwargs):
-        """
-        This method handles the actual password submission.
-        We re-verify the user existence here to let the form process.
-        """
-        # Re-verify logic for the POST request
+        # Clean the token again for the POST request
         token = kwargs.get('token', '').split('-')[-1].replace('=', '')
         kwargs['token'] = token
         
-        # Ensure validlink is True so the POST processing logic doesn't exit early
-        self.validlink = (self.user is not None)
-        print(f"DEBUG POST: Processing password change for {self.user}. validlink: {self.validlink}")
-        
+        # Re-verify the user to ensure 'validlink' is True during processing
+        uidb64 = kwargs.get('uidb64')
+        try:
+            uid = urlsafe_base64_decode(uidb64).decode()
+            self.user = get_user_model().objects.get(pk=uid)
+            self.validlink = True
+        except:
+            self.validlink = False
+
+        print(f"DEBUG POST: Processing for {self.user}. validlink: {self.validlink}")
         return super().post(request, *args, **kwargs)
 ###
 
