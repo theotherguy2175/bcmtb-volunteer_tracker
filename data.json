@@ -1,6 +1,2214 @@
-ENVS:
-MODE: dev
-SESSION_COOKIE_SECURE: False
-CSRF_COOKIE_SECURE: False
-DB CONFIG: {'default': {'ENGINE': 'django.db.backends.postgresql', 'NAME': 'django', 'USER': 'django', 'PASSWORD': 'django', 'HOST': '10.0.10.102', 'PORT': '5432'}}
-[{"model": "admin.logentry", "pk": 1, "fields": {"action_time": "2025-11-03T15:31:13.936Z", "user": 1, "content_type": 8, "object_id": "1", "object_repr": "board", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 2, "fields": {"action_time": "2025-11-03T17:17:07.079Z", "user": 1, "content_type": 8, "object_id": "2", "object_repr": "sawyer", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 3, "fields": {"action_time": "2025-11-03T17:17:12.269Z", "user": 1, "content_type": 8, "object_id": "3", "object_repr": "trail work", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 4, "fields": {"action_time": "2025-11-03T17:19:07.921Z", "user": 1, "content_type": 6, "object_id": "3", "object_repr": "mahk.adams@browncountymtb.org", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 5, "fields": {"action_time": "2025-11-03T17:43:06.721Z", "user": 1, "content_type": 6, "object_id": "2", "object_repr": "codycasteel2178.5@gmail.com", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Is staff\"]}}]"}}, {"model": "admin.logentry", "pk": 6, "fields": {"action_time": "2025-11-03T19:55:01.456Z", "user": 1, "content_type": 6, "object_id": "2", "object_repr": "codycasteel2178.5@gmail.com", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Superuser status\"]}}]"}}, {"model": "admin.logentry", "pk": 7, "fields": {"action_time": "2025-12-19T19:36:40.196Z", "user": 1, "content_type": 6, "object_id": "2", "object_repr": "codycasteel2178.5@gmail.com", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"}}, {"model": "admin.logentry", "pk": 8, "fields": {"action_time": "2025-12-22T14:21:42.342Z", "user": 2, "content_type": 6, "object_id": "4", "object_repr": "jblow@kokomo.com", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"}}, {"model": "admin.logentry", "pk": 9, "fields": {"action_time": "2025-12-22T19:21:44.053Z", "user": 2, "content_type": 6, "object_id": "3", "object_repr": "mahk.adams@browncountymtb.org", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"}}, {"model": "admin.logentry", "pk": 10, "fields": {"action_time": "2025-12-22T19:25:34.190Z", "user": 2, "content_type": 6, "object_id": "3", "object_repr": "mahk.adams@browncountymtb.org", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"}}, {"model": "admin.logentry", "pk": 11, "fields": {"action_time": "2025-12-22T20:44:57.303Z", "user": 2, "content_type": 6, "object_id": "8", "object_repr": "jason.perry@browncounty.org", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Is staff\", \"Superuser status\"]}}]"}}, {"model": "admin.logentry", "pk": 12, "fields": {"action_time": "2025-12-22T20:47:09.232Z", "user": 2, "content_type": 6, "object_id": "8", "object_repr": "jason.perry@browncounty.org", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"}}, {"model": "admin.logentry", "pk": 13, "fields": {"action_time": "2025-12-22T20:48:25.739Z", "user": 2, "content_type": 6, "object_id": "8", "object_repr": "jason.perry@browncounty.org", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 14, "fields": {"action_time": "2025-12-22T20:55:01.636Z", "user": 2, "content_type": 6, "object_id": "9", "object_repr": "jason.perry@browncountymtb.org", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Is staff\", \"Superuser status\"]}}]"}}, {"model": "admin.logentry", "pk": 15, "fields": {"action_time": "2025-12-23T16:47:30.984Z", "user": 2, "content_type": 9, "object_id": "1", "object_repr": "Brown County State Park", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 16, "fields": {"action_time": "2025-12-23T16:47:41.882Z", "user": 2, "content_type": 9, "object_id": "2", "object_repr": "Yellow Wood State Forest", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 17, "fields": {"action_time": "2025-12-23T17:58:32.254Z", "user": 2, "content_type": 10, "object_id": "1", "object_repr": "test", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 18, "fields": {"action_time": "2025-12-23T18:06:25.207Z", "user": 2, "content_type": 10, "object_id": "2", "object_repr": "Trail Shirt & BCMB Membership", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 19, "fields": {"action_time": "2025-12-23T18:14:21.149Z", "user": 2, "content_type": 10, "object_id": "3", "object_repr": "Next Year's Bike Pass", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 20, "fields": {"action_time": "2025-12-23T18:15:55.229Z", "user": 2, "content_type": 10, "object_id": "3", "object_repr": "Next Year's Bike Pass", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Hours required\"]}}]"}}, {"model": "admin.logentry", "pk": 21, "fields": {"action_time": "2025-12-23T18:17:27.682Z", "user": 2, "content_type": 10, "object_id": "4", "object_repr": "Next Year's Park Pass", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 22, "fields": {"action_time": "2025-12-23T18:19:05.185Z", "user": 2, "content_type": 10, "object_id": "5", "object_repr": "Next Year's EPIC Entry", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 23, "fields": {"action_time": "2025-12-23T18:26:41.952Z", "user": 2, "content_type": 10, "object_id": "1", "object_repr": "test", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 24, "fields": {"action_time": "2025-12-23T18:33:31.143Z", "user": 2, "content_type": 10, "object_id": "5", "object_repr": "Next Year's EPIC Entry", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"}}, {"model": "admin.logentry", "pk": 25, "fields": {"action_time": "2025-12-23T19:02:59.073Z", "user": 2, "content_type": 10, "object_id": "5", "object_repr": "Next Year's EPIC Entry", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"}}, {"model": "admin.logentry", "pk": 26, "fields": {"action_time": "2025-12-23T19:47:17.463Z", "user": 2, "content_type": 10, "object_id": "2", "object_repr": "Trail Shirt & BCMB Membership", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"}}, {"model": "admin.logentry", "pk": 27, "fields": {"action_time": "2025-12-23T19:51:39.482Z", "user": 2, "content_type": 10, "object_id": "4", "object_repr": "Next Year's Park Pass", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"}}, {"model": "admin.logentry", "pk": 28, "fields": {"action_time": "2025-12-23T19:55:09.868Z", "user": 2, "content_type": 10, "object_id": "5", "object_repr": "Next Year's EPIC Entry", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"}}, {"model": "admin.logentry", "pk": 29, "fields": {"action_time": "2025-12-23T20:11:16.201Z", "user": 2, "content_type": 10, "object_id": "3", "object_repr": "Next Year's Bike Pass", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"}}, {"model": "admin.logentry", "pk": 30, "fields": {"action_time": "2025-12-23T21:17:22.082Z", "user": 2, "content_type": 11, "object_id": "1", "object_repr": "ourTracker.tasks.send_yearly_reminder", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 31, "fields": {"action_time": "2025-12-23T21:17:50.676Z", "user": 2, "content_type": 11, "object_id": "1", "object_repr": "ourTracker.tasks.send_yearly_reminder", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Cron\"]}}]"}}, {"model": "admin.logentry", "pk": 32, "fields": {"action_time": "2025-12-23T21:18:01.583Z", "user": 2, "content_type": 11, "object_id": "1", "object_repr": "ourTracker.tasks.send_yearly_reminder", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Cron\"]}}]"}}, {"model": "admin.logentry", "pk": 33, "fields": {"action_time": "2025-12-23T21:18:24.907Z", "user": 2, "content_type": 11, "object_id": "1", "object_repr": "ourTracker.tasks.send_yearly_reminder", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Next Run\"]}}]"}}, {"model": "admin.logentry", "pk": 34, "fields": {"action_time": "2025-12-23T21:18:56.902Z", "user": 2, "content_type": 11, "object_id": "1", "object_repr": "hourTracker.tasks.send_yearly_reminder", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Func\", \"Next Run\"]}}]"}}, {"model": "admin.logentry", "pk": 35, "fields": {"action_time": "2025-12-23T21:20:03.992Z", "user": 2, "content_type": 11, "object_id": "1", "object_repr": "hourTracker.tasks.send_yearly_reminder", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Next Run\"]}}]"}}, {"model": "admin.logentry", "pk": 36, "fields": {"action_time": "2025-12-23T21:20:43.467Z", "user": 2, "content_type": 11, "object_id": "1", "object_repr": "hourTracker.tasks.send_yearly_reminder", "action_flag": 2, "change_message": "[]"}}, {"model": "admin.logentry", "pk": 37, "fields": {"action_time": "2025-12-23T23:36:06.580Z", "user": 2, "content_type": 9, "object_id": "3", "object_repr": "Hoosier National Forest", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 38, "fields": {"action_time": "2025-12-23T23:36:42.748Z", "user": 2, "content_type": 9, "object_id": "2", "object_repr": "Yellowwood State Forest", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"}}, {"model": "admin.logentry", "pk": 39, "fields": {"action_time": "2025-12-31T17:47:13.559Z", "user": 2, "content_type": 6, "object_id": "10", "object_repr": "aguedamayan@gmail.com", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Is staff\", \"Superuser status\"]}}]"}}, {"model": "admin.logentry", "pk": 40, "fields": {"action_time": "2026-01-07T18:23:30.162Z", "user": 2, "content_type": 6, "object_id": "2", "object_repr": "codycasteel2178.5@gmail.com", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Phone number\"]}}]"}}, {"model": "admin.logentry", "pk": 41, "fields": {"action_time": "2026-01-07T18:25:10.379Z", "user": 2, "content_type": 6, "object_id": "2", "object_repr": "codycasteel2178.5@gmail.com", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Phone number\"]}}]"}}, {"model": "admin.logentry", "pk": 42, "fields": {"action_time": "2026-01-07T22:57:45.231Z", "user": 2, "content_type": 8, "object_id": "4", "object_repr": "Epic Volunteer", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 43, "fields": {"action_time": "2026-01-07T22:58:38.849Z", "user": 2, "content_type": 9, "object_id": "4", "object_repr": "Yellow", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 44, "fields": {"action_time": "2026-01-07T22:59:01.106Z", "user": 2, "content_type": 9, "object_id": "4", "object_repr": "Yellow", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 45, "fields": {"action_time": "2026-01-08T15:36:42.434Z", "user": 2, "content_type": 6, "object_id": "9", "object_repr": "jason.perry@browncountymtb.org", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"}}, {"model": "admin.logentry", "pk": 46, "fields": {"action_time": "2026-01-12T15:40:22.904Z", "user": 2, "content_type": 6, "object_id": "9", "object_repr": "jason.perry@browncountymtb.org", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"}}, {"model": "admin.logentry", "pk": 47, "fields": {"action_time": "2026-01-12T18:19:32.154Z", "user": 2, "content_type": 6, "object_id": "3", "object_repr": "mahk.adams@browncountymtb.org", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Address line 1\", \"City\", \"State\", \"Zip code\", \"Superuser status\"]}}]"}}, {"model": "admin.logentry", "pk": 48, "fields": {"action_time": "2026-01-13T13:45:01.326Z", "user": 2, "content_type": 6, "object_id": "16", "object_repr": "codycasteel.facebook.2178@gmail.com", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 49, "fields": {"action_time": "2026-01-13T15:06:50.557Z", "user": 2, "content_type": 6, "object_id": "22", "object_repr": "codycasteel.facebook.2178@gmail.com", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 50, "fields": {"action_time": "2026-01-13T15:06:50.558Z", "user": 2, "content_type": 6, "object_id": "14", "object_repr": "elijahmbeasley@gmail.com", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 51, "fields": {"action_time": "2026-01-13T15:13:39.027Z", "user": 2, "content_type": 6, "object_id": "23", "object_repr": "codycasteel.facebook.2178@gmail.com", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 52, "fields": {"action_time": "2026-01-13T15:23:11.407Z", "user": 2, "content_type": 6, "object_id": "24", "object_repr": "codycasteel.facebook.2178@gmail.com", "action_flag": 3, "change_message": ""}}, {"model": "sessions.session", "pk": "1et6p1idsj1o606t3zbj2o5hmyrvp23a", "fields": {"session_data": ".eJxVjMEOwiAQRP-Fs2lgKQIeNf6Bd7IL3dBobQLlZPx3JelBj_PezLxEwLbl0OpUwpzESSgtDr-QMN6nZzd5beVWeizDTutwaXVbl-uC8-O8N__mGWvuryqRs0iKwGkejWfH6MFF0JqMgRHYfJ2UHJWXYBx7DUmyJauOBEm8P5bSNvI:1vfMt4:vXyIo-2LJYY_zTEqw-p5ictL9iiYZr4ifxDzm-ykOC4", "expire_date": "2026-01-26T18:43:34.667Z"}}, {"model": "sessions.session", "pk": "21ugtqmr06hq9tg9rsh8hx1uq37all5i", "fields": {"session_data": "eyJkZWJ1Z190ZXN0Ijp0cnVlfQ:1veEMt:4IpUupaJbNAqMicxz-WWrZCNQVV2hy9e_JD8jX-VCPo", "expire_date": "2026-01-23T15:25:39.789Z"}}, {"model": "sessions.session", "pk": "3twxt14c4t19gxoj36cn00dtatpm2dr1", "fields": {"session_data": ".eJxVi0EOwiAQRe_C2jSBAWRcaryBezLAEBqtTaCsjHdvm3Shy__-ex_hqS_F98bVj0lchDLi9AsDxSe_96fMvT7qPutw0Dbcelvm6T7R-Loe5l9eqJWtdQ7RBmOzNKQ4MWiS4OxZScw6mKgwGYbgWGoAZnIMKROFnBVSRBLfFaT6OGQ:1vfgbe:qkj4e_3Ffc4CPt-PjVtlzuDwmgEnaYUQwlCMoCR95UA", "expire_date": "2026-01-27T15:46:54.798Z"}}, {"model": "sessions.session", "pk": "4t6vnqsfgqawthozq8jqh5h6z0qoa6tb", "fields": {"session_data": ".eJxVjMEOwiAQRP-Fs2lgKQIeNf6Bd7IL3dBobQLlZPx3JelBj_PezLxEwLbl0OpUwpzESSgtDr-QMN6nZzd5beVWeizDTutwaXVbl-uC8-O8N__mGWvuryqRs0iKwGkejWfH6MFF0JqMgRHYfJ2UHJWXYBx7DUmyJauOBEm8P5bSNvI:1vdqIz:ioP3cpY7Rz7akHrt1svZvpnQQLiBDQnjexsQtH_rvDU", "expire_date": "2026-01-22T13:44:01.629Z"}}, {"model": "sessions.session", "pk": "5y8h5h7grd872rw4wfavx140nvfg2xgd", "fields": {"session_data": "eyJ0ZXN0X2tleSI6InRlc3RfdmFsdWUifQ:1vfNPW:NjKEIRA5we3KOhhrIuNZLZijEXOlrbJEn1JwaF8PIIQ", "expire_date": "2026-01-26T19:17:06.531Z"}}, {"model": "sessions.session", "pk": "6u6yuudbm5dweebtecxcxkmaf4ba9tx6", "fields": {"session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vXnDh:FSGRDEzw1eBJobyCdUDnh4bSRE6mwlt7-YwPdSLU560", "expire_date": "2026-01-05T21:13:33.052Z"}}, {"model": "sessions.session", "pk": "amuce8o5lu5silkxfnf5k1nv6oim11mv", "fields": {"session_data": ".eJxVizsOwyAQBe9CHVksmGVJGck3SI-Wn7DykyBUUe6eWHKRlG_ezEt4Hs_qR8_Nr0kcBYjDLwscL_m-HfUx2rlts0077dNy4_V62p2_sHKv34pM4aSAgk44O4MUFSmWxNaRhYSxgMHEJGWYIbiCErM2MsiiLSCgeH8A5J0z9A:1vG0c3:OGijN3SLHsXQkFT-aNpXT631XmW_66BciqcBeP0bRTA", "expire_date": "2025-11-17T19:53:11.226Z"}}, {"model": "sessions.session", "pk": "aojp3ydd3xx0ianw6x1ia701f9np1b2v", "fields": {"session_data": ".eJxVizsOwyAQBe9CHVksmGVJGck3SI-Wn7DykyBUUe6eWHKRlG_ezEt4Hs_qR8_Nr0kcBYjDLwscL_m-HfUx2rlts0077dNy4_V62p2_sHKv34pM4aSAgk44O4MUFSmWxNaRhYSxgMHEJGWYIbiCErM2MsiiLSCgeH8A5J0z9A:1vG0d4:4ueYTkBzRio9iVGkQac4LVaSeoEj7BzC0wZHuRNQBYo", "expire_date": "2025-11-17T19:54:14.305Z"}}, {"model": "sessions.session", "pk": "aw9pnqzuy7ew5wf93qfscqawv18d9irs", "fields": {"session_data": ".eJxVi0sOwjAMBe-SNapqu8ENS6TegH3kOolS8ZMSskLcnVbqApZv3szbeGmv7FuNxS_BnAyawy-bRa_xsR352cqlbLN0O63ddJfldt6dvzBLzWulgMdxBAxKDrjXYU2F7YAJJAohcYrBWRtDYsfWMbHOCgmlD0CJzecL-FI1Eg:1vFztl:0uI7hVnhNzEQfLbYinytsieIsoTOU-LffnSAHjGWiYo", "expire_date": "2025-11-17T19:07:25.318Z"}}, {"model": "sessions.session", "pk": "b70a1vhep021ti3p6qbkxeavqst8ac3h", "fields": {"session_data": ".eJxVizsOwyAQBe9CHVksmGVJGck3SI-Wn7DykyBUUe6eWHKRlG_ezEt4Hs_qR8_Nr0kcBYjDLwscL_m-HfUx2rlts0077dNy4_V62p2_sHKv34pM4aSAgk44O4MUFSmWxNaRhYSxgMHEJGWYIbiCErM2MsiiLSCgeH8A5J0z9A:1vG0VG:l-Bkftj9TbqUqlCU9hUk8lmXWJvuHnRgavpzdNtL9Y4", "expire_date": "2025-11-17T19:46:10.990Z"}}, {"model": "sessions.session", "pk": "bazkz90gurfd1so9tsk2bbpvoes454cd", "fields": {"session_data": ".eJxVizsOwjAQBe_iGkVrx7-lJOIG9NZ648gRhEh2XCHuDpFSQPnmzbxEoLbl0GoqYR7FWShx-mWR-J6e-5HXVm5ln6U7aO2GVrd1uS40Py6H-Zdnqvnbet1HQC2TB23JGQbFQFoDj-Cct1HJmCzj1E8YUWHiCb3RCaSxHlmJ9wdizjaq:1vds42:w4XugzJqdPY3G_S2wkQkRFAimlKuHEhn-cUvInxAJBs", "expire_date": "2026-01-22T15:36:42.449Z"}}, {"model": "sessions.session", "pk": "bz8w6majy2w1xgxzu1uu4pe8fagtc6ea", "fields": {"session_data": ".eJxVi0EOwiAQRe_C2jSkzIC41HgD92SAmdBobQJlZby7NulCl__9914qUF9L6I1rmLI6KaMOvyxSuvNzO8rS661usw47bcOlt3WZrzNNj_Nu_uWFWvm2kgBs1i4am5JLGC0CEcdRPGqnIzKbbFFM9iO5DF6OEhlBRiHvGdT7A6OtOGQ:1vfgR3:efqoJEvz4eTGdd3ku2LWp8c4vLSCckDt0AKYeY3x5Vw", "expire_date": "2026-01-27T15:35:57.438Z"}}, {"model": "sessions.session", "pk": "c5mx196iosi1p3whkn3td53cs1u123io", "fields": {"session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY7oV:gRlsbzhYvAbqECFz4GuwyXY2Smk4vJusSW69ig9kmCs", "expire_date": "2026-01-06T19:12:55.854Z"}}, {"model": "sessions.session", "pk": "cxjubhpw3e9nwccf145b093q14mzjlla", "fields": {"session_data": ".eJxVjMsKwjAQRf8laymZNM2kLhX_wH2YyYMUrYWkWYn_LoEudHPhnvt4C0dtz67VWNwSxFkocfplTP4RXz3IWyv30m0ZDlqHa6v7tt5WWp6Xo_k3z1RzP1WSLGg7YSLLTNGjTQBsEvs5omKJyngAMFrhGOau2oycrORJBxSfL3sCNsg:1vdCGu:KP_yH4LVw8xsT1UJaGGHEH0x5gXxWBI_cHEKdqZWEmA", "expire_date": "2026-01-20T18:59:12.790Z"}}, {"model": "sessions.session", "pk": "czo4jzrhi3dnsq98uznn96gs12i6wout", "fields": {"session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY62k:E4Qukfo27hMxKaynl8tyqR07Lv3Ek4g3RPXBoqaRjg4", "expire_date": "2026-01-06T17:19:30.040Z"}}, {"model": "sessions.session", "pk": "dffhd6llfy1ffeuy9let4t4qm61nrw3n", "fields": {"session_data": ".eJxVi0EOwiAQRe_C2jS2MGXGpcYbuCcwDKHR2gTKynh3bdKFLv_7772U823NrlUpborqpEgdflnwfJfnduSllVvZZul2WrtLq-syX2c_Pc67-ZdnX_O31ZCMHi3agSlQgB4jWCYOhMmyJ6NZNINJGsV6GI_Y98YOIhFRIJF6fwB6YTc6:1vXn51:2ItrABWSmpMV6iCWFNXdnT5C5JkhTds56nVcY85tZzI", "expire_date": "2026-01-05T21:04:35.327Z"}}, {"model": "sessions.session", "pk": "emrat7eevg724zav1n8e97nxvv6xc7ur", "fields": {"session_data": ".eJxVizsOwyAQBe9CHVkGs2BSRvIN0qOF3RVWfhKEKsrdE0sukvLNm3mpiP1ZYm9c40rqqIw6_LKE-cL37SiPXs91m3XYaRuWG67X0-78hQVb-VY50OSc-FkL0Dg5mFkCWp8ke6MBGQwCG5tH0pATekOWrSMJpEWsVe8PBsk1fg:1vFyd0:P8hFDBbTffm0_Uo8T1Gti_wN9sXA2h9fzCnAR3ZeGYI", "expire_date": "2025-11-17T17:46:02.881Z"}}, {"model": "sessions.session", "pk": "etwbqrte7tgp6p89rhr7vx0x1nowekw3", "fields": {"session_data": ".eJxVizsOwyAQBe9CHVkGs2BSRvIN0qOF3RVWfhKEKsrdE0sukvLNm3mpiP1ZYm9c40rqqIw6_LKE-cL37SiPXs91m3XYaRuWG67X0-78hQVb-VY50OSc-FkL0Dg5mFkCWp8ke6MBGQwCG5tH0pATekOWrSMJpEWsVe8PBsk1fg:1vFyZC:i1sS6tky_rAmNhjHuw9ggvIk0sxfapFJfpb63z_uW8M", "expire_date": "2025-11-17T17:42:06.889Z"}}, {"model": "sessions.session", "pk": "hhiy3aztetfuo854o481usba8eqkh9l8", "fields": {"session_data": ".eJxVi0EOwiAQRe_C2jQMlDJ1aeMN3JMBhtBobQJlZby7NulCl__9917CUduya5WLm6M4CyVOv8xTuPNzP_Layq3ss3QHrd3U6rYu14Xmx-Uw__JMNX9bMMFLtJLBomFQ42iUTirqwTAiWa009TQkTGi51xgTgfIIkoBlYBLvD19iNvs:1vdVHQ:sMuTjYilavejtkvdBV5goGXFnBBh-dpZSHeFgix6aSo", "expire_date": "2026-01-21T15:17:00.454Z"}}, {"model": "sessions.session", "pk": "i28q1u0rm73h9xsiercbmv2mx6dkhmo5", "fields": {"session_data": ".eJxVjEsKAyEQRO_iOgz-Wp0sA7lB9tK2Ng75gcZVyN2DMItkWa9e1VtEHK8aRy8tblkchRKHX5aQruUxi_oc7dJmbMtO-3K-43Y77c7fsGKv8w44W5CJCjMAsmNOPqwOs7Mlr56MdQqNz9Ip8BqClERUcpDaWKm9-HwBF-k05A:1vG08m:ugjGmRqaDmE-f9QJod42JFmyllfpE_sb045hivvlJEM", "expire_date": "2025-11-17T19:22:56.098Z"}}, {"model": "sessions.session", "pk": "i3mg7c206kbgbgrntf8wegpr2su4xm7r", "fields": {"session_data": ".eJxVi8sOwiAQRf-FtWl4DsWljX_gngwDhEZrEygr479rky50ec8958U89q343lL1c2RnJjg7_cKAdE_P_Slrr7e6zzoctA1Tb9u6XBecH5fD_MsLtvJt0Vg0RFGp4HIITkm0eeRCRJUBMGYjKKGWwIECKD5msFo60BJpdFKw9we--DeG:1vb0Il:y-aXfyak0eWMC6k7M_F0WVesdYagSkV94gP2At7xaKU", "expire_date": "2026-01-14T17:48:03.005Z"}}, {"model": "sessions.session", "pk": "imvgmsx0389frdsm6dt8kbyd6gyxdm5j", "fields": {"session_data": "eyJkZWJ1Z190ZXN0Ijp0cnVlfQ:1veECb:QMFZjWUvyy9QJTqtMsCycNefZ_2SfVU7-cNClOw9NKk", "expire_date": "2026-01-23T15:15:01.696Z"}}, {"model": "sessions.session", "pk": "izy8pap4vdfogmzpx8z9da9cv9gikk2c", "fields": {"session_data": "eyJkZWJ1Z190ZXN0Ijp0cnVlfQ:1veEC9:jJR5l5OMIEIUi-tuCkRC5HiOOUMwd8ro2lMB6miw5bE", "expire_date": "2026-01-23T15:14:33.793Z"}}, {"model": "sessions.session", "pk": "j240l7jajhjcr9bvdu2yasj5fvyacvnj", "fields": {"session_data": ".eJxVi8sOwiAQRf-FtWmAMjxcavwD94QZxtBobQJlZfx3bdKFLu-557xETH0tsTeuccriKLQ4_DJMdOfndpSl12vdZh122oZzb-syX-Y0PU67-ZeX1Mq3hXGUHsByzqhDIK2suXmShEiWHUBA9NKAdegVjSCdYgPZaWOJpUbx_gBwRTbP:1vfOI3:J116RmQv34rT8X0CU1t73-VFie57_L5ige_JXL8Ne20", "expire_date": "2026-01-26T20:13:27.582Z"}}, {"model": "sessions.session", "pk": "j92yf6l3t0f7akwxe9q4zcdp7qh37zfr", "fields": {"session_data": ".eJxVizsOwjAQBe_iGkV2_Kck4gb01q69liMIkey4QtwdIqWA8s2bebEAfSuhN6phTuzMPDv9MoR4p-d-lLXXW91nHQ7ahqm3bV2uC8yPy2H-5QVa-bbKZQkKOWaR1AhacoqjFcSNMqAkOW2F89JoSORijCgteSCS6DCPVrP3B4faN8I:1vfgMb:hPwjN4Qv06DBGQnSMdzDsyrcttgts4oRRpNVopfpnMw", "expire_date": "2026-01-27T15:31:21.046Z"}}, {"model": "sessions.session", "pk": "k4y70e2msfzf3ly6g2or8ziiflufwfb5", "fields": {"session_data": ".eJxVizsOwyAQBe9CHVlrA1lIGSk3SI9g2RVWfhKEKvLdHUsukvLNm_moEPu7hN64hjmrk5rU4ZelSDd-bkd59Xqt26zDTttwecT5ft6dv7DEVr4VoQXOo6AQoDuCdj5lkGzEeIc28WiiF4aJBIHIIRsWDZYZE2Vt1LICDkA1tQ:1vFwW0:ZEyBstkee4vj8j0x3r1lRCzurO18UM4gITpLuKKJh0M", "expire_date": "2025-11-17T15:30:40.713Z"}}, {"model": "sessions.session", "pk": "k7gquaci2e8uskdgb0hxcx7wj2kn83ra", "fields": {"session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY5jA:PB5uLxLnF_ijnZ2YjwzPE3vN1k0kfGAW19oTdZJJVx8", "expire_date": "2026-01-06T16:59:16.290Z"}}, {"model": "sessions.session", "pk": "l28y40rk6wlk84fp631lxwp991z9of0t", "fields": {"session_data": ".eJxVizsOwyAQBe9CHVlgPoaUsXID92hZFmEljiUwVeS7J5ZcJOWbN_NmHtqWfatU_BzZlSl2-WUB8EGv48hrK1M5ZulOWrux1W1d7gvMz9tp_uUZav62mCxichwdUUKQIYEYTJJRm6AGJ42VxHuIZAIXSlvoEZCcsIYr1BbZ_gHA4ThV:1vdYU8:O9KnYfCSAy8pj6TxnYE7HwJuMnxtmulJq1q09R88Yzs", "expire_date": "2026-01-21T18:42:20.223Z"}}, {"model": "sessions.session", "pk": "mkz9xm9p1do9tu3z4kur5d80tr3kpll6", "fields": {"session_data": ".eJxVizsOwjAQBe_iGkXrT5xdSiRuQG-tnbUc8ZNsXCHuTiKlgPLNm3mrwP1VQm9SwzKro_Lq8Msip6s8tqM8e73UbdZhp20433m5nXbnLyzcylqliHbOowNBAMl5MpjsJD5pZw1F78gYZGBwK8-oR0vaZCRB0ZESqM8X9QQ0YQ:1vG0dl:Bqqc1hucUk0j1nQ17tA93AeopPN9f9gr4Bh3u_RjVD0", "expire_date": "2025-11-17T19:54:57.509Z"}}, {"model": "sessions.session", "pk": "ntwlptx8i81kum40kme91bxxcx189ztn", "fields": {"session_data": ".eJxVi8EOwiAQRP-Fs2lYFgQ82vgH3snSpaHR2gTKyfjvtkkPeprMm3lvEaitObSaSphYXARocfqFkYZHeu1LXlq5l72W7qC161tdl_k20_S8Hs8_PVPNm8ssDZ1tAqZBgfGIMGqIIxoalZPGRMfklfJIUtktwdmorWWHKiWP4vMFnYc2zA:1vdePP:7yzk5oloE9qUWNAxR81yffATVl-ezbtb_GZWlIfExv8", "expire_date": "2026-01-22T01:01:51.164Z"}}, {"model": "sessions.session", "pk": "oq7s6x2lblcqua9h3wzf72duqk6calb6", "fields": {"session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY7je:dqtpJj_xJLd7rk_9GMfOBsvP73JMo5VJQt9o1Sij2H0", "expire_date": "2026-01-06T19:07:54.224Z"}}, {"model": "sessions.session", "pk": "pp7g6njyse4l7el4dw30acsm28ppb0a7", "fields": {"session_data": ".eJxVizsOwyAQBe9CHVlgPoaUsXID92hZFmEljiUwVeS7J5ZcJOWbN_NmHtqWfatU_BzZlSl2-WUB8EGv48hrK1M5ZulOWrux1W1d7gvMz9tp_uUZav62mCxichwdUUKQIYEYTJJRm6AGJ42VxHuIZAIXSlvoEZCcsIYr1BbZ_gHA4ThV:1vcsP7:m4tVhwH7kA7cs57QGoHvrjAbBcHbLC7eH4W8Ntwmt4Y", "expire_date": "2026-01-19T21:46:21.768Z"}}, {"model": "sessions.session", "pk": "sn1tbsw5ck1d5ufevt07p1ba4dslwjoz", "fields": {"session_data": ".eJxVi8sKwjAURP8laylJ7iUPl4p_4D7cvEjRWkialfjvptCFMqs5M-fNHPWtuN5SdXNkZybZ6Zd5Co_02oey9nqve63TQdt07W1bl9tC8_NyPP_0Qq0MN3KFInOtlYAcCYxNKCz6gaQk9CBGuEkmWwWovTWINgoVBABRIPb5AlkSNmc:1vdqgv:8M3jQUnO1F-Q1seC-dNsYO3invF32Hq6ck4GwkqQlPE", "expire_date": "2026-01-22T14:08:45.264Z"}}, {"model": "sessions.session", "pk": "tq3y2m657tlc26ps1pn160wjwsyfbrtb", "fields": {"session_data": ".eJxVi8sOwiAQRf-FtWl4DsWljX_gngwDhEZrEygr479rky50ec8958U89q343lL1c2RnJjg7_cKAdE_P_Slrr7e6zzoctA1Tb9u6XBecH5fD_MsLtvJt0Vg0RFGp4HIITkm0eeRCRJUBMGYjKKGWwIECKD5msFo60BJpdFKw9we--DeG:1vb0RL:andTUNKM24FZ1VDjS_bP4GVJ4MrIUqqHfPZVzlVbPFg", "expire_date": "2026-01-14T17:56:55.438Z"}}, {"model": "sessions.session", "pk": "u0o9v7ofbsokeckjeznrcajbo0b8827l", "fields": {"session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY8oV:xQmbGTaMjggth0Sy7b9GnyoS5etRFkMCo68Jt-ZBBbQ", "expire_date": "2026-01-06T20:16:59.659Z"}}, {"model": "sessions.session", "pk": "uc6azupnn2fdbvjfsn5zsy14mc9zm4c5", "fields": {"session_data": ".eJxVizsOwjAQBe_iGkXrjb2OKYm4Ab21_kSOIESy4wpxd4iUAso3b-YlHLctu1ZTcXMUZ4EkTr_Qc7in5_7ktZVb2WfpDlq7sdVtXa4Lz4_LYf7lmWv-toNXYHVgNtIwBgRFxgCBRku9TtCjSjZaIKXYDhS1HDxFORkfaJII4v0BdNw2QQ:1vfgjt:mT2HUA3VH5Xxj_08pBX5zTPrJ1E3-9VdOjzOIvqwh34", "expire_date": "2026-01-27T15:55:25.317Z"}}, {"model": "sessions.session", "pk": "vsph7qf1ld93ows65ndpkt98l1kikjyl", "fields": {"session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vd7T0:07_IrLtQ0czan_4sH-L5V9lmZi8IUr9My2wV1GUZVg4", "expire_date": "2026-01-20T13:51:22.498Z"}}, {"model": "sessions.session", "pk": "whrj66fd9iuex977gsueccztfntf4bp9", "fields": {"session_data": ".eJxVjcEOwiAQRP-Fs2loC8viUeMfeCe7BUKjtQmUk_HfpUkPepw38zJv4ahuydUSspu9OIt-EKdfyDQ9wmtv0lrzPe8xdwct3bWWbV1uC83Py7H80xOV1NzgI2Ig1L3GIEFbBhshNsQ4KdCkRu0nZuRBEUYwxgJIZUNsT6OR4vMFwLI4Fw:1vdblQ:ZhSzmng1-SfCW_9H4fpj5vfIfVfOPrvVaSNRpYVq76A", "expire_date": "2026-01-21T22:12:24.689Z"}}, {"model": "sessions.session", "pk": "x8c9vzkpkq3f1d1sqcfqbnomqjzxc1vy", "fields": {"session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1veGpL:y2OTUi3obJb8AQdyrxvOYfmcwU3J1D0lmzfV19ROE7s", "expire_date": "2026-01-23T18:03:11.641Z"}}, {"model": "django_q.task", "pk": "1a65bfa1b3e7451eb23a668ae46a6c85", "fields": {"name": "idaho-avocado-indigo-island", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": null, "cluster": "DjangORM", "started": "2025-12-23T21:15:47.006Z", "stopped": "2025-12-23T21:15:48.434Z", "success": true, "attempt_count": 1}}, {"model": "django_q.task", "pk": "1c1c9c6eda4a4d7783eede1fa92fbeda", "fields": {"name": "west-oxygen-paris-twelve", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": null, "cluster": "DjangORM", "started": "2025-12-23T21:09:28.362Z", "stopped": "2025-12-23T21:09:28.767Z", "success": true, "attempt_count": 1}}, {"model": "django_q.task", "pk": "255bd33847c34169acf1f700fee29945", "fields": {"name": "muppet-paris-oxygen-saturn", "func": "hours.tasks.test_yearly_reminder_output", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": "gAWVZQEAAAAAAABYXgEAAEZ1bmN0aW9uIGhvdXJzLnRhc2tzLnRlc3RfeWVhcmx5X3JlbWluZGVyX291dHB1dCBpcyBub3QgZGVmaW5lZCA6IFRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KToKICBGaWxlICIvVXNlcnMvY2Nhc3RlZS9MaWJyYXJ5L1B5dGhvbi8zLjEyL2xpYi9weXRob24vc2l0ZS1wYWNrYWdlcy9kamFuZ29fcS93b3JrZXIucHkiLCBsaW5lIDEwMSwgaW4gd29ya2VyCiAgICByYWlzZSBWYWx1ZUVycm9yKGYiRnVuY3Rpb24ge3Rhc2tbJ2Z1bmMnXX0gaXMgbm90IGRlZmluZWQiKQpWYWx1ZUVycm9yOiBGdW5jdGlvbiBob3Vycy50YXNrcy50ZXN0X3llYXJseV9yZW1pbmRlcl9vdXRwdXQgaXMgbm90IGRlZmluZWQKlC4=", "group": null, "cluster": "DjangORM", "started": "2025-12-23T21:04:22.079Z", "stopped": "2025-12-24T14:17:53.388Z", "success": false, "attempt_count": 517}}, {"model": "django_q.task", "pk": "3d7eae07017b4073ae32bbf70a3b8fc9", "fields": {"name": "vegan-floor-spaghetti-lemon", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": null, "cluster": "DjangORM", "started": "2025-12-23T21:14:24.329Z", "stopped": "2025-12-23T21:14:24.610Z", "success": true, "attempt_count": 1}}, {"model": "django_q.task", "pk": "55815747a3a04b37ab77a6facd084dec", "fields": {"name": "shade-magazine-magnesium-indigo", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": "Testing Yearly Notification", "cluster": "DjangORM", "started": "2025-12-23T21:20:26.249Z", "stopped": "2025-12-23T21:20:27.307Z", "success": true, "attempt_count": 1}}, {"model": "django_q.task", "pk": "84ab0cc5af1240acb355bcb0164aa65a", "fields": {"name": "undress-fruit-vegan-nuts", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": null, "cluster": "DjangORM", "started": "2025-12-23T21:13:31.010Z", "stopped": "2025-12-23T21:13:31.483Z", "success": true, "attempt_count": 1}}, {"model": "django_q.task", "pk": "89c082d3669045c189da84256cc5aaf5", "fields": {"name": "blue-king-west-winner", "func": "hourTracker.tasks.test_yearly_reminder_output", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": null, "cluster": "DjangORM", "started": "2025-12-23T21:06:55.979Z", "stopped": "2025-12-23T21:06:56.439Z", "success": true, "attempt_count": 1}}, {"model": "django_q.task", "pk": "a9c26f47bac34406bda7c51844809067", "fields": {"name": "fifteen-eight-sink-diet", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": "Testing Yearly Notification", "cluster": "DjangORM", "started": "2025-12-23T21:20:56.580Z", "stopped": "2025-12-23T21:20:57.467Z", "success": true, "attempt_count": 1}}, {"model": "django_q.task", "pk": "af12078f17d44a77b4bcaf6d2661b286", "fields": {"name": "double-zebra-skylark-kitten", "func": "ourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": "gAWVYQEAAAAAAABYWgEAAEZ1bmN0aW9uIG91clRyYWNrZXIudGFza3Muc2VuZF95ZWFybHlfcmVtaW5kZXIgaXMgbm90IGRlZmluZWQgOiBUcmFjZWJhY2sgKG1vc3QgcmVjZW50IGNhbGwgbGFzdCk6CiAgRmlsZSAiL1VzZXJzL2NjYXN0ZWUvTGlicmFyeS9QeXRob24vMy4xMi9saWIvcHl0aG9uL3NpdGUtcGFja2FnZXMvZGphbmdvX3Evd29ya2VyLnB5IiwgbGluZSAxMDEsIGluIHdvcmtlcgogICAgcmFpc2UgVmFsdWVFcnJvcihmIkZ1bmN0aW9uIHt0YXNrWydmdW5jJ119IGlzIG5vdCBkZWZpbmVkIikKVmFsdWVFcnJvcjogRnVuY3Rpb24gb3VyVHJhY2tlci50YXNrcy5zZW5kX3llYXJseV9yZW1pbmRlciBpcyBub3QgZGVmaW5lZAqULg==", "group": "Testing Yearly Notification", "cluster": "DjangORM", "started": "2025-12-23T21:18:37.643Z", "stopped": "2025-12-24T14:18:08.443Z", "success": false, "attempt_count": 510}}, {"model": "django_q.task", "pk": "b57abaaeb02f4b64b75b17a1fd74091d", "fields": {"name": "tennessee-pizza-harry-nitrogen", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": null, "cluster": "DjangORM", "started": "2025-12-23T21:15:08.731Z", "stopped": "2025-12-23T21:21:10.176Z", "success": true, "attempt_count": 4}}, {"model": "django_q.task", "pk": "b6ce5a9cd1cd45deb89198fc8ea8def4", "fields": {"name": "sad-may-fourteen-aspen", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": "Testing Yearly Notification", "cluster": "DjangORM", "started": "2025-12-23T21:19:38.290Z", "stopped": "2025-12-23T21:19:39.107Z", "success": true, "attempt_count": 1}}, {"model": "django_q.task", "pk": "d447255e647f4fb9b91af4da30c4d2bc", "fields": {"name": "uranus-victor-mississippi-nevada", "func": "hourTracker.tasks.test_yearly_reminder_output", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": null, "cluster": "DjangORM", "started": "2025-12-23T21:06:02.630Z", "stopped": "2025-12-23T21:08:03.315Z", "success": true, "attempt_count": 2}}, {"model": "django_q.task", "pk": "fec39d5723af4c34b03d56937d99e1b1", "fields": {"name": "winter-white-fix-purple", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "gAUpLg==", "kwargs": "gAV9lC4=", "result": null, "group": null, "cluster": "DjangORM", "started": "2025-12-23T21:13:24.068Z", "stopped": "2025-12-23T21:21:25.897Z", "success": true, "attempt_count": 5}}, {"model": "django_q.schedule", "pk": 1, "fields": {"name": "Testing Yearly Notification", "func": "hourTracker.tasks.send_yearly_reminder", "hook": null, "args": "", "kwargs": "", "schedule_type": "C", "minutes": null, "repeats": -1, "next_run": "2026-12-01T09:00:00Z", "cron": "0 9 1 12 *", "task": "a9c26f47bac34406bda7c51844809067", "cluster": null, "intended_date_kwarg": null}}, {"model": "django_q.ormq", "pk": 1, "fields": {"key": "DjangORM", "payload": "gAWV9QAAAAAAAAB9lCiMAmlklIwgMjU1YmQzMzg0N2MzNDE2OWFjZjFmNzAwZmVlMjk5NDWUjARuYW1llIwabXVwcGV0LXBhcmlzLW94eWdlbi1zYXR1cm6UjARmdW5jlIwnaG91cnMudGFza3MudGVzdF95ZWFybHlfcmVtaW5kZXJfb3V0cHV0lIwEYXJnc5QpjAZrd2FyZ3OUfZSMB3N0YXJ0ZWSUjAhkYXRldGltZZSMCGRhdGV0aW1llJOUQwoH6QwXFQQWATb5lGgLjAh0aW1lem9uZZSTlGgLjAl0aW1lZGVsdGGUk5RLAEsASwCHlFKUhZRSlIaUUpR1Lg:1vY9YM:LumNsXir7Iqd1VM7fvoRD3lIKCLx-MUoPjLnGakQR7g", "lock": "2025-12-24T14:19:53.336Z"}}, {"model": "django_q.ormq", "pk": 10, "fields": {"key": "DjangORM", "payload": "gAWVJQEAAAAAAAB9lCiMAmlklIwgYWYxMjA3OGYxN2Q0NGE3N2I0YmNhZjZkMjY2MWIyODaUjARuYW1llIwbZG91YmxlLXplYnJhLXNreWxhcmsta2l0dGVulIwEZnVuY5SMJW91clRyYWNrZXIudGFza3Muc2VuZF95ZWFybHlfcmVtaW5kZXKUjARhcmdzlCmMBWdyb3VwlIwbVGVzdGluZyBZZWFybHkgTm90aWZpY2F0aW9ulIwHY2x1c3RlcpROjAZrd2FyZ3OUfZSMB3N0YXJ0ZWSUjAhkYXRldGltZZSMCGRhdGV0aW1llJOUQwoH6QwXFRIlCc_elGgOjAh0aW1lem9uZZSTlGgOjAl0aW1lZGVsdGGUk5RLAEsASwCHlFKUhZRSlIaUUpR1Lg:1vY9m9:flDt8OKdpIsis2n2INr-8M8sKI7fa8B-vcdlK6TNFd8", "lock": "2025-12-24T14:20:08.393Z"}}, {"model": "hourTracker.customuser", "pk": 1, "fields": {"password": "pbkdf2_sha256$1200000$t7oiRAVBwjM2QajuYiw1X6$3DY37hdFxk20OilBegxma/GyUcCay1NohdlA+5xWjvQ=", "last_login": "2025-12-19T19:27:29.002Z", "is_superuser": true, "email": "admin@admin.com", "first_name": "admin", "last_name": "admin", "is_staff": true, "is_active": true, "date_joined": "2025-11-03T15:29:57.722Z", "phone_number": null, "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 2, "fields": {"password": "pbkdf2_sha256$1200000$1KxTABZz3aBKBshf27PXwG$OclFiGVK3dwWb4Q/vqJoNaB0H4YgZcdkoHZJelGNIok=", "last_login": "2026-01-13T15:06:36.083Z", "is_superuser": true, "email": "codycasteel2178.5@gmail.com", "first_name": "Cody", "last_name": "Casteel", "is_staff": true, "is_active": true, "date_joined": "2025-11-03T15:30:34Z", "phone_number": "3173636879", "address_line_1": "4494 Tuley Trace", "address_line_2": "f", "city": "Nashville", "state": "IN", "zip_code": "47448", "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 3, "fields": {"password": "pbkdf2_sha256$1200000$cOpYERt9QwrEoTpGvDWMZX$baujzzvT5DrxttgYjFisDs9hfCU0U+/cb+nKppE3tsw=", "last_login": "2026-01-12T18:01:03Z", "is_superuser": true, "email": "mahk.adams@browncountymtb.org", "first_name": "Mahk", "last_name": "Adams", "is_staff": true, "is_active": true, "date_joined": "2025-11-03T17:19:07Z", "phone_number": null, "address_line_1": "101", "address_line_2": null, "city": "nashville", "state": "IN", "zip_code": "47448", "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 4, "fields": {"password": "pbkdf2_sha256$1000000$ZeeTGx9hGEICbtK0aokB2I$4lugeehtIqMC/JU/FfO2jEE5ZuRsxgVpHVgWmiYYxr4=", "last_login": "2026-01-08T13:24:54.095Z", "is_superuser": false, "email": "jblow@kokomo.com", "first_name": "Joe", "last_name": "Blow", "is_staff": false, "is_active": true, "date_joined": "2025-11-03T17:31:31.209Z", "phone_number": "1114445555", "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 5, "fields": {"password": "pbkdf2_sha256$1000000$wdWkb9aRu0Almw0fAUSInl$TvSHxuS++chOlws8jYtfY9jlC5m3TopP/KnJk+1/J/s=", "last_login": null, "is_superuser": false, "email": "jsmith@cool.beans", "first_name": "Joseph", "last_name": "Smith", "is_staff": false, "is_active": true, "date_joined": "2025-11-03T19:49:54.997Z", "phone_number": null, "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 6, "fields": {"password": "pbkdf2_sha256$1000000$Njjo4ym5HtyhPPLEntiqaV$GZqpi7V8rFIrh1bM81XpDCMwR5ILZ0wErxySrkJsWio=", "last_login": "2025-11-03T19:54:57.505Z", "is_superuser": false, "email": "gheen.tom@gmail.com", "first_name": "Tom", "last_name": "Gheen", "is_staff": false, "is_active": true, "date_joined": "2025-11-03T19:50:41.988Z", "phone_number": null, "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 7, "fields": {"password": "pbkdf2_sha256$1200000$dFVq77I7LxcRFMNxnc0DDP$5epOhWTKdijQ1XlVopz+wRrQ9cQxpj1LIfCRHVxOHJs=", "last_login": "2025-12-22T18:37:30.259Z", "is_superuser": false, "email": "test@test.com", "first_name": "Test", "last_name": "Testerson", "is_staff": false, "is_active": true, "date_joined": "2025-12-22T18:37:22.007Z", "phone_number": null, "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 9, "fields": {"password": "pbkdf2_sha256$1200000$1QxhQfhtwI4lwDd2LqJMVp$EDB4F2ey1SLEy+FGTFLmjcFyyJ3XsXPAKdV7ADyqw84=", "last_login": "2026-01-13T15:29:44.977Z", "is_superuser": true, "email": "jason.perry@browncountymtb.org", "first_name": "Jason", "last_name": "Perry", "is_staff": true, "is_active": true, "date_joined": "2025-12-22T20:50:30Z", "phone_number": null, "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 10, "fields": {"password": "pbkdf2_sha256$1200000$p9TlLgVh8UvT499ScKAtMV$532eVDTGSUI3oJoV/jA25DODjvMC/nHLnszcHQKKNqs=", "last_login": "2025-12-31T17:56:55.434Z", "is_superuser": true, "email": "aguedamayan@gmail.com", "first_name": "Agueda", "last_name": "Formoso Mayan", "is_staff": true, "is_active": true, "date_joined": "2025-12-31T17:43:40Z", "phone_number": null, "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 11, "fields": {"password": "pbkdf2_sha256$1000000$fsEKKBKKKvV63aGY35wqPa$9pjaDJfStl3iSZ5+qh/HJqSj0VXjMAiDOM2bP39oPSE=", "last_login": null, "is_superuser": false, "email": "j@j.com", "first_name": "Josh", "last_name": "Josh", "is_staff": false, "is_active": true, "date_joined": "2026-01-07T18:25:40.208Z", "phone_number": "317317333", "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 12, "fields": {"password": "pbkdf2_sha256$1200000$7jaPoBnz4ptkhQ9l5E2fGo$Iww/2tx5VAw7Tvrz37JjYMdF90MYm701kPUUGNZvMeo=", "last_login": "2026-01-07T22:12:24.686Z", "is_superuser": false, "email": "sanitysgone@gmail.com", "first_name": "Bethiah", "last_name": "Casteel", "is_staff": false, "is_active": true, "date_joined": "2026-01-07T22:12:19.591Z", "phone_number": "2317158297", "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 13, "fields": {"password": "pbkdf2_sha256$1000000$tztppmgb8YtmKL8OPgybfT$NokyxB/+Ot7qk8mTSj4ICm1dFFdS0bZayiJmySUEGUg=", "last_login": "2026-01-12T18:43:34.303Z", "is_superuser": false, "email": "jj@jj.com", "first_name": "Joe", "last_name": "Joe", "is_staff": false, "is_active": true, "date_joined": "2026-01-07T22:32:19.911Z", "phone_number": "31733333335", "address_line_1": null, "address_line_2": null, "city": null, "state": null, "zip_code": null, "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 15, "fields": {"password": "pbkdf2_sha256$1000000$2h1JoPyapmo9RQKzYprqjq$S4tow3pFUPIuJMR/QRdP5Q4FM4xWqzXHQrrJJaphESI=", "last_login": "2026-01-08T14:09:30.093Z", "is_superuser": false, "email": "jj@james.com", "first_name": "josh", "last_name": "james", "is_staff": false, "is_active": true, "date_joined": "2026-01-08T14:08:06.954Z", "phone_number": "3172225555", "address_line_1": "101 cool road", "address_line_2": null, "city": "cool city", "state": "IN", "zip_code": "47444", "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 25, "fields": {"password": "pbkdf2_sha256$1200000$evLOsAJHxDQnfn6hJYrQJ3$L0Jz4496/LBXS+fvBp8e8fLU/ZRRuMk+tmUyHfAD7tw=", "last_login": "2026-01-13T15:46:50.852Z", "is_superuser": false, "email": "codycasteel.facebook.2178@gmail.com", "first_name": "Cody", "last_name": "Casteel", "is_staff": false, "is_active": true, "date_joined": "2026-01-13T15:25:18.803Z", "phone_number": "3173636879", "address_line_1": "77", "address_line_2": null, "city": "77", "state": "IN", "zip_code": "47448", "groups": [], "user_permissions": []}}, {"model": "hourTracker.customuser", "pk": 26, "fields": {"password": "pbkdf2_sha256$1200000$E9XmvvBlPuFnZh9JNocaBe$HoQ2xodWtkQNx31ypREokoVVuT/psjB3VablUqQdQxE=", "last_login": "2026-01-13T15:55:25.271Z", "is_superuser": false, "email": "charles.lawrence2015@gmail.com", "first_name": "Charles", "last_name": "L", "is_staff": false, "is_active": true, "date_joined": "2026-01-13T15:55:11.300Z", "phone_number": "3173173333", "address_line_1": "55", "address_line_2": null, "city": "55", "state": "TN", "zip_code": "47444", "groups": [], "user_permissions": []}}, {"model": "hourTracker.volunteertask", "pk": 1, "fields": {"name": "board"}}, {"model": "hourTracker.volunteertask", "pk": 2, "fields": {"name": "sawyer"}}, {"model": "hourTracker.volunteertask", "pk": 3, "fields": {"name": "trail work"}}, {"model": "hourTracker.volunteertask", "pk": 4, "fields": {"name": "Epic Volunteer"}}, {"model": "hourTracker.volunteerlocation", "pk": 1, "fields": {"name": "Brown County State Park"}}, {"model": "hourTracker.volunteerlocation", "pk": 2, "fields": {"name": "Yellowwood State Forest"}}, {"model": "hourTracker.volunteerlocation", "pk": 3, "fields": {"name": "Hoosier National Forest"}}, {"model": "hourTracker.volunteerentry", "pk": 2, "fields": {"user": 4, "date": "2025-10-10", "hours": "8.00", "category": 3, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 5, "fields": {"user": 4, "date": "2025-12-11", "hours": "5.01", "category": 2, "location": null}}, {"model": "hourTracker.volunteerentry", "pk": 6, "fields": {"user": 7, "date": "2025-12-16", "hours": "3.00", "category": 2, "location": null}}, {"model": "hourTracker.volunteerentry", "pk": 7, "fields": {"user": 3, "date": "2025-12-22", "hours": "5.00", "category": 1, "location": null}}, {"model": "hourTracker.volunteerentry", "pk": 8, "fields": {"user": 2, "date": "2025-12-23", "hours": "20.00", "category": 1, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 9, "fields": {"user": 2, "date": "2025-12-31", "hours": "2.00", "category": 1, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 10, "fields": {"user": 2, "date": "2025-12-23", "hours": "10.00", "category": 1, "location": 2}}, {"model": "hourTracker.volunteerentry", "pk": 12, "fields": {"user": 3, "date": "2025-12-26", "hours": "2.00", "category": 1, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 13, "fields": {"user": 3, "date": "2025-12-28", "hours": "10.00", "category": 1, "location": 2}}, {"model": "hourTracker.volunteerentry", "pk": 14, "fields": {"user": 10, "date": "2025-12-31", "hours": "3.00", "category": 1, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 16, "fields": {"user": 4, "date": "2026-01-05", "hours": "8.00", "category": 2, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 21, "fields": {"user": 7, "date": "2026-01-06", "hours": "44.00", "category": 3, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 22, "fields": {"user": 12, "date": "2026-01-07", "hours": "10.00", "category": 3, "location": 2}}, {"model": "hourTracker.volunteerentry", "pk": 23, "fields": {"user": 12, "date": "2026-01-07", "hours": "50.00", "category": 1, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 25, "fields": {"user": 13, "date": "2026-01-07", "hours": "2.00", "category": 1, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 26, "fields": {"user": 13, "date": "2026-01-07", "hours": "4.00", "category": 3, "location": 3}}, {"model": "hourTracker.volunteerentry", "pk": 27, "fields": {"user": 13, "date": "2026-01-07", "hours": "8.00", "category": 1, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 30, "fields": {"user": 3, "date": "2026-01-08", "hours": "2.00", "category": 2, "location": 2}}, {"model": "hourTracker.volunteerentry", "pk": 31, "fields": {"user": 3, "date": "2026-01-11", "hours": "5.00", "category": 3, "location": 2}}, {"model": "hourTracker.volunteerentry", "pk": 32, "fields": {"user": 2, "date": "2026-01-07", "hours": "5.00", "category": 1, "location": 1}}, {"model": "hourTracker.volunteerentry", "pk": 33, "fields": {"user": 3, "date": "2026-01-11", "hours": "2.50", "category": 2, "location": 1}}, {"model": "hourTracker.volunteerreward", "pk": 2, "fields": {"name": "Trail Shirt & BCMB Membership", "description": "8 Hours - Get an official BCMB Trail T-Shirt when you Volunteer 8 or more hours.", "image": "reward-images/Trail_Shirt.png", "hours_required": 8}}, {"model": "hourTracker.volunteerreward", "pk": 3, "fields": {"name": "Next Year's Bike Pass", "description": "20 Hour - All Indiana DNR Parks that have mountain biking require a bike permit pass for anyone riding a trail over 'Beginner' Level. Working 20 hours will automatically get you this pass for next year.", "image": "reward-images/orc.png", "hours_required": 20}}, {"model": "hourTracker.volunteerreward", "pk": 4, "fields": {"name": "Next Year's Park Pass", "description": "40 Hours - Volunteering for 40 hours will get your the Indiana State Parks Annual Park Pass, that can be used at any Indiana State Park", "image": "reward-images/pass.png", "hours_required": 40}}, {"model": "hourTracker.volunteerreward", "pk": 5, "fields": {"name": "Next Year's EPIC Entry", "description": "50 Hours - Volunteering for 50 hours will get you a ticket into next year's Brown County EPIC!", "image": "reward-images/Epic.png", "hours_required": 50}}]
+
+[
+{
+  "model": "sessions.session",
+  "pk": "1et6p1idsj1o606t3zbj2o5hmyrvp23a",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQRP-Fs2lgKQIeNf6Bd7IL3dBobQLlZPx3JelBj_PezLxEwLbl0OpUwpzESSgtDr-QMN6nZzd5beVWeizDTutwaXVbl-uC8-O8N__mGWvuryqRs0iKwGkejWfH6MFF0JqMgRHYfJ2UHJWXYBx7DUmyJauOBEm8P5bSNvI:1vfMt4:vXyIo-2LJYY_zTEqw-p5ictL9iiYZr4ifxDzm-ykOC4",
+    "expire_date": "2026-01-26T18:43:34.667Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "21ugtqmr06hq9tg9rsh8hx1uq37all5i",
+  "fields": {
+    "session_data": "eyJkZWJ1Z190ZXN0Ijp0cnVlfQ:1veEMt:4IpUupaJbNAqMicxz-WWrZCNQVV2hy9e_JD8jX-VCPo",
+    "expire_date": "2026-01-23T15:25:39.789Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3twxt14c4t19gxoj36cn00dtatpm2dr1",
+  "fields": {
+    "session_data": ".eJxVi0EOwiAQRe_C2jSBAWRcaryBezLAEBqtTaCsjHdvm3Shy__-ex_hqS_F98bVj0lchDLi9AsDxSe_96fMvT7qPutw0Dbcelvm6T7R-Loe5l9eqJWtdQ7RBmOzNKQ4MWiS4OxZScw6mKgwGYbgWGoAZnIMKROFnBVSRBLfFaT6OGQ:1vfgbe:qkj4e_3Ffc4CPt-PjVtlzuDwmgEnaYUQwlCMoCR95UA",
+    "expire_date": "2026-01-27T15:46:54.798Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4t6vnqsfgqawthozq8jqh5h6z0qoa6tb",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQRP-Fs2lgKQIeNf6Bd7IL3dBobQLlZPx3JelBj_PezLxEwLbl0OpUwpzESSgtDr-QMN6nZzd5beVWeizDTutwaXVbl-uC8-O8N__mGWvuryqRs0iKwGkejWfH6MFF0JqMgRHYfJ2UHJWXYBx7DUmyJauOBEm8P5bSNvI:1vdqIz:ioP3cpY7Rz7akHrt1svZvpnQQLiBDQnjexsQtH_rvDU",
+    "expire_date": "2026-01-22T13:44:01.629Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5y8h5h7grd872rw4wfavx140nvfg2xgd",
+  "fields": {
+    "session_data": "eyJ0ZXN0X2tleSI6InRlc3RfdmFsdWUifQ:1vfNPW:NjKEIRA5we3KOhhrIuNZLZijEXOlrbJEn1JwaF8PIIQ",
+    "expire_date": "2026-01-26T19:17:06.531Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6u6yuudbm5dweebtecxcxkmaf4ba9tx6",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vXnDh:FSGRDEzw1eBJobyCdUDnh4bSRE6mwlt7-YwPdSLU560",
+    "expire_date": "2026-01-05T21:13:33.052Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "amuce8o5lu5silkxfnf5k1nv6oim11mv",
+  "fields": {
+    "session_data": ".eJxVizsOwyAQBe9CHVksmGVJGck3SI-Wn7DykyBUUe6eWHKRlG_ezEt4Hs_qR8_Nr0kcBYjDLwscL_m-HfUx2rlts0077dNy4_V62p2_sHKv34pM4aSAgk44O4MUFSmWxNaRhYSxgMHEJGWYIbiCErM2MsiiLSCgeH8A5J0z9A:1vG0c3:OGijN3SLHsXQkFT-aNpXT631XmW_66BciqcBeP0bRTA",
+    "expire_date": "2025-11-17T19:53:11.226Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "aojp3ydd3xx0ianw6x1ia701f9np1b2v",
+  "fields": {
+    "session_data": ".eJxVizsOwyAQBe9CHVksmGVJGck3SI-Wn7DykyBUUe6eWHKRlG_ezEt4Hs_qR8_Nr0kcBYjDLwscL_m-HfUx2rlts0077dNy4_V62p2_sHKv34pM4aSAgk44O4MUFSmWxNaRhYSxgMHEJGWYIbiCErM2MsiiLSCgeH8A5J0z9A:1vG0d4:4ueYTkBzRio9iVGkQac4LVaSeoEj7BzC0wZHuRNQBYo",
+    "expire_date": "2025-11-17T19:54:14.305Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "aw9pnqzuy7ew5wf93qfscqawv18d9irs",
+  "fields": {
+    "session_data": ".eJxVi0sOwjAMBe-SNapqu8ENS6TegH3kOolS8ZMSskLcnVbqApZv3szbeGmv7FuNxS_BnAyawy-bRa_xsR352cqlbLN0O63ddJfldt6dvzBLzWulgMdxBAxKDrjXYU2F7YAJJAohcYrBWRtDYsfWMbHOCgmlD0CJzecL-FI1Eg:1vFztl:0uI7hVnhNzEQfLbYinytsieIsoTOU-LffnSAHjGWiYo",
+    "expire_date": "2025-11-17T19:07:25.318Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "b70a1vhep021ti3p6qbkxeavqst8ac3h",
+  "fields": {
+    "session_data": ".eJxVizsOwyAQBe9CHVksmGVJGck3SI-Wn7DykyBUUe6eWHKRlG_ezEt4Hs_qR8_Nr0kcBYjDLwscL_m-HfUx2rlts0077dNy4_V62p2_sHKv34pM4aSAgk44O4MUFSmWxNaRhYSxgMHEJGWYIbiCErM2MsiiLSCgeH8A5J0z9A:1vG0VG:l-Bkftj9TbqUqlCU9hUk8lmXWJvuHnRgavpzdNtL9Y4",
+    "expire_date": "2025-11-17T19:46:10.990Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bazkz90gurfd1so9tsk2bbpvoes454cd",
+  "fields": {
+    "session_data": ".eJxVizsOwjAQBe_iGkVrx7-lJOIG9NZ648gRhEh2XCHuDpFSQPnmzbxEoLbl0GoqYR7FWShx-mWR-J6e-5HXVm5ln6U7aO2GVrd1uS40Py6H-Zdnqvnbet1HQC2TB23JGQbFQFoDj-Cct1HJmCzj1E8YUWHiCb3RCaSxHlmJ9wdizjaq:1vds42:w4XugzJqdPY3G_S2wkQkRFAimlKuHEhn-cUvInxAJBs",
+    "expire_date": "2026-01-22T15:36:42.449Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bz8w6majy2w1xgxzu1uu4pe8fagtc6ea",
+  "fields": {
+    "session_data": ".eJxVi0EOwiAQRe_C2jSkzIC41HgD92SAmdBobQJlZby7NulCl__9914qUF9L6I1rmLI6KaMOvyxSuvNzO8rS661usw47bcOlt3WZrzNNj_Nu_uWFWvm2kgBs1i4am5JLGC0CEcdRPGqnIzKbbFFM9iO5DF6OEhlBRiHvGdT7A6OtOGQ:1vfgR3:efqoJEvz4eTGdd3ku2LWp8c4vLSCckDt0AKYeY3x5Vw",
+    "expire_date": "2026-01-27T15:35:57.438Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "c5mx196iosi1p3whkn3td53cs1u123io",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY7oV:gRlsbzhYvAbqECFz4GuwyXY2Smk4vJusSW69ig9kmCs",
+    "expire_date": "2026-01-06T19:12:55.854Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "cxjubhpw3e9nwccf145b093q14mzjlla",
+  "fields": {
+    "session_data": ".eJxVjMsKwjAQRf8laymZNM2kLhX_wH2YyYMUrYWkWYn_LoEudHPhnvt4C0dtz67VWNwSxFkocfplTP4RXz3IWyv30m0ZDlqHa6v7tt5WWp6Xo_k3z1RzP1WSLGg7YSLLTNGjTQBsEvs5omKJyngAMFrhGOau2oycrORJBxSfL3sCNsg:1vdCGu:KP_yH4LVw8xsT1UJaGGHEH0x5gXxWBI_cHEKdqZWEmA",
+    "expire_date": "2026-01-20T18:59:12.790Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "czo4jzrhi3dnsq98uznn96gs12i6wout",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY62k:E4Qukfo27hMxKaynl8tyqR07Lv3Ek4g3RPXBoqaRjg4",
+    "expire_date": "2026-01-06T17:19:30.040Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dffhd6llfy1ffeuy9let4t4qm61nrw3n",
+  "fields": {
+    "session_data": ".eJxVi0EOwiAQRe_C2jS2MGXGpcYbuCcwDKHR2gTKynh3bdKFLv_7772U823NrlUpborqpEgdflnwfJfnduSllVvZZul2WrtLq-syX2c_Pc67-ZdnX_O31ZCMHi3agSlQgB4jWCYOhMmyJ6NZNINJGsV6GI_Y98YOIhFRIJF6fwB6YTc6:1vXn51:2ItrABWSmpMV6iCWFNXdnT5C5JkhTds56nVcY85tZzI",
+    "expire_date": "2026-01-05T21:04:35.327Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "emrat7eevg724zav1n8e97nxvv6xc7ur",
+  "fields": {
+    "session_data": ".eJxVizsOwyAQBe9CHVkGs2BSRvIN0qOF3RVWfhKEKsrdE0sukvLNm3mpiP1ZYm9c40rqqIw6_LKE-cL37SiPXs91m3XYaRuWG67X0-78hQVb-VY50OSc-FkL0Dg5mFkCWp8ke6MBGQwCG5tH0pATekOWrSMJpEWsVe8PBsk1fg:1vFyd0:P8hFDBbTffm0_Uo8T1Gti_wN9sXA2h9fzCnAR3ZeGYI",
+    "expire_date": "2025-11-17T17:46:02.881Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "etwbqrte7tgp6p89rhr7vx0x1nowekw3",
+  "fields": {
+    "session_data": ".eJxVizsOwyAQBe9CHVkGs2BSRvIN0qOF3RVWfhKEKsrdE0sukvLNm3mpiP1ZYm9c40rqqIw6_LKE-cL37SiPXs91m3XYaRuWG67X0-78hQVb-VY50OSc-FkL0Dg5mFkCWp8ke6MBGQwCG5tH0pATekOWrSMJpEWsVe8PBsk1fg:1vFyZC:i1sS6tky_rAmNhjHuw9ggvIk0sxfapFJfpb63z_uW8M",
+    "expire_date": "2025-11-17T17:42:06.889Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hhiy3aztetfuo854o481usba8eqkh9l8",
+  "fields": {
+    "session_data": ".eJxVi0EOwiAQRe_C2jQMlDJ1aeMN3JMBhtBobQJlZby7NulCl__9917CUduya5WLm6M4CyVOv8xTuPNzP_Layq3ss3QHrd3U6rYu14Xmx-Uw__JMNX9bMMFLtJLBomFQ42iUTirqwTAiWa009TQkTGi51xgTgfIIkoBlYBLvD19iNvs:1vdVHQ:sMuTjYilavejtkvdBV5goGXFnBBh-dpZSHeFgix6aSo",
+    "expire_date": "2026-01-21T15:17:00.454Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "i28q1u0rm73h9xsiercbmv2mx6dkhmo5",
+  "fields": {
+    "session_data": ".eJxVjEsKAyEQRO_iOgz-Wp0sA7lB9tK2Ng75gcZVyN2DMItkWa9e1VtEHK8aRy8tblkchRKHX5aQruUxi_oc7dJmbMtO-3K-43Y77c7fsGKv8w44W5CJCjMAsmNOPqwOs7Mlr56MdQqNz9Ip8BqClERUcpDaWKm9-HwBF-k05A:1vG08m:ugjGmRqaDmE-f9QJod42JFmyllfpE_sb045hivvlJEM",
+    "expire_date": "2025-11-17T19:22:56.098Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "i3mg7c206kbgbgrntf8wegpr2su4xm7r",
+  "fields": {
+    "session_data": ".eJxVi8sOwiAQRf-FtWl4DsWljX_gngwDhEZrEygr479rky50ec8958U89q343lL1c2RnJjg7_cKAdE_P_Slrr7e6zzoctA1Tb9u6XBecH5fD_MsLtvJt0Vg0RFGp4HIITkm0eeRCRJUBMGYjKKGWwIECKD5msFo60BJpdFKw9we--DeG:1vb0Il:y-aXfyak0eWMC6k7M_F0WVesdYagSkV94gP2At7xaKU",
+    "expire_date": "2026-01-14T17:48:03.005Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "imvgmsx0389frdsm6dt8kbyd6gyxdm5j",
+  "fields": {
+    "session_data": "eyJkZWJ1Z190ZXN0Ijp0cnVlfQ:1veECb:QMFZjWUvyy9QJTqtMsCycNefZ_2SfVU7-cNClOw9NKk",
+    "expire_date": "2026-01-23T15:15:01.696Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "izy8pap4vdfogmzpx8z9da9cv9gikk2c",
+  "fields": {
+    "session_data": "eyJkZWJ1Z190ZXN0Ijp0cnVlfQ:1veEC9:jJR5l5OMIEIUi-tuCkRC5HiOOUMwd8ro2lMB6miw5bE",
+    "expire_date": "2026-01-23T15:14:33.793Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "j240l7jajhjcr9bvdu2yasj5fvyacvnj",
+  "fields": {
+    "session_data": ".eJxVi8sOwiAQRf-FtWmAMjxcavwD94QZxtBobQJlZfx3bdKFLu-557xETH0tsTeuccriKLQ4_DJMdOfndpSl12vdZh122oZzb-syX-Y0PU67-ZeX1Mq3hXGUHsByzqhDIK2suXmShEiWHUBA9NKAdegVjSCdYgPZaWOJpUbx_gBwRTbP:1vfOI3:J116RmQv34rT8X0CU1t73-VFie57_L5ige_JXL8Ne20",
+    "expire_date": "2026-01-26T20:13:27.582Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "j92yf6l3t0f7akwxe9q4zcdp7qh37zfr",
+  "fields": {
+    "session_data": ".eJxVizsOwjAQBe_iGkV2_Kck4gb01q69liMIkey4QtwdIqWA8s2bebEAfSuhN6phTuzMPDv9MoR4p-d-lLXXW91nHQ7ahqm3bV2uC8yPy2H-5QVa-bbKZQkKOWaR1AhacoqjFcSNMqAkOW2F89JoSORijCgteSCS6DCPVrP3B4faN8I:1vfgMb:hPwjN4Qv06DBGQnSMdzDsyrcttgts4oRRpNVopfpnMw",
+    "expire_date": "2026-01-27T15:31:21.046Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "k4y70e2msfzf3ly6g2or8ziiflufwfb5",
+  "fields": {
+    "session_data": ".eJxVizsOwyAQBe9CHVlrA1lIGSk3SI9g2RVWfhKEKvLdHUsukvLNm_moEPu7hN64hjmrk5rU4ZelSDd-bkd59Xqt26zDTttwecT5ft6dv7DEVr4VoQXOo6AQoDuCdj5lkGzEeIc28WiiF4aJBIHIIRsWDZYZE2Vt1LICDkA1tQ:1vFwW0:ZEyBstkee4vj8j0x3r1lRCzurO18UM4gITpLuKKJh0M",
+    "expire_date": "2025-11-17T15:30:40.713Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "k7gquaci2e8uskdgb0hxcx7wj2kn83ra",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY5jA:PB5uLxLnF_ijnZ2YjwzPE3vN1k0kfGAW19oTdZJJVx8",
+    "expire_date": "2026-01-06T16:59:16.290Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "l28y40rk6wlk84fp631lxwp991z9of0t",
+  "fields": {
+    "session_data": ".eJxVizsOwyAQBe9CHVlgPoaUsXID92hZFmEljiUwVeS7J5ZcJOWbN_NmHtqWfatU_BzZlSl2-WUB8EGv48hrK1M5ZulOWrux1W1d7gvMz9tp_uUZav62mCxichwdUUKQIYEYTJJRm6AGJ42VxHuIZAIXSlvoEZCcsIYr1BbZ_gHA4ThV:1vdYU8:O9KnYfCSAy8pj6TxnYE7HwJuMnxtmulJq1q09R88Yzs",
+    "expire_date": "2026-01-21T18:42:20.223Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mkz9xm9p1do9tu3z4kur5d80tr3kpll6",
+  "fields": {
+    "session_data": ".eJxVizsOwjAQBe_iGkXrT5xdSiRuQG-tnbUc8ZNsXCHuTiKlgPLNm3mrwP1VQm9SwzKro_Lq8Msip6s8tqM8e73UbdZhp20433m5nXbnLyzcylqliHbOowNBAMl5MpjsJD5pZw1F78gYZGBwK8-oR0vaZCRB0ZESqM8X9QQ0YQ:1vG0dl:Bqqc1hucUk0j1nQ17tA93AeopPN9f9gr4Bh3u_RjVD0",
+    "expire_date": "2025-11-17T19:54:57.509Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ntwlptx8i81kum40kme91bxxcx189ztn",
+  "fields": {
+    "session_data": ".eJxVi8EOwiAQRP-Fs2lYFgQ82vgH3snSpaHR2gTKyfjvtkkPeprMm3lvEaitObSaSphYXARocfqFkYZHeu1LXlq5l72W7qC161tdl_k20_S8Hs8_PVPNm8ssDZ1tAqZBgfGIMGqIIxoalZPGRMfklfJIUtktwdmorWWHKiWP4vMFnYc2zA:1vdePP:7yzk5oloE9qUWNAxR81yffATVl-ezbtb_GZWlIfExv8",
+    "expire_date": "2026-01-22T01:01:51.164Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "oq7s6x2lblcqua9h3wzf72duqk6calb6",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY7je:dqtpJj_xJLd7rk_9GMfOBsvP73JMo5VJQt9o1Sij2H0",
+    "expire_date": "2026-01-06T19:07:54.224Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pp7g6njyse4l7el4dw30acsm28ppb0a7",
+  "fields": {
+    "session_data": ".eJxVizsOwyAQBe9CHVlgPoaUsXID92hZFmEljiUwVeS7J5ZcJOWbN_NmHtqWfatU_BzZlSl2-WUB8EGv48hrK1M5ZulOWrux1W1d7gvMz9tp_uUZav62mCxichwdUUKQIYEYTJJRm6AGJ42VxHuIZAIXSlvoEZCcsIYr1BbZ_gHA4ThV:1vcsP7:m4tVhwH7kA7cs57QGoHvrjAbBcHbLC7eH4W8Ntwmt4Y",
+    "expire_date": "2026-01-19T21:46:21.768Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "sn1tbsw5ck1d5ufevt07p1ba4dslwjoz",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAURP8laylJ7iUPl4p_4D7cvEjRWkialfjvptCFMqs5M-fNHPWtuN5SdXNkZybZ6Zd5Co_02oey9nqve63TQdt07W1bl9tC8_NyPP_0Qq0MN3KFInOtlYAcCYxNKCz6gaQk9CBGuEkmWwWovTWINgoVBABRIPb5AlkSNmc:1vdqgv:8M3jQUnO1F-Q1seC-dNsYO3invF32Hq6ck4GwkqQlPE",
+    "expire_date": "2026-01-22T14:08:45.264Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "tq3y2m657tlc26ps1pn160wjwsyfbrtb",
+  "fields": {
+    "session_data": ".eJxVi8sOwiAQRf-FtWl4DsWljX_gngwDhEZrEygr479rky50ec8958U89q343lL1c2RnJjg7_cKAdE_P_Slrr7e6zzoctA1Tb9u6XBecH5fD_MsLtvJt0Vg0RFGp4HIITkm0eeRCRJUBMGYjKKGWwIECKD5msFo60BJpdFKw9we--DeG:1vb0RL:andTUNKM24FZ1VDjS_bP4GVJ4MrIUqqHfPZVzlVbPFg",
+    "expire_date": "2026-01-14T17:56:55.438Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "u0o9v7ofbsokeckjeznrcajbo0b8827l",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vY8oV:xQmbGTaMjggth0Sy7b9GnyoS5etRFkMCo68Jt-ZBBbQ",
+    "expire_date": "2026-01-06T20:16:59.659Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "uc6azupnn2fdbvjfsn5zsy14mc9zm4c5",
+  "fields": {
+    "session_data": ".eJxVizsOwjAQBe_iGkXrjb2OKYm4Ab21_kSOIESy4wpxd4iUAso3b-YlHLctu1ZTcXMUZ4EkTr_Qc7in5_7ktZVb2WfpDlq7sdVtXa4Lz4_LYf7lmWv-toNXYHVgNtIwBgRFxgCBRku9TtCjSjZaIKXYDhS1HDxFORkfaJII4v0BdNw2QQ:1vfgjt:mT2HUA3VH5Xxj_08pBX5zTPrJ1E3-9VdOjzOIvqwh34",
+    "expire_date": "2026-01-27T15:55:25.317Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vsph7qf1ld93ows65ndpkt98l1kikjyl",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1vd7T0:07_IrLtQ0czan_4sH-L5V9lmZi8IUr9My2wV1GUZVg4",
+    "expire_date": "2026-01-20T13:51:22.498Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "whrj66fd9iuex977gsueccztfntf4bp9",
+  "fields": {
+    "session_data": ".eJxVjcEOwiAQRP-Fs2loC8viUeMfeCe7BUKjtQmUk_HfpUkPepw38zJv4ahuydUSspu9OIt-EKdfyDQ9wmtv0lrzPe8xdwct3bWWbV1uC83Py7H80xOV1NzgI2Ig1L3GIEFbBhshNsQ4KdCkRu0nZuRBEUYwxgJIZUNsT6OR4vMFwLI4Fw:1vdblQ:ZhSzmng1-SfCW_9H4fpj5vfIfVfOPrvVaSNRpYVq76A",
+    "expire_date": "2026-01-21T22:12:24.689Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "x8c9vzkpkq3f1d1sqcfqbnomqjzxc1vy",
+  "fields": {
+    "session_data": ".eJxVi8sKwjAUBf8laymxebtU_AP34b4gRWshaVbiv2uhC12eOTMvlaGvJfcmNU-sTmpUh1-GQHd5bkdZer3VbdZhp2249LYu83WG6XHezb-8QCvfNojzSAImkpcoZPiYdMJgxIG2AghegxhEGSMjBLaefRpjTM5aJlLvD7KgOIQ:1veGpL:y2OTUi3obJb8AQdyrxvOYfmcwU3J1D0lmzfV19ROE7s",
+    "expire_date": "2026-01-23T18:03:11.641Z"
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "1a65bfa1b3e7451eb23a668ae46a6c85",
+  "fields": {
+    "name": "idaho-avocado-indigo-island",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": null,
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:15:47.006Z",
+    "stopped": "2025-12-23T21:15:48.434Z",
+    "success": true,
+    "attempt_count": 1
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "1c1c9c6eda4a4d7783eede1fa92fbeda",
+  "fields": {
+    "name": "west-oxygen-paris-twelve",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": null,
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:09:28.362Z",
+    "stopped": "2025-12-23T21:09:28.767Z",
+    "success": true,
+    "attempt_count": 1
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "255bd33847c34169acf1f700fee29945",
+  "fields": {
+    "name": "muppet-paris-oxygen-saturn",
+    "func": "hours.tasks.test_yearly_reminder_output",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": "gAWVZQEAAAAAAABYXgEAAEZ1bmN0aW9uIGhvdXJzLnRhc2tzLnRlc3RfeWVhcmx5X3JlbWluZGVyX291dHB1dCBpcyBub3QgZGVmaW5lZCA6IFRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0KToKICBGaWxlICIvVXNlcnMvY2Nhc3RlZS9MaWJyYXJ5L1B5dGhvbi8zLjEyL2xpYi9weXRob24vc2l0ZS1wYWNrYWdlcy9kamFuZ29fcS93b3JrZXIucHkiLCBsaW5lIDEwMSwgaW4gd29ya2VyCiAgICByYWlzZSBWYWx1ZUVycm9yKGYiRnVuY3Rpb24ge3Rhc2tbJ2Z1bmMnXX0gaXMgbm90IGRlZmluZWQiKQpWYWx1ZUVycm9yOiBGdW5jdGlvbiBob3Vycy50YXNrcy50ZXN0X3llYXJseV9yZW1pbmRlcl9vdXRwdXQgaXMgbm90IGRlZmluZWQKlC4=",
+    "group": null,
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:04:22.079Z",
+    "stopped": "2025-12-24T14:17:53.388Z",
+    "success": false,
+    "attempt_count": 517
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "3d7eae07017b4073ae32bbf70a3b8fc9",
+  "fields": {
+    "name": "vegan-floor-spaghetti-lemon",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": null,
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:14:24.329Z",
+    "stopped": "2025-12-23T21:14:24.610Z",
+    "success": true,
+    "attempt_count": 1
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "55815747a3a04b37ab77a6facd084dec",
+  "fields": {
+    "name": "shade-magazine-magnesium-indigo",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": "Testing Yearly Notification",
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:20:26.249Z",
+    "stopped": "2025-12-23T21:20:27.307Z",
+    "success": true,
+    "attempt_count": 1
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "84ab0cc5af1240acb355bcb0164aa65a",
+  "fields": {
+    "name": "undress-fruit-vegan-nuts",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": null,
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:13:31.010Z",
+    "stopped": "2025-12-23T21:13:31.483Z",
+    "success": true,
+    "attempt_count": 1
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "89c082d3669045c189da84256cc5aaf5",
+  "fields": {
+    "name": "blue-king-west-winner",
+    "func": "hourTracker.tasks.test_yearly_reminder_output",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": null,
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:06:55.979Z",
+    "stopped": "2025-12-23T21:06:56.439Z",
+    "success": true,
+    "attempt_count": 1
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "a9c26f47bac34406bda7c51844809067",
+  "fields": {
+    "name": "fifteen-eight-sink-diet",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": "Testing Yearly Notification",
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:20:56.580Z",
+    "stopped": "2025-12-23T21:20:57.467Z",
+    "success": true,
+    "attempt_count": 1
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "af12078f17d44a77b4bcaf6d2661b286",
+  "fields": {
+    "name": "double-zebra-skylark-kitten",
+    "func": "ourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": "gAWVYQEAAAAAAABYWgEAAEZ1bmN0aW9uIG91clRyYWNrZXIudGFza3Muc2VuZF95ZWFybHlfcmVtaW5kZXIgaXMgbm90IGRlZmluZWQgOiBUcmFjZWJhY2sgKG1vc3QgcmVjZW50IGNhbGwgbGFzdCk6CiAgRmlsZSAiL1VzZXJzL2NjYXN0ZWUvTGlicmFyeS9QeXRob24vMy4xMi9saWIvcHl0aG9uL3NpdGUtcGFja2FnZXMvZGphbmdvX3Evd29ya2VyLnB5IiwgbGluZSAxMDEsIGluIHdvcmtlcgogICAgcmFpc2UgVmFsdWVFcnJvcihmIkZ1bmN0aW9uIHt0YXNrWydmdW5jJ119IGlzIG5vdCBkZWZpbmVkIikKVmFsdWVFcnJvcjogRnVuY3Rpb24gb3VyVHJhY2tlci50YXNrcy5zZW5kX3llYXJseV9yZW1pbmRlciBpcyBub3QgZGVmaW5lZAqULg==",
+    "group": "Testing Yearly Notification",
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:18:37.643Z",
+    "stopped": "2025-12-24T14:18:08.443Z",
+    "success": false,
+    "attempt_count": 510
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "b57abaaeb02f4b64b75b17a1fd74091d",
+  "fields": {
+    "name": "tennessee-pizza-harry-nitrogen",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": null,
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:15:08.731Z",
+    "stopped": "2025-12-23T21:21:10.176Z",
+    "success": true,
+    "attempt_count": 4
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "b6ce5a9cd1cd45deb89198fc8ea8def4",
+  "fields": {
+    "name": "sad-may-fourteen-aspen",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": "Testing Yearly Notification",
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:19:38.290Z",
+    "stopped": "2025-12-23T21:19:39.107Z",
+    "success": true,
+    "attempt_count": 1
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "d447255e647f4fb9b91af4da30c4d2bc",
+  "fields": {
+    "name": "uranus-victor-mississippi-nevada",
+    "func": "hourTracker.tasks.test_yearly_reminder_output",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": null,
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:06:02.630Z",
+    "stopped": "2025-12-23T21:08:03.315Z",
+    "success": true,
+    "attempt_count": 2
+  }
+},
+{
+  "model": "django_q.task",
+  "pk": "fec39d5723af4c34b03d56937d99e1b1",
+  "fields": {
+    "name": "winter-white-fix-purple",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "gAUpLg==",
+    "kwargs": "gAV9lC4=",
+    "result": null,
+    "group": null,
+    "cluster": "DjangORM",
+    "started": "2025-12-23T21:13:24.068Z",
+    "stopped": "2025-12-23T21:21:25.897Z",
+    "success": true,
+    "attempt_count": 5
+  }
+},
+{
+  "model": "django_q.schedule",
+  "pk": 1,
+  "fields": {
+    "name": "Testing Yearly Notification",
+    "func": "hourTracker.tasks.send_yearly_reminder",
+    "hook": null,
+    "args": "",
+    "kwargs": "",
+    "schedule_type": "C",
+    "minutes": null,
+    "repeats": -1,
+    "next_run": "2026-12-01T09:00:00Z",
+    "cron": "0 9 1 12 *",
+    "task": "a9c26f47bac34406bda7c51844809067",
+    "cluster": null,
+    "intended_date_kwarg": null
+  }
+},
+{
+  "model": "django_q.ormq",
+  "pk": 1,
+  "fields": {
+    "key": "DjangORM",
+    "payload": "gAWV9QAAAAAAAAB9lCiMAmlklIwgMjU1YmQzMzg0N2MzNDE2OWFjZjFmNzAwZmVlMjk5NDWUjARuYW1llIwabXVwcGV0LXBhcmlzLW94eWdlbi1zYXR1cm6UjARmdW5jlIwnaG91cnMudGFza3MudGVzdF95ZWFybHlfcmVtaW5kZXJfb3V0cHV0lIwEYXJnc5QpjAZrd2FyZ3OUfZSMB3N0YXJ0ZWSUjAhkYXRldGltZZSMCGRhdGV0aW1llJOUQwoH6QwXFQQWATb5lGgLjAh0aW1lem9uZZSTlGgLjAl0aW1lZGVsdGGUk5RLAEsASwCHlFKUhZRSlIaUUpR1Lg:1vY9YM:LumNsXir7Iqd1VM7fvoRD3lIKCLx-MUoPjLnGakQR7g",
+    "lock": "2025-12-24T14:19:53.336Z"
+  }
+},
+{
+  "model": "django_q.ormq",
+  "pk": 10,
+  "fields": {
+    "key": "DjangORM",
+    "payload": "gAWVJQEAAAAAAAB9lCiMAmlklIwgYWYxMjA3OGYxN2Q0NGE3N2I0YmNhZjZkMjY2MWIyODaUjARuYW1llIwbZG91YmxlLXplYnJhLXNreWxhcmsta2l0dGVulIwEZnVuY5SMJW91clRyYWNrZXIudGFza3Muc2VuZF95ZWFybHlfcmVtaW5kZXKUjARhcmdzlCmMBWdyb3VwlIwbVGVzdGluZyBZZWFybHkgTm90aWZpY2F0aW9ulIwHY2x1c3RlcpROjAZrd2FyZ3OUfZSMB3N0YXJ0ZWSUjAhkYXRldGltZZSMCGRhdGV0aW1llJOUQwoH6QwXFRIlCc_elGgOjAh0aW1lem9uZZSTlGgOjAl0aW1lZGVsdGGUk5RLAEsASwCHlFKUhZRSlIaUUpR1Lg:1vY9m9:flDt8OKdpIsis2n2INr-8M8sKI7fa8B-vcdlK6TNFd8",
+    "lock": "2025-12-24T14:20:08.393Z"
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$t7oiRAVBwjM2QajuYiw1X6$3DY37hdFxk20OilBegxma/GyUcCay1NohdlA+5xWjvQ=",
+    "last_login": "2025-12-19T19:27:29.002Z",
+    "is_superuser": true,
+    "email": "admin@admin.com",
+    "first_name": "admin",
+    "last_name": "admin",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-03T15:29:57.722Z",
+    "phone_number": null,
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$1KxTABZz3aBKBshf27PXwG$OclFiGVK3dwWb4Q/vqJoNaB0H4YgZcdkoHZJelGNIok=",
+    "last_login": "2026-01-13T15:06:36.083Z",
+    "is_superuser": true,
+    "email": "codycasteel2178.5@gmail.com",
+    "first_name": "Cody",
+    "last_name": "Casteel",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-03T15:30:34Z",
+    "phone_number": "3173636879",
+    "address_line_1": "4494 Tuley Trace",
+    "address_line_2": "f",
+    "city": "Nashville",
+    "state": "IN",
+    "zip_code": "47448",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$cOpYERt9QwrEoTpGvDWMZX$baujzzvT5DrxttgYjFisDs9hfCU0U+/cb+nKppE3tsw=",
+    "last_login": "2026-01-12T18:01:03Z",
+    "is_superuser": true,
+    "email": "mahk.adams@browncountymtb.org",
+    "first_name": "Mahk",
+    "last_name": "Adams",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-11-03T17:19:07Z",
+    "phone_number": null,
+    "address_line_1": "101",
+    "address_line_2": null,
+    "city": "nashville",
+    "state": "IN",
+    "zip_code": "47448",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$ZeeTGx9hGEICbtK0aokB2I$4lugeehtIqMC/JU/FfO2jEE5ZuRsxgVpHVgWmiYYxr4=",
+    "last_login": "2026-01-08T13:24:54.095Z",
+    "is_superuser": false,
+    "email": "jblow@kokomo.com",
+    "first_name": "Joe",
+    "last_name": "Blow",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-03T17:31:31.209Z",
+    "phone_number": "1114445555",
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$wdWkb9aRu0Almw0fAUSInl$TvSHxuS++chOlws8jYtfY9jlC5m3TopP/KnJk+1/J/s=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "jsmith@cool.beans",
+    "first_name": "Joseph",
+    "last_name": "Smith",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-03T19:49:54.997Z",
+    "phone_number": null,
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Njjo4ym5HtyhPPLEntiqaV$GZqpi7V8rFIrh1bM81XpDCMwR5ILZ0wErxySrkJsWio=",
+    "last_login": "2025-11-03T19:54:57.505Z",
+    "is_superuser": false,
+    "email": "gheen.tom@gmail.com",
+    "first_name": "Tom",
+    "last_name": "Gheen",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-11-03T19:50:41.988Z",
+    "phone_number": null,
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$dFVq77I7LxcRFMNxnc0DDP$5epOhWTKdijQ1XlVopz+wRrQ9cQxpj1LIfCRHVxOHJs=",
+    "last_login": "2025-12-22T18:37:30.259Z",
+    "is_superuser": false,
+    "email": "test@test.com",
+    "first_name": "Test",
+    "last_name": "Testerson",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-12-22T18:37:22.007Z",
+    "phone_number": null,
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$1QxhQfhtwI4lwDd2LqJMVp$EDB4F2ey1SLEy+FGTFLmjcFyyJ3XsXPAKdV7ADyqw84=",
+    "last_login": "2026-01-13T15:29:44.977Z",
+    "is_superuser": true,
+    "email": "jason.perry@browncountymtb.org",
+    "first_name": "Jason",
+    "last_name": "Perry",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-12-22T20:50:30Z",
+    "phone_number": null,
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$p9TlLgVh8UvT499ScKAtMV$532eVDTGSUI3oJoV/jA25DODjvMC/nHLnszcHQKKNqs=",
+    "last_login": "2025-12-31T17:56:55.434Z",
+    "is_superuser": true,
+    "email": "aguedamayan@gmail.com",
+    "first_name": "Agueda",
+    "last_name": "Formoso Mayan",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-12-31T17:43:40Z",
+    "phone_number": null,
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$fsEKKBKKKvV63aGY35wqPa$9pjaDJfStl3iSZ5+qh/HJqSj0VXjMAiDOM2bP39oPSE=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "j@j.com",
+    "first_name": "Josh",
+    "last_name": "Josh",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-01-07T18:25:40.208Z",
+    "phone_number": "317317333",
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$7jaPoBnz4ptkhQ9l5E2fGo$Iww/2tx5VAw7Tvrz37JjYMdF90MYm701kPUUGNZvMeo=",
+    "last_login": "2026-01-07T22:12:24.686Z",
+    "is_superuser": false,
+    "email": "sanitysgone@gmail.com",
+    "first_name": "Bethiah",
+    "last_name": "Casteel",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-01-07T22:12:19.591Z",
+    "phone_number": "2317158297",
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$tztppmgb8YtmKL8OPgybfT$NokyxB/+Ot7qk8mTSj4ICm1dFFdS0bZayiJmySUEGUg=",
+    "last_login": "2026-01-12T18:43:34.303Z",
+    "is_superuser": false,
+    "email": "jj@jj.com",
+    "first_name": "Joe",
+    "last_name": "Joe",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-01-07T22:32:19.911Z",
+    "phone_number": "31733333335",
+    "address_line_1": null,
+    "address_line_2": null,
+    "city": null,
+    "state": null,
+    "zip_code": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$2h1JoPyapmo9RQKzYprqjq$S4tow3pFUPIuJMR/QRdP5Q4FM4xWqzXHQrrJJaphESI=",
+    "last_login": "2026-01-08T14:09:30.093Z",
+    "is_superuser": false,
+    "email": "jj@james.com",
+    "first_name": "josh",
+    "last_name": "james",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-01-08T14:08:06.954Z",
+    "phone_number": "3172225555",
+    "address_line_1": "101 cool road",
+    "address_line_2": null,
+    "city": "cool city",
+    "state": "IN",
+    "zip_code": "47444",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$evLOsAJHxDQnfn6hJYrQJ3$L0Jz4496/LBXS+fvBp8e8fLU/ZRRuMk+tmUyHfAD7tw=",
+    "last_login": "2026-01-13T15:46:50.852Z",
+    "is_superuser": false,
+    "email": "codycasteel.facebook.2178@gmail.com",
+    "first_name": "Cody",
+    "last_name": "Casteel",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-01-13T15:25:18.803Z",
+    "phone_number": "3173636879",
+    "address_line_1": "77",
+    "address_line_2": null,
+    "city": "77",
+    "state": "IN",
+    "zip_code": "47448",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$E9XmvvBlPuFnZh9JNocaBe$HoQ2xodWtkQNx31ypREokoVVuT/psjB3VablUqQdQxE=",
+    "last_login": "2026-01-13T15:55:25.271Z",
+    "is_superuser": false,
+    "email": "charles.lawrence2015@gmail.com",
+    "first_name": "Charles",
+    "last_name": "L",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-01-13T15:55:11.300Z",
+    "phone_number": "3173173333",
+    "address_line_1": "55",
+    "address_line_2": null,
+    "city": "55",
+    "state": "TN",
+    "zip_code": "47444",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "hourTracker.volunteertask",
+  "pk": 1,
+  "fields": {
+    "name": "board"
+  }
+},
+{
+  "model": "hourTracker.volunteertask",
+  "pk": 2,
+  "fields": {
+    "name": "sawyer"
+  }
+},
+{
+  "model": "hourTracker.volunteertask",
+  "pk": 3,
+  "fields": {
+    "name": "trail work"
+  }
+},
+{
+  "model": "hourTracker.volunteertask",
+  "pk": 4,
+  "fields": {
+    "name": "Epic Volunteer"
+  }
+},
+{
+  "model": "hourTracker.volunteerlocation",
+  "pk": 1,
+  "fields": {
+    "name": "Brown County State Park"
+  }
+},
+{
+  "model": "hourTracker.volunteerlocation",
+  "pk": 2,
+  "fields": {
+    "name": "Yellowwood State Forest"
+  }
+},
+{
+  "model": "hourTracker.volunteerlocation",
+  "pk": 3,
+  "fields": {
+    "name": "Hoosier National Forest"
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "jblow@kokomo.com"
+    ],
+    "date": "2025-10-10",
+    "hours": "8.00",
+    "category": 3,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "jblow@kokomo.com"
+    ],
+    "date": "2025-12-11",
+    "hours": "5.01",
+    "category": 2,
+    "location": null
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "test@test.com"
+    ],
+    "date": "2025-12-16",
+    "hours": "3.00",
+    "category": 2,
+    "location": null
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "mahk.adams@browncountymtb.org"
+    ],
+    "date": "2025-12-22",
+    "hours": "5.00",
+    "category": 1,
+    "location": null
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "date": "2025-12-23",
+    "hours": "20.00",
+    "category": 1,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "date": "2025-12-31",
+    "hours": "2.00",
+    "category": 1,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "date": "2025-12-23",
+    "hours": "10.00",
+    "category": 1,
+    "location": 2
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 12,
+  "fields": {
+    "user": [
+      "mahk.adams@browncountymtb.org"
+    ],
+    "date": "2025-12-26",
+    "hours": "2.00",
+    "category": 1,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "mahk.adams@browncountymtb.org"
+    ],
+    "date": "2025-12-28",
+    "hours": "10.00",
+    "category": 1,
+    "location": 2
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "aguedamayan@gmail.com"
+    ],
+    "date": "2025-12-31",
+    "hours": "3.00",
+    "category": 1,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "jblow@kokomo.com"
+    ],
+    "date": "2026-01-05",
+    "hours": "8.00",
+    "category": 2,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 21,
+  "fields": {
+    "user": [
+      "test@test.com"
+    ],
+    "date": "2026-01-06",
+    "hours": "44.00",
+    "category": 3,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 22,
+  "fields": {
+    "user": [
+      "sanitysgone@gmail.com"
+    ],
+    "date": "2026-01-07",
+    "hours": "10.00",
+    "category": 3,
+    "location": 2
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 23,
+  "fields": {
+    "user": [
+      "sanitysgone@gmail.com"
+    ],
+    "date": "2026-01-07",
+    "hours": "50.00",
+    "category": 1,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 25,
+  "fields": {
+    "user": [
+      "jj@jj.com"
+    ],
+    "date": "2026-01-07",
+    "hours": "2.00",
+    "category": 1,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 26,
+  "fields": {
+    "user": [
+      "jj@jj.com"
+    ],
+    "date": "2026-01-07",
+    "hours": "4.00",
+    "category": 3,
+    "location": 3
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 27,
+  "fields": {
+    "user": [
+      "jj@jj.com"
+    ],
+    "date": "2026-01-07",
+    "hours": "8.00",
+    "category": 1,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 30,
+  "fields": {
+    "user": [
+      "mahk.adams@browncountymtb.org"
+    ],
+    "date": "2026-01-08",
+    "hours": "2.00",
+    "category": 2,
+    "location": 2
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 31,
+  "fields": {
+    "user": [
+      "mahk.adams@browncountymtb.org"
+    ],
+    "date": "2026-01-11",
+    "hours": "5.00",
+    "category": 3,
+    "location": 2
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 32,
+  "fields": {
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "date": "2026-01-07",
+    "hours": "5.00",
+    "category": 1,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerentry",
+  "pk": 33,
+  "fields": {
+    "user": [
+      "mahk.adams@browncountymtb.org"
+    ],
+    "date": "2026-01-11",
+    "hours": "2.50",
+    "category": 2,
+    "location": 1
+  }
+},
+{
+  "model": "hourTracker.volunteerreward",
+  "pk": 2,
+  "fields": {
+    "name": "Trail Shirt & BCMB Membership",
+    "description": "8 Hours - Get an official BCMB Trail T-Shirt when you Volunteer 8 or more hours.",
+    "image": "reward-images/Trail_Shirt.png",
+    "hours_required": 8
+  }
+},
+{
+  "model": "hourTracker.volunteerreward",
+  "pk": 3,
+  "fields": {
+    "name": "Next Year's Bike Pass",
+    "description": "20 Hour - All Indiana DNR Parks that have mountain biking require a bike permit pass for anyone riding a trail over 'Beginner' Level. Working 20 hours will automatically get you this pass for next year.",
+    "image": "reward-images/orc.png",
+    "hours_required": 20
+  }
+},
+{
+  "model": "hourTracker.volunteerreward",
+  "pk": 4,
+  "fields": {
+    "name": "Next Year's Park Pass",
+    "description": "40 Hours - Volunteering for 40 hours will get your the Indiana State Parks Annual Park Pass, that can be used at any Indiana State Park",
+    "image": "reward-images/pass.png",
+    "hours_required": 40
+  }
+},
+{
+  "model": "hourTracker.volunteerreward",
+  "pk": 5,
+  "fields": {
+    "name": "Next Year's EPIC Entry",
+    "description": "50 Hours - Volunteering for 50 hours will get you a ticket into next year's Brown County EPIC!",
+    "image": "reward-images/Epic.png",
+    "hours_required": 50
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-11-03T15:31:13.936Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteertask"
+    ],
+    "object_id": "1",
+    "object_repr": "board",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-11-03T17:17:07.079Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteertask"
+    ],
+    "object_id": "2",
+    "object_repr": "sawyer",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-11-03T17:17:12.269Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteertask"
+    ],
+    "object_id": "3",
+    "object_repr": "trail work",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-11-03T17:19:07.921Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "3",
+    "object_repr": "mahk.adams@browncountymtb.org",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-11-03T17:43:06.721Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "codycasteel2178.5@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is staff\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-11-03T19:55:01.456Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "codycasteel2178.5@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Superuser status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-12-19T19:36:40.196Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "codycasteel2178.5@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-12-22T14:21:42.342Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "4",
+    "object_repr": "jblow@kokomo.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-12-22T19:21:44.053Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "3",
+    "object_repr": "mahk.adams@browncountymtb.org",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-12-22T19:25:34.190Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "3",
+    "object_repr": "mahk.adams@browncountymtb.org",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-12-22T20:44:57.303Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "8",
+    "object_repr": "jason.perry@browncounty.org",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is staff\", \"Superuser status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-12-22T20:47:09.232Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "8",
+    "object_repr": "jason.perry@browncounty.org",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-12-22T20:48:25.739Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "8",
+    "object_repr": "jason.perry@browncounty.org",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-12-22T20:55:01.636Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "9",
+    "object_repr": "jason.perry@browncountymtb.org",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is staff\", \"Superuser status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-12-23T16:47:30.984Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerlocation"
+    ],
+    "object_id": "1",
+    "object_repr": "Brown County State Park",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-12-23T16:47:41.882Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerlocation"
+    ],
+    "object_id": "2",
+    "object_repr": "Yellow Wood State Forest",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-12-23T17:58:32.254Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "1",
+    "object_repr": "test",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-12-23T18:06:25.207Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "2",
+    "object_repr": "Trail Shirt & BCMB Membership",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-12-23T18:14:21.149Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "3",
+    "object_repr": "Next Year's Bike Pass",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-12-23T18:15:55.229Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "3",
+    "object_repr": "Next Year's Bike Pass",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Hours required\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-12-23T18:17:27.682Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "4",
+    "object_repr": "Next Year's Park Pass",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2025-12-23T18:19:05.185Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "5",
+    "object_repr": "Next Year's EPIC Entry",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2025-12-23T18:26:41.952Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "1",
+    "object_repr": "test",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2025-12-23T18:33:31.143Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "5",
+    "object_repr": "Next Year's EPIC Entry",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2025-12-23T19:02:59.073Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "5",
+    "object_repr": "Next Year's EPIC Entry",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2025-12-23T19:47:17.463Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "2",
+    "object_repr": "Trail Shirt & BCMB Membership",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2025-12-23T19:51:39.482Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "4",
+    "object_repr": "Next Year's Park Pass",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2025-12-23T19:55:09.868Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "5",
+    "object_repr": "Next Year's EPIC Entry",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2025-12-23T20:11:16.201Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerreward"
+    ],
+    "object_id": "3",
+    "object_repr": "Next Year's Bike Pass",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2025-12-23T21:17:22.082Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "django_q",
+      "schedule"
+    ],
+    "object_id": "1",
+    "object_repr": "ourTracker.tasks.send_yearly_reminder",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2025-12-23T21:17:50.676Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "django_q",
+      "schedule"
+    ],
+    "object_id": "1",
+    "object_repr": "ourTracker.tasks.send_yearly_reminder",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Cron\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2025-12-23T21:18:01.583Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "django_q",
+      "schedule"
+    ],
+    "object_id": "1",
+    "object_repr": "ourTracker.tasks.send_yearly_reminder",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Cron\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2025-12-23T21:18:24.907Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "django_q",
+      "schedule"
+    ],
+    "object_id": "1",
+    "object_repr": "ourTracker.tasks.send_yearly_reminder",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Next Run\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2025-12-23T21:18:56.902Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "django_q",
+      "schedule"
+    ],
+    "object_id": "1",
+    "object_repr": "hourTracker.tasks.send_yearly_reminder",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Func\", \"Next Run\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2025-12-23T21:20:03.992Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "django_q",
+      "schedule"
+    ],
+    "object_id": "1",
+    "object_repr": "hourTracker.tasks.send_yearly_reminder",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Next Run\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2025-12-23T21:20:43.467Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "django_q",
+      "schedule"
+    ],
+    "object_id": "1",
+    "object_repr": "hourTracker.tasks.send_yearly_reminder",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2025-12-23T23:36:06.580Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerlocation"
+    ],
+    "object_id": "3",
+    "object_repr": "Hoosier National Forest",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2025-12-23T23:36:42.748Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerlocation"
+    ],
+    "object_id": "2",
+    "object_repr": "Yellowwood State Forest",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2025-12-31T17:47:13.559Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "10",
+    "object_repr": "aguedamayan@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is staff\", \"Superuser status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2026-01-07T18:23:30.162Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "codycasteel2178.5@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Phone number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2026-01-07T18:25:10.379Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "codycasteel2178.5@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Phone number\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2026-01-07T22:57:45.231Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteertask"
+    ],
+    "object_id": "4",
+    "object_repr": "Epic Volunteer",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2026-01-07T22:58:38.849Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerlocation"
+    ],
+    "object_id": "4",
+    "object_repr": "Yellow",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2026-01-07T22:59:01.106Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "volunteerlocation"
+    ],
+    "object_id": "4",
+    "object_repr": "Yellow",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2026-01-08T15:36:42.434Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "9",
+    "object_repr": "jason.perry@browncountymtb.org",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2026-01-12T15:40:22.904Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "9",
+    "object_repr": "jason.perry@browncountymtb.org",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2026-01-12T18:19:32.154Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "3",
+    "object_repr": "mahk.adams@browncountymtb.org",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Address line 1\", \"City\", \"State\", \"Zip code\", \"Superuser status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2026-01-13T13:45:01.326Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "16",
+    "object_repr": "codycasteel.facebook.2178@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2026-01-13T15:06:50.557Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "22",
+    "object_repr": "codycasteel.facebook.2178@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2026-01-13T15:06:50.558Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "14",
+    "object_repr": "elijahmbeasley@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2026-01-13T15:13:39.027Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "23",
+    "object_repr": "codycasteel.facebook.2178@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2026-01-13T15:23:11.407Z",
+    "user": [
+      "codycasteel2178.5@gmail.com"
+    ],
+    "content_type": [
+      "hourTracker",
+      "customuser"
+    ],
+    "object_id": "24",
+    "object_repr": "codycasteel.facebook.2178@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+}
+]
