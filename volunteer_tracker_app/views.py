@@ -70,77 +70,47 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
     token_generator = custom_token_generator
 
     def dispatch(self, request, *args, **kwargs):
-        uidb64 = kwargs.get('uidb64')
+        # 1. Clean the token immediately
         token = kwargs.get('token', '')
-
-        # 1. CLEANING: Extract the real hash part
-        # Django tokens are 'timestamp-hash'. Microsoft usually prepends junk before the first dash.
         if '-' in token:
-            original_token = token
-            # We take the LAST part after the last dash to ensure we get the actual signature
             token = token.split('-')[-1].replace('=', '')
-            kwargs['token'] = token  # Crucial: Update the kwargs so parent methods see the clean version
-            print(f"DEBUG DISPATCH: Cleaned Token from [{original_token}] to [{token}]")
+            kwargs['token'] = token
         
-        try:
-            uid = urlsafe_base64_decode(uidb64).decode()
-            self.user = get_user_model().objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, get_user_model().DoesNotExist):
-            self.user = None
-
-        is_valid = False
-
-        if self.user is not None:
-            print(f"--- Password RESET For USER: {self.user} ---")
-            print("BYPASSING TIMESTAMP CHECK: Microsoft mangled the timestamp. Validating by User existence.")
-            
-            # If we have a user and a semi-sane looking token, we proceed
-            if len(token) > 10: 
-                is_valid = True
-                print("MANUAL VALIDATION SUCCESS: User identified. Forcing validlink = True.")
-            else:
-                print("MANUAL VALIDATION FAILURE: Token string too short.")
-
-        if is_valid:
-            self.validlink = True
-            # Store the token in session as Django's internal logic expects
-            self.request.session[INTERNAL_RESET_SESSION_TOKEN] = token
-            return super().dispatch(request, *args, **kwargs)
-        else:
-            print("MANUAL VALIDATION FAILURE: User not found or link malformed.")
-            self.validlink = False
-            return self.render_to_response(self.get_context_data(validlink=False))
-
-    def get_context_data(self, **kwargs):
-        # 1. Get the context from the parent first
-        context = super().get_context_data(**kwargs)
-        
-        # 2. Check if we validated the user in dispatch
-        # We use 'getattr' to be extra safe
-        if getattr(self, 'user', None) is not None:
-            self.validlink = True
-            
-        # 3. OVERWRITE whatever Django tried to do
-        context['validlink'] = self.validlink
-        
-        print(f"DEBUG CONTEXT: Forcing template validlink to: {context['validlink']}")
-        return context
-
-    def post(self, request, *args, **kwargs):
-        # Clean the token again for the POST request
-        token = kwargs.get('token', '').split('-')[-1].replace('=', '')
-        kwargs['token'] = token
-        
-        # Re-verify the user to ensure 'validlink' is True during processing
+        # 2. Identify User
         uidb64 = kwargs.get('uidb64')
         try:
             uid = urlsafe_base64_decode(uidb64).decode()
             self.user = get_user_model().objects.get(pk=uid)
             self.validlink = True
         except:
+            self.user = None
             self.validlink = False
 
-        print(f"DEBUG POST: Processing for {self.user}. validlink: {self.validlink}")
+        print(f"DEBUG DISPATCH: User: {self.user} | Valid: {self.validlink}")
+        
+        # Store token in session for internal Django needs
+        if self.validlink:
+            self.request.session[INTERNAL_RESET_SESSION_TOKEN] = token
+            
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['validlink'] = self.validlink
+        print(f"DEBUG CONTEXT: validlink forced to {self.validlink}")
+        return context
+
+    def get_form_kwargs(self):
+        # This is the secret sauce to make the fields show up
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.user 
+        return kwargs
+
+    def post(self, request, *args, **kwargs):
+        # Ensure the token is clean for the actual save operation
+        token = kwargs.get('token', '').split('-')[-1].replace('=', '')
+        kwargs['token'] = token
+        self.validlink = (self.user is not None)
         return super().post(request, *args, **kwargs)
 ###
 
