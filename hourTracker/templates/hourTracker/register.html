@@ -12,6 +12,14 @@
       <h2>Register</h2>
   </div>
 
+  {% if messages %}
+    {% for message in messages %}
+        <div class="notification is-{{ message.tags }}">
+            {{ message|safe }}
+        </div>
+    {% endfor %}
+{% endif %}
+
   <div class="form-container">
 
     <form method="post">

@@ -21,7 +21,45 @@ from django.conf import settings
 from django.utils import timezone
 import datetime
 
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate
+from django.shortcuts import redirect
+from django.contrib import messages
 
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError
+
+class CustomAuthenticationForm(AuthenticationForm):
+    def confirm_login_allowed(self, user):
+        # We override this to PREVENT the form from raising 
+        # a ValidationError for inactive users.
+        # We want the View to handle the inactive state instead.
+        pass
+from django.contrib.auth import login
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'
+    authentication_form = CustomAuthenticationForm # Tell it to use our custom form
+
+    def form_valid(self, form):
+        user = form.get_user() # The form has already authenticated the user
+        
+        if not user.is_active:
+            # Now we handle the inactive user exactly how we want
+            messages.warning(
+                self.request, 
+                "Your account is pending activation. Please check your email or "
+                "<a href='/resend-activation/'>click here to resend the activation link</a>.",
+                extra_tags='warning'
+            )
+            return self.form_invalid(form)
+        
+        # If they ARE active, log them in normally
+        login(self.request, user)
+        return redirect(self.get_success_url())
+
+
+# PROFILE VIEW
 from .forms import UserProfileForm
 @login_required
 def profile_view(request):

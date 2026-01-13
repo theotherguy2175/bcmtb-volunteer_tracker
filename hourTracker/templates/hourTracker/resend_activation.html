@@ -1,0 +1,18 @@
+{% extends 'base_unauth.html' %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="box">
+            <h1 class="title">Resend Activation Email</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="field">
+                    <label class="label">Enter your email address</label>
+                    <input class="input" type="email" name="email" required>
+                </div>
+                <button type="submit" class="button is-primary">Send New Link</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

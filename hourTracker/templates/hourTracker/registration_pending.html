@@ -1,0 +1,29 @@
+{% extends 'base_unauth.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <div class="box has-text-centered">
+                    <span class="icon is-large has-text-info">
+                        <i class="fas fa-paper-plane fa-3x"></i>
+                    </span>
+                    <h1 class="title is-3 mt-4">Check Your Email</h1>
+                    <p class="subtitle is-5">We've sent an activation link to your inbox.</p>
+                    <hr>
+                    <div class="content">
+                        <p>To complete your registration and start tracking hours, please click the link in the email we just sent you.</p>
+                        <div class="notification is-warning is-light mt-4">
+                            <p>Didn't receive the email? Check your spam folder or 
+                            <a href="{% url 'resend_activation' %}">click here to try again</a>.
+                            </p>
+                        </div>
+                    </div>
+                    <a href="{% url 'login' %}" class="button is-light">Back to Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

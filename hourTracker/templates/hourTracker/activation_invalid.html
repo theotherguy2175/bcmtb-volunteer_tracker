@@ -1,0 +1,28 @@
+{% extends 'base_unauth.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <div class="box has-text-centered">
+                    <span class="icon is-large has-text-danger">
+                        <i class="fas fa-exclamation-triangle fa-3x"></i>
+                    </span>
+                    <h1 class="title is-3 mt-4">Invalid Link</h1>
+                    <p class="subtitle is-5">The activation link is invalid or has expired.</p>
+                    <hr>
+                    <div class="content">
+                        <p>Activation links are only valid for a limited time and can only be used once.</p>
+                        <p>If you have already activated your account, try logging in. If not, you may need to register again or contact support.</p>
+                    </div>
+                    <div class="buttons is-centered">
+                        <a href="{% url 'register' %}" class="button is-danger is-outlined">Register Again</a>
+                        <a href="{% url 'login' %}" class="button is-light">Back to Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

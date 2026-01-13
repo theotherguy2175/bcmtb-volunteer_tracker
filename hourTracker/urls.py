@@ -3,7 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    # path('login/', views.login_view, name='login'),
 
     path('', views.dashboard, name='dashboard'),
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
@@ -13,6 +12,8 @@ urlpatterns = [
     path('delete/<int:pk>/', views.delete_entry, name='delete_entry'),
 
     path('register/', views.register_view, name='register'),
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('resend-activation/', views.resend_activation, name='resend_activation'),
 
     path('rewards/', views.rewards, name='rewards'),
 

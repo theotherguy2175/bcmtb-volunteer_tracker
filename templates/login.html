@@ -32,8 +32,19 @@
     <h1 class="title has-text-centered">Volunteer Hour Tracker</h1>
     <br>
     <h2 class="subtitle has-text-centered">
-        Welcome to the Brown County Mountain Biking Volunteer Hour Tracker.
+        Welcome to the Brown County Mountain Biking Volunteer Hour Tracker
     </h2>
+
+    {% if messages %}
+    <div class="container mt-4">
+        {% for message in messages %}
+            <div class="notification is-{{ message.tags }} is-light">
+                <button class="delete"></button>
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
 
     <form method="post" id="loginForm">
         {% csrf_token %}

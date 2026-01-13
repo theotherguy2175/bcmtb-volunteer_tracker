@@ -184,25 +184,114 @@ def delete_entry(request, pk):
     return redirect('dashboard')
 
 
+#=======================Registration and Activation Views========================
+# Registration View with Email Activation
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import EmailMessage
+
 from django.contrib import messages
-# from .forms import RegisterForm
 
 def register_view(request):
-    User = get_user_model()  # ✅ ensures we are using CustomUser
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()  # creates a CustomUser instance
-            return redirect('login')
+            # ... (Your existing valid registration logic) ...
+            user = form.save(commit=False)
+            user.is_active = False 
+            user.save()
+
+            current_site = get_current_site(request)
+            protocol = 'https' if request.is_secure() else 'http'
+
+            subject = 'Activate your Brown County MTB Account'
+            message = render_to_string('hourTracker/acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'protocol': protocol,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+            })
+            
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(subject, message, to=[to_email])
+            email.send()
+
+            return render(request, 'hourTracker/registration_pending.html')
+        
+        else:
+            # CHECK FOR DUPLICATE EMAIL ERROR
+            # If the email is already in the DB, we offer a "Resend" link
+            if 'email' in form.errors:
+                # We check for the 'unique' error code specifically
+                for error in form.errors.as_data()['email']:
+                    if error.code == 'unique':
+                        messages.info(
+                            request, 
+                            "It looks like you've already registered! "
+                            "Need a new activation link? <a href='/resend-activation/'>Click here to resend</a>.",
+                            extra_tags='warning' # This tag allows HTML to render in Bulma
+                        )
     else:
         form = CustomUserCreationForm()
 
     return render(request, 'hourTracker/register.html', {'form': form})
 
+# Activation View for new users
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        # Message for the success page
+        return render(request, 'hourTracker/activation_success.html')
+    else:
+        return render(request, 'hourTracker/activation_invalid.html')
+
+# views.py
+from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
+
+def resend_activation(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        user = User.objects.filter(email=email, is_active=False).first()
+        
+        if user:
+            # Re-run the email sending logic
+            current_site = get_current_site(request)
+            protocol = 'https' if request.is_secure() else 'http'
+            subject = 'Activate your Brown County MTB Account'
+            message = render_to_string('hourTracker/acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'protocol': protocol,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+            })
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [user.email])
+            
+        # We show the same message even if the email doesn't exist for security 
+        # (so people can't fish for registered emails)
+        return render(request, 'hourTracker/registration_pending.html')
+        
+    return render(request, 'hourTracker/resend_activation.html')
 
 #Export Table to CSV
 import csv
