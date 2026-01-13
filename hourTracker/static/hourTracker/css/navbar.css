@@ -295,25 +295,38 @@ nav a img {
   }
 }
 
+/* For medium devices */
 @media screen and (max-width: 768px) {
-    .is-fab-mobile {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1000; /* Ensure it stays above the table */
-        
-        /* Turn it into a circle */
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        
-        /* Add a nice shadow so it "pops" off the page */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        
-        /* Center the icon and hide the text */
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  /* Replace .actions-col with the actual class or nth-child of your column */
+    .actions-col, 
+    th:nth-child(4), 
+    td:nth-child(4) { 
+        display: none !important; 
+    }
+
+    /* Ensure the action-row spans the full width of the remaining columns */
+    .action-row td {
+        width: 100%;
+    }
+
+  .is-fab-mobile {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000; /* Ensure it stays above the table */
+      
+      /* Turn it into a circle */
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      
+      /* Add a nice shadow so it "pops" off the page */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      
+      /* Center the icon and hide the text */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     /* Hide the text label on mobile, keep only the plus icon */
@@ -324,6 +337,13 @@ nav a img {
     .is-fab-mobile .icon {
         margin: 0 !important;
         font-size: 1.5rem;
+    }
+}
+
+/* 2. Hide the Action Row (the sub-menu) on Desktop just in case */
+@media screen and (min-width: 769px) {
+    .action-row {
+        display: none !important;
     }
 }
 

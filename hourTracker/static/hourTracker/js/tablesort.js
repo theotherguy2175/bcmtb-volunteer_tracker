@@ -135,8 +135,9 @@ $(document).ready(function() {
 
     // 2. Handle the Row Clicks for the Expandable Edit/Delete buttons
     $('#table tbody').on('click', 'tr', function() {
+        if (window.innerWidth > 768) return; 
         if ($(this).hasClass('action-row')) return;
-
+        
         var $this = $(this);
         var pk = $this.data('pk');
         var nextRow = $this.next('.action-row');
