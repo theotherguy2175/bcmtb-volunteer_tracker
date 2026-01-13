@@ -79,18 +79,18 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
             uid = urlsafe_base64_decode(uidb64).decode()
             self.user = get_user_model().objects.get(pk=uid)
             
-            # 2. Extract and Clean the Token
+            # 2. UNIVERSAL TOKEN SURGERY
             raw_token = kwargs.get('token', '')
             
-            # THE SURGERY:
-            # Microsoft adds junk like "d2cplv-" to the front. 
-            # We split by the dash and keep the LAST TWO parts (timestamp and hash).
-            if '-' in raw_token:
-                parts = raw_token.split('-')
-                # Grab the timestamp (second to last) and hash (last)
-                clean_token = f"{parts[-2]}-{parts[-1]}"
-                # Strip trailing '=' or other junk Microsoft might add
-                clean_token = clean_token.replace('=', '')
+            # Use regex to find all alphanumeric chunks
+            # This ignores '=', '-', '_', or any other junk Microsoft injects
+            import re
+            chunks = re.findall(r'[A-Za-z0-9]+', raw_token)
+            
+            if len(chunks) >= 2:
+                # The Hash is always the LAST chunk
+                # The Timestamp is always the SECOND TO LAST chunk
+                clean_token = f"{chunks[-2]}-{chunks[-1]}"
             else:
                 clean_token = raw_token
                 
@@ -98,8 +98,6 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
             print(f"Cleaned Token:  {clean_token}")
 
             # 3. OFFICIAL SECURITY CHECK
-            # We pass the cleaned token to Django's official validator.
-            # This checks the math AND the expiration date (usually 3 days).
             if self.token_generator.check_token(self.user, clean_token):
                 self.validlink = True
                 print(f"SECURITY PASS: Valid signature for {self.user.email}")
@@ -112,17 +110,12 @@ class MyCustomPasswordResetConfirmView(PasswordResetConfirmView):
             self.user = None
             self.validlink = False
 
-        # 4. Enforce Access
         if not self.validlink:
-            print("BLOCKING ACCESS: Showing 'Link Expired' page.")
             return render(request, self.template_name, {'validlink': False})
 
-        # 5. Handle Post vs Get
         if request.method == 'POST':
-            print("--- [DEBUG] POST RECEIVED ---")
             return self.post(request, *args, **kwargs)
 
-        print("--- [DEBUG] GET RECEIVED: Showing Form ---")
         return render(request, self.template_name, self.get_context_data())
             
 
