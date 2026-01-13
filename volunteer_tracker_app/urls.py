@@ -33,7 +33,7 @@ urlpatterns = [
 
     path('accounts/password-reset/', views.MyPasswordResetView.as_view(), name='password_reset'),
     re_path(
-        r'^accounts/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$', 
+        r'^accounts/reset/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$', 
         views.MyCustomPasswordResetConfirmView.as_view(), 
         name='password_reset_confirm'
     ),

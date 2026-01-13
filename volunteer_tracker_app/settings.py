@@ -222,9 +222,13 @@ AUTHENTICATION_BACKENDS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'America/Indiana/Indianapolis'
 USE_I18N = True
 USE_TZ = True
+
+if MODE == "dev":
+    TIME_ZONE = 'America/Indiana/Indianapolis'
+else:
+    TIME_ZONE = 'UTC'
 
 
 # Static files (CSS, JavaScript, Images)
