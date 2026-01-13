@@ -9,3 +9,9 @@ Pillow
 django-q2 
 croniter
 django-phonenumber-field[phonenumbers]
+
+django-environ      # To handle your secrets securely
+dj-database-url     # To automatically connect to Railway's Postgres
+whitenoise          # To serve your CSS/JS files (since you won't have Nginx)
+psycopg2-binary     # The driver for Postgres
+gunicorn            # The production web server

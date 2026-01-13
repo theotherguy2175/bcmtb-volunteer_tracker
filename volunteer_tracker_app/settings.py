@@ -13,12 +13,20 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import ssl
+import environ
+import dj_database_url
+
+SECRET_KEY = env('SECRET_KEY')
+DEBUG = env('DEBUG')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+#
+env = environ.Env(DEBUG=(bool, False))
+# Read .env file if it exists (local dev)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 #### SECURITY WARNING: keep the secret key used in production secret!
-
 MODE = os.environ.get("MODE")
 
 print(f"ENVS:")
@@ -31,7 +39,10 @@ else:
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
 
-ALLOWED_HOSTS = ['*']
+if MODE == "dev":
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['.railway.app', 'localhost', '127.0.0.1'])
 
 CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")
 if CSRF_TRUSTED_ORIGINS:
@@ -155,17 +166,23 @@ LOGGING = {
     },
 }
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'django'),
-        'USER': os.environ.get('POSTGRES_USER', 'django'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'django'),
-        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
-        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+if MODE == "dev":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('POSTGRES_DB', 'django'),
+            'USER': os.environ.get('POSTGRES_USER', 'django'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'django'),
+            'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+            'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=env('DATABASE_URL', default=f"sqlite:///{BASE_DIR}/db.sqlite3")
+        )
+    }
 print(f"DB CONFIG: {DATABASES}")
 
 
