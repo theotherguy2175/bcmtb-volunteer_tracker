@@ -43,12 +43,13 @@ if MODE == "dev":
 else:
     ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['.railway.app', 'localhost', '127.0.0.1'])
 
-CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")
+CSRF_TRUSTED_ORIGINS = os.environ.get("RAILWAY_PUBLIC_DOMAIN")
 if CSRF_TRUSTED_ORIGINS:
     CSRF_TRUSTED_ORIGINS = CSRF_TRUSTED_ORIGINS.split(",")
 else:
     # fallback for local testing
     CSRF_TRUSTED_ORIGINS = ["https://localhost", "https://127.0.0.1", "https://mtbtest.casteel.pw"]
+    # CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('RAILWAY_PUBLIC_DOMAIN', ''), 'https://bcmtb-volunteertracker-production.up.railway.app']
 
 # Force the session cookie to be sent even when coming from an external link (like Gmail)
 SESSION_COOKIE_SAMESITE = 'Lax' 
