@@ -12,18 +12,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import ssl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#### SECURITY WARNING: keep the secret key used in production secret!
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-ytu@ckohy(ieunx=cyqxwoljel_wr@%a60!d_b!b8!^v=ii9(b'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 MODE = os.environ.get("MODE")
 
 print(f"ENVS:")
@@ -34,14 +29,8 @@ if MODE == "dev":
 else:
     DEBUG = False
 
-
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
-######DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
-# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
-# if ALLOWED_HOSTS:
-#     ALLOWED_HOSTS = ALLOWED_HOSTS.split(",")
-# else:
-#     ALLOWED_HOSTS = ["*"]
+
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")
@@ -82,8 +71,6 @@ print(f"SESSION_COOKIE_SECURE: {SESSION_COOKIE_SECURE}")
 print(f"CSRF_COOKIE_SECURE: {CSRF_COOKIE_SECURE}")
 
 # Application definition
-# python manage.py shell -c "from django.contrib.sessions.models import Session; from django.utils import timezone; print(f'Total Sessions: {Session.objects.count()}'); print(f'Latest Session: {Session.objects.order_by(\"-expire_date\").first().session_key if Session.objects.exists() else \"None\"}')"
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -186,22 +173,13 @@ print(f"DB CONFIG: {DATABASES}")
 EMAIL_BACKEND = "msgraphbackend.MSGraphBackend"
 EMAIL_CHARSET = 'utf-8'
 
-
 MSGRAPH_TENANT_ID = os.environ.get("MSGRAPH_TENANT_ID")
 MSGRAPH_CLIENT_ID = os.environ.get("MSGRAPH_CLIENT_ID")
 MSGRAPH_CLIENT_SECRET = os.environ.get("MSGRAPH_CLIENT_SECRET")
 
 # The email address that has the mailbox
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", 'noreply@browncountymtb.org')
-# else:
-    # Fallback to console for local dev
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-import ssl
 EMAIL_SSL_CONTEXT = ssl._create_unverified_context()
-
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

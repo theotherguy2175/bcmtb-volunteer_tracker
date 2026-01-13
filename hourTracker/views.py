@@ -1,11 +1,38 @@
-from django.utils import timezone
-from django.db.models import Sum
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from .models import VolunteerEntry
-from .forms import VolunteerEntryForm, CustomUserCreationForm
-from django.contrib.auth.decorators import user_passes_test
+import csv
 
+# Django Core & Utilities
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import PermissionDenied
+from django.core.mail import EmailMessage, send_mail
+from django.db.models import Q, Sum
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.template.loader import render_to_string
+from django.utils import timezone
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+
+# Local App Imports
+from .forms import (
+    VolunteerEntryForm, 
+    CustomUserCreationForm, 
+    AdminVolunteerEntryForm, 
+)
+from .models import (
+    VolunteerEntry, 
+    CustomUser, 
+    VolunteerTask, 
+    VolunteerReward
+)
+
+# Initialize User
+User = get_user_model()
 
 @login_required
 def dashboard(request):
@@ -107,9 +134,7 @@ def add_entry(request):
     }
     return render(request, 'hourTracker/entry_form.html', context)
 
-from django.contrib.admin.views.decorators import staff_member_required
-from .forms import AdminVolunteerEntryForm
-
+#=======================Entry Views========================
 @login_required
 @staff_member_required
 def admin_add_entry(request):
@@ -186,19 +211,6 @@ def delete_entry(request, pk):
 
 #=======================Registration and Activation Views========================
 # Registration View with Email Activation
-from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
-User = get_user_model()
-
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-from django.template.loader import render_to_string
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import EmailMessage
-
-from django.contrib import messages
-
 def register_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -245,9 +257,6 @@ def register_view(request):
     return render(request, 'hourTracker/register.html', {'form': form})
 
 # Activation View for new users
-from django.utils.encoding import force_str
-from django.utils.http import urlsafe_base64_decode
-
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -263,10 +272,6 @@ def activate(request, uidb64, token):
     else:
         return render(request, 'hourTracker/activation_invalid.html')
 
-# views.py
-from django.contrib import messages
-from django.conf import settings
-from django.core.mail import send_mail
 
 def resend_activation(request):
     if request.method == 'POST':
@@ -293,12 +298,7 @@ def resend_activation(request):
         
     return render(request, 'hourTracker/resend_activation.html')
 
-#Export Table to CSV
-import csv
-from django.http import HttpResponse
-
-from django.db.models import Q,Sum
-
+#=======================CSV Export Views========================
 def export_csv(request):
     search_query = request.GET.get('search', '')
     print(search_query)
@@ -325,10 +325,6 @@ def export_csv(request):
     return response
 
 #=======================Rewards Views========================
-from django.shortcuts import render
-from .models import VolunteerReward, VolunteerEntry
-from django.db.models import Sum
-
 def rewards(request):
 
     # Get all rewards, ordered by the hours required
@@ -356,19 +352,13 @@ def rewards(request):
     return render(request, 'rewards.html', context)
 
 #=======================Reports Views========================
-import csv
-from django.http import HttpResponse
-from django.shortcuts import render
-from .models import CustomUser, VolunteerEntry, VolunteerTask # Use your actual models
-from django.core.exceptions import PermissionDenied
-
 def if_staff_check(user):
     if user.is_authenticated and user.is_staff:
         return True
     # If they aren't staff, stop here and throw the 403 error
     raise PermissionDenied
 
-
+#=========================REPORTS VIEWS=========================#
 @user_passes_test(if_staff_check)
 def reports_page(request):
     return render(request, 'reports.html')
@@ -423,12 +413,6 @@ def export_users_csv(request):
         ])
 
     return response
-
-import csv
-from django.utils import timezone
-from django.db.models import Sum
-from django.http import HttpResponse
-from django.contrib.auth.decorators import user_passes_test
 
 @user_passes_test(if_staff_check)
 def export_user_yearly_totals_csv(request):
