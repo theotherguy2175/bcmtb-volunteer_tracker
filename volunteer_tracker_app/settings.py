@@ -36,6 +36,7 @@ else:
     DEBUG = False
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
+print(f"SECRET_KEY: {SECRET_KEY}")
 
 if MODE == "dev":
     ALLOWED_HOSTS = ['*']
