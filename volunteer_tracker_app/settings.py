@@ -41,9 +41,10 @@ print(f"SECRET_KEY: {SECRET_KEY}")
 if MODE == "dev":
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['.railway.app', 'localhost', '127.0.0.1'])
+    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_LIST', default=['.railway.app', 'localhost', '127.0.0.1'])
+print(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
 
-CSRF_TRUSTED_ORIGINS = os.environ.get("RAILWAY_PUBLIC_DOMAIN")
+CSRF_TRUSTED_ORIGINS = os.environ.get("ALLOWED_HOSTS_LIST")
 
 if CSRF_TRUSTED_ORIGINS:
     # Split the string and prepend https:// to each domain
@@ -52,7 +53,6 @@ if CSRF_TRUSTED_ORIGINS:
 else:
     # fallback for local testing
     CSRF_TRUSTED_ORIGINS = ["https://localhost", "https://127.0.0.1", "https://mtbtest.casteel.pw"]
-    # CSRF_TRUSTED_ORIGINS = ['https://' + os.environ.get('RAILWAY_PUBLIC_DOMAIN', ''), 'https://bcmtb-volunteertracker-production.up.railway.app']
 
 # Force the session cookie to be sent even when coming from an external link (like Gmail)
 SESSION_COOKIE_SAMESITE = 'Lax' 
