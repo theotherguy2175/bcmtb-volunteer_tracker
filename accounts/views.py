@@ -146,7 +146,7 @@ def request_password_reset(request):
             
             # 5. Store email in session for the verification view
             request.session['reset_email'] = email
-            return redirect('verify_pin')
+            return redirect('accounts:verify_pin')
             
         except Exception as e:
             print(f"Email Error: {e}")
