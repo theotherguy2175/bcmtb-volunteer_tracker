@@ -82,22 +82,22 @@
                   </div>
    
                   <div class="dropdown__list">
-                     <a href="{% url 'profile' %}" class="dropdown__link">
+                     <a href="{% url 'accounts:profile' %}" class="dropdown__link">
                         <i class="ri-user-line"></i>
                         <span>Profile</span>
                      </a>
       
-                     <a href="/password_change/" class="dropdown__link">
+                     <a href="{% url 'accounts:password_change' %}" class="dropdown__link">
                         <i class="ri-settings-3-line"></i>
                         <span>Password</span>
                      </a>
    
-                     <a href="{% url 'logout' %}" class="dropdown__link" id="logout-link">
+                     <a href="{% url 'accounts:logout' %}" class="dropdown__link" id="logout-link">
                         <i class="ri-logout-box-r-line"></i>
                         <span>Logout</span>
                      </a>
                      <!-- This is hidden by JS -->
-                     <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                     <form id="logout-form" action="{% url 'accounts:logout' %}" method="post" style="display: none;">
                         {% csrf_token %}
                      </form>
                   </div>

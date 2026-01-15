@@ -1,17 +1,31 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import PasswordResetPIN
-from django.utils import timezone
-import random
+# Python Standard Library
 import datetime
-from django.db import models
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
-from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, LoginView, INTERNAL_RESET_SESSION_TOKEN
-from django.contrib.auth import get_user_model, login, update_session_auth_hash
+import secrets
+import string
 
-from django.core.mail import send_mail
-
+# Django Core - Shortcuts & Settings
+from django.shortcuts import render, redirect
 from django.conf import settings
+from django.contrib import messages
+from django.utils import timezone
+from django.utils.html import strip_tags
+
+# Django Core - Auth & Forms
+from django.contrib.auth import get_user_model, login, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView, INTERNAL_RESET_SESSION_TOKEN
+
+# Django Core - Mail & Templates
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.template.loader import render_to_string
+
+# Django Core - Database
+from django.db import models
+
+# Local App Imports
+from .models import PasswordResetPIN
+from .forms import UserProfileForm
 
 #=========================CLASSES=========================#
 class CustomAuthenticationForm(AuthenticationForm):
@@ -42,22 +56,50 @@ class CustomLoginView(LoginView):
         login(self.request, user)
         return redirect(self.get_success_url())
 
-#=========================FUNCTIONS=========================#
-import string
-import secrets # More secure than 'random' for passwords
+#=========================VIEWS=========================#
+# PROFILE VIEW
+@login_required
+def profile_view(request):
+    if request.method == 'POST':
+        # Pass instance=request.user so it updates the existing record
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=request.user)
+
+    return render(request, 'profile.html', {'profile_form': form})
+
+
+@login_required
+def password_change_view(request):
+    if request.method == 'POST':
+        # Pass the current user (your CustomUser) into the form
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            # This is crucial: it keeps the user logged in after the password change
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('accounts:profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    
+    return render(request, 'password_change.html', {
+        'form': form
+    })
+
+
 
 def generate_alphanumeric_pin(length=6):
     # We exclude 'O', '0', 'I', '1', 'l' to prevent user confusion
     characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789" 
     return ''.join(secrets.choice(characters) for _ in range(length))
 
-
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
-from django.conf import settings
-from django.utils import timezone
-import datetime
 
 def request_password_reset(request):
     if request.method == 'POST':
@@ -112,16 +154,7 @@ def request_password_reset(request):
 
     return render(request, 'reset_request.html')
 
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.utils import timezone
-from django.contrib.auth import get_user_model
-from django.conf import settings  # Ensure this is imported for your timeout setting
-from .models import PasswordResetPIN
-import datetime
-
 User = get_user_model()
-
 def verify_pin(request):
     # 1. Safety Check: Ensure user started the reset process
     email = request.session.get('reset_email')
