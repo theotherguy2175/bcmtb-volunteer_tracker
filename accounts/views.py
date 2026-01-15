@@ -215,7 +215,7 @@ def verify_pin(request):
                 del request.session['reset_email'] # Clear the session
                 
                 messages.success(request, "Success! Your password has been updated.")
-                return redirect('login')
+                return redirect('accounts:login')
         else:
             messages.error(request, "No active reset request found. Please start over.")
             return redirect('request_password_reset')
