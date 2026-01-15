@@ -30,7 +30,24 @@
     margin-bottom: 1em; /* adjust spacing as needed */
 }
 
+#table {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Ensure the wrapper doesn't force a horizontal scroll */
+.dataTables_wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
 /* Remove the default DataTables button border and background gradients */
 .dt-butttons {
     border: pink;
+}
+@media (max-width: 1300px) {
+.action-button{
+    margin-bottom: .5rem;
+    width: 35%;
+}
 }

@@ -71,7 +71,8 @@ $(document).ready(function() {
     
     // 1. Initialize the table
     var table = $('#table').DataTable({
-        // We simplified 'dom'. 
+        responsive: true,
+        autoWidth: false, // Prevents hard-coded pixel widths on columns
         // 'lBfrtip' puts everything in a plain list so we can grab them easily.
         dom: 'lBfrtip',
         
@@ -135,7 +136,7 @@ $(document).ready(function() {
 
 // 2. Handle the Row Clicks for the Expandable Edit/Delete buttons
     $('#table tbody').on('click', 'tr', function() {
-        if (window.innerWidth > 768) return; 
+
         if ($(this).hasClass('action-row')) return;
         
         var $this = $(this);
@@ -265,3 +266,9 @@ function showBulmaNotification(message) {
     }, 5000);
 }
 
+$(window).on('resize', function () {
+    // This forces DataTables to recalculate column widths
+    if ($.fn.DataTable.isDataTable('#table')) {
+        $('#table').DataTable().columns.adjust().draw();
+    }
+});

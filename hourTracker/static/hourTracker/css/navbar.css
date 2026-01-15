@@ -338,10 +338,21 @@ nav a img {
         margin: 0 !important;
         font-size: 1.5rem;
     }
+
+    .actions-col {
+        display: none !important;
+    }
+    .mobile-only {
+        display: table-cell !important;
+    }
 }
 
 /* 2. Hide the Action Row (the sub-menu) on Desktop just in case */
 @media screen and (min-width: 769px) {
+    .mobile-only {
+        display: none !important;
+    }
+    /* Ensure the action row never shows on desktop even if clicked */
     .action-row {
         display: none !important;
     }

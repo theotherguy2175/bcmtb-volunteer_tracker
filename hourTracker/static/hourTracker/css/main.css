@@ -18,10 +18,21 @@
 }
 
 .main-container {
-    background-color: none;
-    max-width: 900px;   /* or whatever looks good */
-    margin: 2rem auto;  /* centers horizontally */
-    padding: 1rem;
+    width: 100%;
+    padding: 0 1.5rem; /* Ensures a gap on mobile screens */
+    margin: 3rem 0 0 0;
+}
+/* For Header and Buttons (Readability focus) */
+.standard-width {
+    width: 95%; /* Margin on small screens */
+    /* clamp(MIN, VAL, MAX) */
+    max-width: clamp(20rem, 90vw, 56rem); 
+    margin: 0 auto;
+}
+.table-width {
+    width: 95%;
+    max-width: clamp(20rem, 95vw, 75rem);
+    margin: 0 auto;
 }
 
 .header-row {
