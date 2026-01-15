@@ -202,6 +202,8 @@ MSGRAPH_CLIENT_SECRET = os.environ.get("MSGRAPH_CLIENT_SECRET")
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", 'noreply@browncountymtb.org')
 EMAIL_SSL_CONTEXT = ssl._create_unverified_context()
 
+PASSWORD_PIN_TIMEOUT_MINUTES = 60  # PIN valid for 10 minutes
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -274,4 +276,3 @@ Q_CLUSTER = {
 
 PHONENUMBER_DEFAULT_REGION = "US"
 
-PASSWORD_PIN_TIMEOUT_MINUTES = 60  # PIN valid for 10 minutes

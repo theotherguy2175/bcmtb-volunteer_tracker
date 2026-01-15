@@ -52,38 +52,63 @@ def generate_alphanumeric_pin(length=6):
     return ''.join(secrets.choice(characters) for _ in range(length))
 
 
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.conf import settings
+from django.utils import timezone
+import datetime
+
 def request_password_reset(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
+        email = request.POST.get('email', '').strip()
         
-        # 1. Cooldown Check: Prevent more than 1 PIN every 60 seconds
+        # 1. Cooldown Check: Prevent spamming requests
+        # (Using 60 seconds is standard for production)
         recent_pin = PasswordResetPIN.objects.filter(
             email=email, 
-            created_at__gt=timezone.now() - datetime.timedelta(seconds=2)
+            created_at__gt=timezone.now() - datetime.timedelta(seconds=60)
         ).exists()
 
         if recent_pin:
             messages.error(request, "Please wait a minute before requesting another code.")
             return render(request, 'reset_request.html')
 
-        # 2. Generate and Save
-        #pin = f"{random.randint(100000, 999999)}"
+        # 2. Generate and Save PIN
         pin = generate_alphanumeric_pin()
         PasswordResetPIN.objects.filter(email=email).delete() # Clear old ones
         PasswordResetPIN.objects.create(email=email, pin=pin)
 
-        # 3. Send Email (Replace with your actual send_mail logic)
-        print(f"DEBUG: Sent {pin} to {email}") 
-        subject = "Your Password Reset PIN"
-        message = f"Your 6-digit reset code is: {pin}. It expires in {settings.PASSWORD_PIN_TIMEOUT_MINUTES} minutes."
-        from_email = settings.DEFAULT_FROM_EMAIL
-        recipient_list = [email]
+        # 3. Prepare Nice HTML Email
+        timeout = getattr(settings, 'PASSWORD_PIN_TIMEOUT_MINUTES', 10)
+        context = {
+            'pin': pin,
+            'timeout': timeout,
+        }
         
-        send_mail(subject, message, from_email, recipient_list)
+        subject = f"Your Reset Code: {pin}"
+        from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@yourdomain.com')
+        
+        # Render the HTML template we created
+        html_content = render_to_string('email_reset_pin.html', context)
+        # Create a plain-text version for backup
+        text_content = strip_tags(html_content) 
 
-        # 4. Store email in session so the next view knows who we are verifying
-        request.session['reset_email'] = email
-        return redirect('verify_pin')
+        # 4. Send Multi-Part Email
+        try:
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+            
+            print(f"DEBUG: HTML Email sent with PIN {pin} to {email}") 
+            
+            # 5. Store email in session for the verification view
+            request.session['reset_email'] = email
+            return redirect('verify_pin')
+            
+        except Exception as e:
+            print(f"Email Error: {e}")
+            messages.error(request, "There was an error sending the email. Please try again later.")
 
     return render(request, 'reset_request.html')
 
