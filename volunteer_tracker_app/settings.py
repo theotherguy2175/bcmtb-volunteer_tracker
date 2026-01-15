@@ -38,21 +38,38 @@ else:
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'fallback-secret')
 print(f"SECRET_KEY: {SECRET_KEY}")
 
+# 1. ALLOWED_HOSTS
 if MODE == "dev":
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_LIST', default=['.railway.app', 'localhost', '127.0.0.1'])
-print(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
+    # Get the raw string from Railway env
+    raw_hosts = os.environ.get("ALLOWED_HOSTS_LIST", "")
+    
+    # Start with your wildcard defaults
+    ALLOWED_HOSTS = ['.browncountymtb.org', '.railway.app', 'localhost', '127.0.0.1']
+    
+    # Add the specific domains from your env var
+    if raw_hosts:
+        ALLOWED_HOSTS += [host.strip() for host in raw_hosts.split(",") if host]
 
-CSRF_TRUSTED_ORIGINS = os.environ.get("ALLOWED_HOSTS_LIST")
-
-if CSRF_TRUSTED_ORIGINS:
-    # Split the string and prepend https:// to each domain
-    CSRF_TRUSTED_ORIGINS = [f"https://{domain.strip()}" for domain in CSRF_TRUSTED_ORIGINS.split(",")]
-    print(f"CSRF_TRUSTED_ORIGINS from ENV: {CSRF_TRUSTED_ORIGINS}")
+# 2. CSRF_TRUSTED_ORIGINS
+# This MUST have the full https:// prefix and NO wildcards
+if MODE == "dev":
+    CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1"]
 else:
-    # fallback for local testing
-    CSRF_TRUSTED_ORIGINS = ["https://localhost", "https://127.0.0.1", "https://mtbtest.casteel.pw"]
+    raw_hosts = os.environ.get("ALLOWED_HOSTS_LIST")
+    if raw_hosts:
+        # Prepend https:// and ensure no leading dots (wildcards)
+        CSRF_TRUSTED_ORIGINS = [
+            f"https://{host.strip().lstrip('.')}" 
+            for host in raw_hosts.split(",") 
+            if host
+        ]
+    else:
+        CSRF_TRUSTED_ORIGINS = ["https://mtbtest.casteel.pw"]
+
+print(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
+print(f"CSRF_TRUSTED_ORIGINS: {CSRF_TRUSTED_ORIGINS}")
 
 # Force the session cookie to be sent even when coming from an external link (like Gmail)
 SESSION_COOKIE_SAMESITE = 'Lax' 
