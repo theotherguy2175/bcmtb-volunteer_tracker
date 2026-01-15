@@ -58,7 +58,7 @@
                 <div class="is-flex is-justify-content-center is-align-items-center mt-2">
                     <a href="{% url 'register' %}" class="mr-2">Register</a>
                     <span>|</span>
-                    <a href="/accounts/password_reset/" class="ml-2">Forgot Password</a>
+                    <a href="{% url 'accounts:request_password_reset' %}" class="ml-2">Forgot Password</a>
                 </div>
             </p>
         </div>
