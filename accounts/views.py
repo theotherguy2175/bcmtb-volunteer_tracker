@@ -66,7 +66,7 @@ def profile_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully!')
-            return redirect('profile')
+            return redirect('accounts:profile')
     else:
         form = UserProfileForm(instance=request.user)
 
@@ -159,7 +159,7 @@ def verify_pin(request):
     # 1. Safety Check: Ensure user started the reset process
     email = request.session.get('reset_email')
     if not email:
-        return redirect('request_password_reset')
+        return redirect('accounts:request_password_reset')
 
     # 2. Initialize variables
     expiry_timestamp = None
@@ -218,7 +218,7 @@ def verify_pin(request):
                 return redirect('accounts:login')
         else:
             messages.error(request, "No active reset request found. Please start over.")
-            return redirect('request_password_reset')
+            return redirect('accounts:request_password_reset')
 
     # 5. Render Page
     return render(request, 'verify_pin.html', {
