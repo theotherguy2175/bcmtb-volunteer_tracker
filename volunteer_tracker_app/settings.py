@@ -187,18 +187,6 @@ LOGGING = {
     },
 }
 
-# if MODE == "dev":
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': os.environ.get('POSTGRES_DB', 'django'),
-#             'USER': os.environ.get('POSTGRES_USER', 'django'),
-#             'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'django'),
-#             'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
-#             'PORT': os.environ.get('POSTGRES_PORT', '5432'),
-#         }
-#     }
-# else:
 DATABASES = {
     'default': dj_database_url.config(
         default=env('DATABASE_URL', default=f"sqlite:///{BASE_DIR}/db.sqlite3")

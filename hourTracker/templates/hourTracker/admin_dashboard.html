@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<style> 
+    .htmx-swapping {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+</style>
+
 <div class="main-container">
     <div class="level mb-5">
         <div class="level-left">
@@ -60,7 +68,7 @@
             </thead>
             <tbody>
                 {% for e in entries %}
-                <tr class="clickable-row" data-pk="{{ e.pk }}">
+                <tr class="clickable-row" id="row-{{ e.pk }}" data-pk="{{ e.pk }}">
 
                     <td>{{e.user.last_name}}, {{ e.user.first_name }}</td>
                     <td data-order="{{ e.date|date:'Ymd' }}">{{ e.date }}</td>
@@ -69,7 +77,15 @@
                     <td>{{ e.location.name }}</td>
                     <td class="actions-col">
                         <a href="{% url 'edit_entry' e.pk %}?next={{ request.get_full_path }}" class="button is-warning" style="height:1rem">Edit</a> 
-                        <a href="{% url 'delete_entry' e.pk %}" class="button is-danger" style="height:1rem">Delete</a>
+                        <button 
+                            hx-post="{% url 'delete_entry' e.pk %}" 
+                            hx-target="closest tr" 
+                            hx-swap="outerHTML swap:0.5s" 
+                            hx-confirm="Are you sure you want to delete this?"
+                            class="button is-danger" 
+                            style="height:1rem">
+                            Delete
+                        </button>
                     </td>
                     <td class="mobile-only text-center">⋮</td>
                 </tr>
@@ -97,9 +113,14 @@
 
 <script>
     const isStaff = "{{ user.is_staff|yesno:'true,false' }}" === "true";
+
+    //gets CSRF token for htmx requests only when clicked
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script src="https://unpkg.com/htmx.org"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 

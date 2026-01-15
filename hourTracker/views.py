@@ -18,6 +18,7 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.views.decorators.http import require_POST
 
 # Local App Imports
 from .forms import (
@@ -200,14 +201,19 @@ def edit_entry(request, pk):
     return render(request, 'hourTracker/entry_form.html', context)
 
 @login_required
+@require_POST  # Ensures this view only accepts POST requests
 def delete_entry(request, pk):
+    # Your existing logic to fetch the record
     if request.user.is_staff or request.user.is_superuser:
         entry = get_object_or_404(VolunteerEntry, pk=pk)
     else:
         entry = get_object_or_404(VolunteerEntry, pk=pk, user=request.user)
     
     entry.delete()
-    return redirect('dashboard')
+
+    # Returning an empty response tells HTMX to remove 
+    # the hx-target from the DOM entirely.
+    return HttpResponse("")
 
 #=======================Registration and Activation Views========================
 # Registration View with Email Activation

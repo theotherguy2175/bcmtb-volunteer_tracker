@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<style> 
+    .htmx-swapping {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+    }
+</style>
+
+
 <div class="main-container">
 
    <div class="level mb-5">
@@ -73,7 +83,7 @@
             </thead>
             <tbody>
                 {% for e in entries %}
-                <tr class="clickable-row" data-pk="{{ e.pk }}">
+                <tr class="clickable-row" id="row-{{ e.pk }}" data-pk="{{ e.pk }}">
                     <td data-order="{{ e.date|date:'Ymd' }}">{{ e.date }}</td>
                     <td>{{ e.hours }}</td>
                     <td>{{ e.category.name }}</td>
@@ -81,10 +91,17 @@
                     <td class="actions-col">
                         {% if user.is_staff %}
                         <a href="{% url 'edit_entry' e.pk %}?next={{ request.get_full_path }}" class="button is-warning" style="height:1rem">Edit</a>
-                        {% else %}
-                        <!-- <a onclick="editNofication()" class="button is-warning openModalBtn" style="height:1rem">Edit</a>  -->
                         {% endif %}
-                        <a href="{% url 'delete_entry' e.pk %}" class="button is-danger" style="height:1rem">Delete</a>
+                        
+                        <button 
+                            hx-post="{% url 'delete_entry' e.pk %}" 
+                            hx-target="#row-{{ e.pk }}" 
+                            hx-swap="outerHTML swap:0.5s" 
+                            hx-confirm="Are you sure?"
+                            class="button is-danger" 
+                            style="height:1rem">
+                            Delete
+                        </button>
                     </td>
                     <td class="mobile-only text-center">⋮</td>
                 </tr>
@@ -109,12 +126,20 @@
 </div>
 
 
-<script>
-    const isStaff = "{{ user.is_staff|yesno:'true,false' }}" === "true";
-</script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://unpkg.com/htmx.org"></script>
+
+<script>
+    const isStaff = "{{ user.is_staff|yesno:'true,false' }}" === "true";
+
+    // Handle Django CSRF for HTMX
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+</script>
+
 
 {% endblock %}

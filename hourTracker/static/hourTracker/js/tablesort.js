@@ -133,13 +133,19 @@ $(document).ready(function() {
     $('#datatable-controls').empty().append($controls);
 
 
-    // 2. Handle the Row Clicks for the Expandable Edit/Delete buttons
+// 2. Handle the Row Clicks for the Expandable Edit/Delete buttons
     $('#table tbody').on('click', 'tr', function() {
         if (window.innerWidth > 768) return; 
         if ($(this).hasClass('action-row')) return;
         
         var $this = $(this);
         var pk = $this.data('pk');
+        
+        // Ensure the main row has a specific ID so we can target it for deletion
+        if (!$this.attr('id')) {
+            $this.attr('id', 'row-' + pk);
+        }
+
         var nextRow = $this.next('.action-row');
 
         if (nextRow.length && nextRow.is(':visible')) {
@@ -158,18 +164,39 @@ $(document).ready(function() {
             editButton = `<a class="button is-warning openModalBtn">Edit</a>`;          
         }
 
+        // ... inside your $('#table tbody').on('click', 'tr', function() ...
+
+        // 1. Ensure the main row has the ID so HTMX can find it
+        // $this.attr('id', 'row-' + pk); 
+
+        // 2. Updated Action Row
         var actionRow = `
-            <tr class="action-row">
+            <tr class="action-row" id="actions-${pk}">
                 <td colspan="${$this.children().length}">
                     <div class="action-box" style="text-align:center; padding: 10px; background: #363636; border-radius: 4px;">
                         ${editButton}
-                        <a href="/delete/${pk}/?next=${currentPath}" class="button is-danger">Delete</a>
+                        <button 
+                            hx-post="/delete/${pk}/" 
+                            hx-target="#row-${pk}" 
+                            hx-swap="outerHTML swap:0.5s" 
+                            hx-confirm="Are you sure?"
+                            hx-on::after-request="if(event.detail.successful) $('#actions-${pk}').remove();"
+                            class="button is-danger">
+                            Delete
+                        </button>
                     </div>
                 </td>
             </tr>
         `;
+
+    
+
         $this.after(actionRow);
+
+        // Crucial: Tell HTMX to initialize the button we just injected
+        htmx.process(document.getElementById("actions-" + pk));
     });
+
 
     // 3. Delegation for the openModalBtn
     $('#table').on('click', '.openModalBtn', function(e) {
