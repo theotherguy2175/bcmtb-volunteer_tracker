@@ -97,6 +97,7 @@ INSTALLED_APPS = [
     'crispy_bulma',
     'django_q',
     # custom apps
+    'accounts',
     'hourTracker',
 
 ]
@@ -272,3 +273,5 @@ Q_CLUSTER = {
 }
 
 PHONENUMBER_DEFAULT_REGION = "US"
+
+PASSWORD_PIN_TIMEOUT_MINUTES = 60  # PIN valid for 10 minutes

@@ -1,0 +1,49 @@
+{% extends "base_unauth.html" %}
+
+{% block content %}
+<div class="main-container">
+    <div class="form-container box" style="max-width: 450px; margin: 50px auto;">
+        <h1 class="title has-text-centered">Reset Password</h1>
+        <p class="subtitle is-6 has-text-centered">
+            Enter your email address to receive a 6-character reset code.
+        </p>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="notification is-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} is-light">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="field">
+                <label class="label" for="email">Email Address</label>
+                <div class="control has-icons-left">
+                    <input class="input" type="email" name="email" id="email" 
+                           placeholder="e.g. john@gmail.com" required>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                </div>
+            </div>
+            
+            <div class="field mt-5">
+                <div class="control">
+                    <button type="submit" class="button is-success is-fullwidth">
+                        Send Reset Code
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+        <div class="is-flex is-justify-content-center is-align-items-center mt-4">
+            <a href="{% url 'login' %}" >
+                <i class="fas fa-arrow-left mr-1"></i> Back to Login
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

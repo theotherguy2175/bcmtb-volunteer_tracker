@@ -1,0 +1,124 @@
+{% extends "base_unauth.html" %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    .password-container { position: relative; width: 100%; }
+    .toggle-password {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 10;
+        color: #4a4a4a;
+    }
+    .form-container { max-width: 450px; margin: 50px auto; padding: 20px; }
+    #countdown { font-weight: bold; color: #d9534f; }
+</style>
+
+<div class="main-container">
+    <div class="form-container box">
+        <h2 class="title is-4 has-text-centered">Verify Reset Code</h2>
+        <p class="has-text-centered mb-4">Sent to: <strong>{{ email }}</strong></p>
+        
+        <div id="timer-box" class="notification is-warning is-light has-text-centered">
+            Expires in: <span id="countdown">--:--</span>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="notification is-danger is-light">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="field">
+                <label class="label">6-Digit PIN</label>
+                <div class="control">
+                    <input class="input is-large has-text-centered" type="text" name="pin" id="pin" 
+                           maxlength="6" required placeholder="ABC123" 
+                           style="letter-spacing: 5px; text-transform: uppercase;">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">New Password</label>
+                <div class="control password-container">
+                    <input class="input" type="password" name="password" required>
+                    <span class="toggle-password"><i class="fa-solid fa-eye"></i></span>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Confirm New Password</label>
+                <div class="control password-container">
+                    <input class="input" type="password" name="confirm_password" required>
+                    <span class="toggle-password"><i class="fa-solid fa-eye"></i></span>
+                </div>
+            </div>
+
+            <div class="control mt-5">
+                <button type="submit" class="button is-success is-fullwidth">Update Password</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // 1. PIN Auto-Uppercase
+    document.getElementById('pin').addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+    });
+
+        // Password Match Validation
+    const password = document.querySelector('input[name="password"]');
+    const confirm = document.querySelector('input[name="confirm_password"]');
+
+    confirm.addEventListener('input', function() {
+        if (confirm.value !== password.value) {
+            confirm.style.borderColor = "red";
+        } else {
+            confirm.style.borderColor = "green";
+        }
+    });
+
+    // 2. Multi-Field Password Toggle Logic
+    document.querySelectorAll('.toggle-password').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const input = this.previousElementSibling; // Finds the input field
+            const icon = this.querySelector('i');
+            
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+    });
+
+    // 3. Countdown Timer Logic
+    const rawExpiry = "{{ expiry_timestamp|default:'' }}";
+    if (rawExpiry) {
+        const expiryDate = new Date(rawExpiry).getTime();
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = expiryDate - now;
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("timer-box").innerHTML = "<strong>CODE EXPIRED</strong>";
+                document.getElementById("timer-box").className = "notification is-danger is-light has-text-centered";
+            }
+        }, 1000);
+    }
+
+</script>
+{% endblock %}

@@ -29,24 +29,17 @@ from django.urls import path, include, re_path
 
 
 urlpatterns = [
-    path('accounts/login/', views.CustomLoginView.as_view(), name='login'),
-
-    path('accounts/password-reset/', views.MyPasswordResetView.as_view(), name='password_reset'),
-    re_path(
-        r'^accounts/reset/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/$', 
-        views.MyCustomPasswordResetConfirmView.as_view(), 
-        name='password_reset_confirm'
-    ),
+    
     #path('accounts/reset/<uidb64>/<token>/', views.MyCustomPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
 
     path('profile/', views.profile_view, name='profile'),
     path('password_change/', views.password_change_view, name='password_change'),
 
-
     path('favicon.ico', RedirectView.as_view(url=settings.STATIC_URL + 'images/bcmb_logo.ico')),
     path('admin/', admin.site.urls),
     path('', include('hourTracker.urls')),  # main app
-    path('accounts/', include('django.contrib.auth.urls')),  # login/logout
+    path('accounts/', include('accounts.urls')),  # accounts app
+    #path('accounts/', include('django.contrib.auth.urls')),  # login/logout
     
 ]
 

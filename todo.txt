@@ -22,4 +22,6 @@ setup auto email at the end of the year 30 days prior
 
 clean up code / remove extra import lines
 
-add email notification that pw was changed for both email form, and profile form
+add email notification that pw was changed for both email form, and profile form\
+
+move all views and html to accounts if needed
