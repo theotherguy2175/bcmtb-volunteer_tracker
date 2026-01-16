@@ -202,6 +202,7 @@ EMAIL_CHARSET = 'utf-8'
 MSGRAPH_TENANT_ID = os.environ.get("MSGRAPH_TENANT_ID")
 MSGRAPH_CLIENT_ID = os.environ.get("MSGRAPH_CLIENT_ID")
 MSGRAPH_CLIENT_SECRET = os.environ.get("MSGRAPH_CLIENT_SECRET")
+MSG_GRAPH_SDK_LOGGING = True  # This might help see the raw JSON in Railway logs
 
 # The email address that has the mailbox
 DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", 'noreply@browncountymtb.org')
