@@ -101,17 +101,12 @@ def generate_alphanumeric_pin(length=6):
     return ''.join(secrets.choice(characters) for _ in range(length))
 
 
-import base64
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
-import datetime
-
 def request_password_reset(request):
     if request.method == 'POST':
         email = request.POST.get('email', '').strip()
         
-        # 1. Cooldown Check
+        # 1. Cooldown Check: Prevent spamming requests
+        # (Using 60 seconds is standard for production)
         recent_pin = PasswordResetPIN.objects.filter(
             email=email, 
             created_at__gt=timezone.now() - datetime.timedelta(seconds=60)
@@ -123,37 +118,42 @@ def request_password_reset(request):
 
         # 2. Generate and Save PIN
         pin = generate_alphanumeric_pin()
-        PasswordResetPIN.objects.filter(email=email).delete()
+        PasswordResetPIN.objects.filter(email=email).delete() # Clear old ones
         PasswordResetPIN.objects.create(email=email, pin=pin)
 
-        # 3. Prepare Email Content
+        # 3. Prepare Nice HTML Email
         timeout = getattr(settings, 'PASSWORD_PIN_TIMEOUT_MINUTES', 10)
-        context = {'pin': pin, 'timeout': timeout}
+        context = {
+            'pin': pin,
+            'timeout': timeout,
+        }
         
         subject = f"Your Reset Code: {pin}"
         from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@yourdomain.com')
         
+        # Render the HTML template we created
         html_content = render_to_string('email_reset_pin.html', context)
+        # Create a plain-text version for backup
         text_content = strip_tags(html_content) 
 
-        # 4. Corrected Encoding Fix
+        # 4. Send Multi-Part Email
+        from email import charset
         try:
+            charset.add_charset('utf-8', charset.SHORTEST, charset.BASE64, 'utf-8')
             msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
-            
-            # This is the secret sauce: 
-            # We attach the HTML but tell Django/Microsoft it is UTF-8 encoded.
-            # MSGraphBackend will see the UTF-8 flag and usually stop injecting "=" signs.
             msg.attach_alternative(html_content, "text/html")
-            msg.encoding = 'utf-8' 
-            
+            msg.encoding = 'utf-8'
             msg.send()
             
+            print(f"DEBUG: HTML Email sent with PIN {pin} to {email}") 
+            
+            # 5. Store email in session for the verification view
             request.session['reset_email'] = email
             return redirect('accounts:verify_pin')
             
         except Exception as e:
             print(f"Email Error: {e}")
-            messages.error(request, f"Error: {e}")
+            messages.error(request, "There was an error sending the email. Please try again later.")
 
     return render(request, 'reset_request.html')
 
