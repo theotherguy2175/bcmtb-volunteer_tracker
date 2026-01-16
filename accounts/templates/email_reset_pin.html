@@ -1,25 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <body style="margin: 0; padding: 0; background-color: #ffffff;">
-<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; border: 1px solid #eeeeee; border-radius: 8px; overflow: hidden;">
-    <div style="background-color: #48c78e; padding: 20px; text-align: center;">
-        <h2 style="margin: 0; color: #ffffff;">BCMTB Volunteer Tracker</h2>
-    </div>
-    <div style="padding: 30px; line-height: 1.6; color: #4a4a4a; text-align: center;">
-        <h3 style="color: #363636;">Password Reset Request</h3>
-        <p>Hello,</p>
-        <p>We received a request to reset your password.</p>
-        <p>Use the verification code below to complete the process:</p>
-        <div style="background-color: #f5f5f5; border: 2px dashed #48c78e; display: inline-block; 
-             padding: 15px 30px; margin: 20px 0; font-size: 24px; font-weight: bold; 
-             letter-spacing: 5px; color: #363636; border-radius: 4px;">
-            {{ pin }}
-        </div>
-        <p>This code will expire in <strong>{{ timeout }} minutes</strong>.</p>
-        <div style="font-size: 12px; color: #b5b5b5; margin-top: 20px;">
-            For security, never share this code with anyone.
-        </div>
-    </div>
-</div>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #eeeeee; border-collapse: collapse; font-family: Arial, sans-serif;">
+                    <tr>
+                        <td align="center" bgcolor="#48c78e" style="padding: 20px; color: #ffffff;">
+                            <h2 style="margin: 0; font-size: 24px;">BCMTB Volunteer Tracker</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="padding: 40px; color: #4a4a4a; line-height: 1.6;">
+                            <h3 style="margin: 0 0 20px 0; color: #363636;">Password Reset Request</h3>
+                            <p style="margin: 0 0 15px 0;">Hello, we received a request to reset your password.</p>
+                            <p style="margin: 0 0 20px 0;">Use the code below to complete the process:</p>
+                            
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td align="center" bgcolor="#f5f5f5" style="border: 2px dashed #48c78e; padding: 15px 30px; font-size: 24px; font-weight: bold; letter-spacing: 5px; color: #363636;">
+                                        {{ pin }}
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <p style="margin: 20px 0 0 0;">This code will expire in <strong>{{ timeout }} minutes</strong>.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" bgcolor="#fafafa" style="padding: 15px; font-size: 12px; color: #7a7a7a; border-top: 1px solid #eeeeee;">
+                            &copy; 2026 Brown County Mountain Biking
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
