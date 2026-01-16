@@ -137,9 +137,12 @@ def request_password_reset(request):
         text_content = strip_tags(html_content) 
 
         # 4. Send Multi-Part Email
+        from email import charset
         try:
+            charset.add_charset('utf-8', charset.SHORTEST, charset.BASE64, 'utf-8')
             msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
             msg.attach_alternative(html_content, "text/html")
+            msg.encoding = 'utf-8'
             msg.send()
             
             print(f"DEBUG: HTML Email sent with PIN {pin} to {email}") 
