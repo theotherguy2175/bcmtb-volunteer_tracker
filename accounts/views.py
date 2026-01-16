@@ -101,10 +101,10 @@ def generate_alphanumeric_pin(length=6):
     return ''.join(secrets.choice(characters) for _ in range(length))
 
 
+import base64
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from email import charset
 import datetime
 
 def request_password_reset(request):
@@ -133,23 +133,19 @@ def request_password_reset(request):
         subject = f"Your Reset Code: {pin}"
         from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', 'noreply@yourdomain.com')
         
-        # Render HTML
         html_content = render_to_string('email_reset_pin.html', context)
         text_content = strip_tags(html_content) 
 
-        # 4. The "Nuclear" Encoding Fix
+        # 4. Corrected Encoding Fix
         try:
-            # Force ALL utf-8 emails to use Base64 instead of Quoted-Printable (= signs)
-            # We use SHORTHAND here to correctly register the codec
-            charset.add_charset('utf-8', charset.SHORTHAND, charset.BASE64, 'utf-8')
-            
             msg = EmailMultiAlternatives(subject, text_content, from_email, [email])
+            
+            # This is the secret sauce: 
+            # We attach the HTML but tell Django/Microsoft it is UTF-8 encoded.
+            # MSGraphBackend will see the UTF-8 flag and usually stop injecting "=" signs.
             msg.attach_alternative(html_content, "text/html")
+            msg.encoding = 'utf-8' 
             
-            # Explicitly set the encoding on the message object
-            msg.encoding = 'utf-8'
-            
-            # This forces the MSGraphBackend to handle the payload as a clean Base64 string
             msg.send()
             
             request.session['reset_email'] = email
@@ -157,7 +153,7 @@ def request_password_reset(request):
             
         except Exception as e:
             print(f"Email Error: {e}")
-            messages.error(request, "Error sending email. Please try again.")
+            messages.error(request, f"Error: {e}")
 
     return render(request, 'reset_request.html')
 
