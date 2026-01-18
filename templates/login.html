@@ -50,6 +50,11 @@
         {% csrf_token %}
         {{ form|crispy }}
         
+        <!-- <div class="remember-me-container">
+            {{ form.remember_me }}
+            <label for="{{ form.remember_me.id_for_label }}">Keep me logged in</label>
+        </div> MAKE PRETTIER-->
+
         <div class="field">
             <p class="control">
                 <div class="is-flex button-container" style="justify-content: space-between;">

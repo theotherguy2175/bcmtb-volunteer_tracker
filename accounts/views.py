@@ -26,34 +26,54 @@ from django.db import models
 # Local App Imports
 from .models import PasswordResetPIN
 from .forms import UserProfileForm
-
+from django import forms
 #=========================CLASSES=========================#
 class CustomAuthenticationForm(AuthenticationForm):
+    # 1. Define the field here at the class level
+    remember_me = forms.BooleanField(required=False, initial=False)
+
     def confirm_login_allowed(self, user):
-        # We override this to PREVENT the form from raising 
-        # a ValidationError for inactive users.
-        # We want the View to handle the inactive state instead.
+        # 2. Keep this empty so inactive users aren't 
+        # rejected by the form's internal validation.
         pass
+
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'
-    authentication_form = CustomAuthenticationForm # Tell it to use our custom form
+    authentication_form = CustomAuthenticationForm
 
     def form_valid(self, form):
-        user = form.get_user() # The form has already authenticated the user
+        user = form.get_user()
         
         if not user.is_active:
-            # Now we handle the inactive user exactly how we want
             messages.warning(
                 self.request, 
-                "Your account is pending activation. Please check your email or "
-                "<a href='/resend-activation/'>click here to resend the activation link</a>.",
+                "Your account is pending activation...",
                 extra_tags='warning'
             )
             return self.form_invalid(form)
         
-        # If they ARE active, log them in normally
+        # Log the user in
         login(self.request, user)
+        
+        # --- REMEMBER ME LOGIC ---
+        remember_me = form.cleaned_data.get('remember_me')
+        
+        if remember_me:
+            # Set to 2 weeks
+            timer = 60 * 60 * 24 * 7 * 4 #seconds in 4 weeks
+            self.request.session.set_expiry(timer) #seconds but in weeks
+        else:
+            # Set to expire on browser close
+            self.request.session.set_expiry(0)
+
+        # --- VERIFICATION PRINTS ---
+        print("-" * 30)
+        print(f"DEBUG: Remember Me checked for: {user} | {remember_me}")
+        print(f"DEBUG: Session Expiry Age: {self.request.session.get_expiry_age()} seconds")
+        print(f"DEBUG: Session Expiry Date: {self.request.session.get_expiry_date()}")
+        print("-" * 30)
+
         return redirect(self.get_success_url())
 
 #=========================VIEWS=========================#

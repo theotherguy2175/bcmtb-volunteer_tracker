@@ -24,3 +24,4 @@ clean up code / remove extra import lines
 
 add email notification that pw was changed for both email form, and profile form
 add async buttons for form
+"Save Button" to save sessions instead of logging in
