@@ -8,6 +8,8 @@
         
     </div>
 
+    <div class="form-container">
+
         {% if messages %}
             {% for message in messages %}
                 <div class="notification is-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} is-warning">
@@ -19,8 +21,7 @@
                 </div>  
             {% endfor %}
         {% endif %}
-        
-    <div class="form-container">
+
         <p class="subtitle is-6 has-text-centered">
             Enter your email address to receive a 6-character reset code.
         </p>
