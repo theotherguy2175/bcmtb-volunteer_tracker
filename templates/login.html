@@ -46,28 +46,32 @@
     </div>
 {% endif %}
 
-    <form method="post" id="loginForm">
-        {% csrf_token %}
-        {{ form|crispy }}
-        
-        <!-- <div class="remember-me-container">
-            {{ form.remember_me }}
-            <label for="{{ form.remember_me.id_for_label }}">Keep me logged in</label>
-        </div> MAKE PRETTIER-->
+        <form method="post" id="loginForm">
+            {% csrf_token %}
+            
+            {{ form.username|as_crispy_field }}
+            {{ form.password|as_crispy_field }}
+            
+            <div class="is-flex is-justify-content-space-between is-align-items-center mb-5">
+                <label class="checkbox">
+                    {{ form.remember_me }}
+                    <span class="ml-1">Remember Me</span>
+                </label>
+                <a href="{% url 'accounts:request_password_reset' %}">
+                    Forgot Password?
+                </a>
+            </div>
 
-        <div class="field">
-            <p class="control">
-                <div class="is-flex button-container" style="justify-content: space-between;">
-                    <button class="button is-success" type="submit">Login</button>
-                </div>
-                <div class="is-flex is-justify-content-center is-align-items-center mt-2">
-                    <a href="{% url 'register' %}" class="mr-2">Register</a>
-                    <span>|</span>
-                    <a href="{% url 'accounts:request_password_reset' %}" class="ml-2">Forgot Password</a>
-                </div>
-            </p>
-        </div>
-    </form>
+            <div class="field">
+                <button class="button is-success is-fullwidth" type="submit">
+                    <strong>Login</strong>
+                </button>
+                <a href="{% url 'register' %}" class="button is-link is-fullwidth mt-3">
+                    <strong>Register</strong>
+                </a>
+            </div>
+        </form>
+
   </div>
 </div>
 

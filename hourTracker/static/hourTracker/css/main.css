@@ -16,21 +16,24 @@
 .site-content {
     flex: 1 0 auto;
 }
-
+.title-center {
+    margin: 0.5rem auto;
+}
 .main-container {
     width: 100%;
     padding: 0 1.5rem; /* Ensures a gap on mobile screens */
-    margin: 3rem 0 0 0;
+    margin: 3rem 0;
+    background-color: #ffffff;
 }
 /* For Header and Buttons (Readability focus) */
 .standard-width {
-    width: 95%; /* Margin on small screens */
+    width: 50%; /* Margin on small screens */
     /* clamp(MIN, VAL, MAX) */
     max-width: clamp(20rem, 90vw, 56rem); 
     margin: 0 auto;
 }
 .table-width {
-    width: 95%;
+    width: 85%;
     max-width: clamp(20rem, 95vw, 75rem);
     margin: 0 auto;
 }
@@ -73,9 +76,13 @@
 
 .form-container {
     align-items: center;             /* vertical alignment */
-    margin: .5rem auto;
-    padding: 0 1rem;
-    width: 50%
+    margin: 1rem auto 5rem auto;
+    padding: 2em;
+    width: 405px;
+    background-color: #F9FAFB;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
 }
 
 input[type="date"]{
@@ -84,7 +91,9 @@ input[type="date"]{
 input[type="number"]{
     width: auto;
 }
-
+.control{
+    text-align: center;
+}
 .select {
     width: 100% !important;
 }
