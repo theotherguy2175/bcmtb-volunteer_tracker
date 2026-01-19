@@ -170,7 +170,7 @@ table{
     .form-container {
         align-items: center;             /* vertical alignment */
         margin: .5rem auto;
-        padding: 0 1rem;
+        padding: 1rem;
         width: 90%
     }
     .button-container {
