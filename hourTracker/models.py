@@ -50,6 +50,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin): #blank=True makes it optio
     state = models.CharField(max_length=100, null=True)
     zip_code = models.CharField(max_length=20, null=True)
 
+    last_milestone_sent_year = models.IntegerField(default=0)
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name", "address_line_1", "city", "state", "zip_code"]
 
@@ -95,3 +97,25 @@ class VolunteerReward(models.Model):
     def __str__(self):
         return self.name
     
+# hourTracker/models.py
+
+class RewardSettings(models.Model):
+    notification_email = models.EmailField(
+        default="cody.casteel@browncountymtb.org",
+        help_text="The email address that will receive milestone alerts."
+    )
+    hour_requirement = models.IntegerField(
+        default=8,
+        help_text="The number of hours a volunteer needs to trigger the email."
+    )
+    enable_notifications = models.BooleanField(
+        default=True,
+        help_text="Uncheck this to globally disable milestone emails."
+    )
+
+    class Meta:
+        verbose_name = "Global Reward Settings"
+        verbose_name_plural = "Global Reward Settings"
+
+    def __str__(self):
+        return "Global Reward Settings"

@@ -93,3 +93,14 @@ class RewardAdmin(admin.ModelAdmin):
     list_display = ('name', 'hours_required')
     # This allows you to click the name to edit the reward
     list_display_links = ('name',)
+
+
+# hourTracker/admin.py
+from django.contrib import admin
+from .models import RewardSettings
+
+@admin.register(RewardSettings)
+class RewardSettingsAdmin(admin.ModelAdmin):
+    # This prevents the admin from adding more than one settings object
+    def has_add_permission(self, request):
+        return not RewardSettings.objects.exists()
