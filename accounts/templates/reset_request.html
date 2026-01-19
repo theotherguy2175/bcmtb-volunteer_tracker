@@ -10,9 +10,13 @@
 
         {% if messages %}
             {% for message in messages %}
-                <div class="notification is-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} is-light">
-                    {{ message }}
-                </div>
+                <div class="notification is-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} is-warning">
+                    {% if "safe" in message.tags %}
+                        {{ message|safe }}
+                    {% else %}
+                        {{ message }}
+                    {% endif %}
+                </div>  
             {% endfor %}
         {% endif %}
 

@@ -124,6 +124,11 @@ def generate_alphanumeric_pin(length=6):
 def request_password_reset(request):
     if request.method == 'POST':
         email = request.POST.get('email', '').strip()
+
+        emailCheck = get_user_model().objects.filter(email=email).exists()
+        if not emailCheck:
+            messages.error(request, "No account found with that email address. <br> If you want to create an account, please <a href='/accounts/register/'>register here</a>.", extra_tags='safe')
+            return render(request, 'reset_request.html')
         
         # 1. Cooldown Check: Prevent spamming requests
         # (Using 60 seconds is standard for production)
