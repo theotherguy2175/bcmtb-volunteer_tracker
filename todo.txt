@@ -17,6 +17,8 @@
 =fix edit buttons showing on mobile
 =new user email registraion
 =resend activation email
+="Save Button" to save sessions instead of logging in
+
 
 setup auto email at the end of the year 30 days prior
 
@@ -24,4 +26,3 @@ clean up code / remove extra import lines
 
 add email notification that pw was changed for both email form, and profile form
 add async buttons for form
-"Save Button" to save sessions instead of logging in

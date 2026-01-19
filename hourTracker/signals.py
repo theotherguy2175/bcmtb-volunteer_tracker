@@ -49,7 +49,7 @@ def check_milestone(sender, instance, **kwargs):
         """
 
         send_mail(
-            f'Reward Reached - {user.firstname} {user.lastname} | {settingRewards.hour_requirement} Hours',
+            f'Reward Reached - {user.first_name} {user.last_name} | {settingRewards.hour_requirement} Hours',
             message_body,
             from_email,
             [settingRewards.notification_email],
