@@ -52,7 +52,7 @@ def check_milestone(sender, instance, **kwargs):
             f'Reward Reached - {user.first_name} {user.last_name} | {settingRewards.hour_requirement} Hours',
             message_body,
             from_email,
-            [settingRewards.notification_email],
+            [settingRewards.notification_email], #Possibly CC
             fail_silently=False,
         )
 
