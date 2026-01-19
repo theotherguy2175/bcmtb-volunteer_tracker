@@ -10,6 +10,7 @@
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    background-color: #ffffff;
 }
 
 /* This is the magic part: it grows to fill space */
@@ -18,11 +19,12 @@
 }
 .title-center {
     margin: 0.5rem auto;
+    text-align: center;
 }
 .main-container {
     width: 100%;
     padding: 0 1.5rem; /* Ensures a gap on mobile screens */
-    margin: 3rem 0;
+    margin: 5rem 0 3rem 0;
     background-color: #ffffff;
 }
 /* For Header and Buttons (Readability focus) */

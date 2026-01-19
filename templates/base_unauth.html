@@ -12,13 +12,8 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.css">
    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet">
 
-
-
-
 </head>
-<body>
-
-  
+<body class="site-wrapper">
       <!--==================== HEADER ====================-->
       <header class="header">
          <nav class="nav container">
@@ -31,15 +26,26 @@
             
          </nav>
       </header>
-      
+  <hr>
+
+
+  <main class="site-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer custom-footer">
+    <div class="content has-text-centered">
+      <p>
+        &copy; {{ current_year_footer }} BCMTB Volunteer Tracker. 
+        <span class="is-size-7"> | {{ app_version }}</span>
+      </p>
+      <p>
+         Contact us at <a href="mailto:trails@browncountymtb.org">trails@browncountymtb.org</a>
+      </p>
+    </div>
+  </footer>
 
   
-
-  <hr>
-   <main style="padding-top: 1.5rem; background-color: #ffffff;">
-   {% block content %}
-   {% endblock %}
-   </main>
   <script src="{% static 'hourTracker/js/navbar.js' %}"></script>
   <!-- <script type="text/javascript" src="/path/to/jquery-latest.js"></script>
   <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script> -->

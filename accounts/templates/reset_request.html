@@ -1,12 +1,12 @@
 {% extends "base_unauth.html" %}
-
 {% block content %}
+
 <div class="main-container">
-    <div class="form-container box" style="max-width: 450px; margin: 50px auto;">
-        <h1 class="title has-text-centered">Reset Password</h1>
-        <p class="subtitle is-6 has-text-centered">
-            Enter your email address to receive a 6-character reset code.
-        </p>
+
+    <div class="header-row title">
+        <h2 class="title title-center">Reset Password</h2>
+        
+    </div>
 
         {% if messages %}
             {% for message in messages %}
@@ -19,6 +19,11 @@
                 </div>  
             {% endfor %}
         {% endif %}
+        
+    <div class="form-container">
+        <p class="subtitle is-6 has-text-centered">
+            Enter your email address to receive a 6-character reset code.
+        </p>
 
         <form method="POST">
             {% csrf_token %}
