@@ -160,9 +160,9 @@ $(document).ready(function() {
         let editButton = '';
 
         if (isStaff) {
-            editButton = `<a href="/edit/${pk}/?next=${currentPath}" class="button is-warning">Edit</a>`;
+            editButton = `<a href="/edit/${pk}/?next=${currentPath}" class="button is-warning is-medium">Edit</a>`;
         } else {
-            editButton = `<a class="button is-warning openModalBtn">Edit</a>`;          
+            editButton = `<a class="button is-warning is-medium openModalBtn">Edit</a>`;          
         }
 
         // ... inside your $('#table tbody').on('click', 'tr', function() ...
@@ -174,17 +174,17 @@ $(document).ready(function() {
         var actionRow = `
             <tr class="action-row" id="actions-${pk}">
                 <td colspan="${$this.children().length}">
-                    <div class="action-box" style="text-align:center; padding: 10px; background: #363636; border-radius: 4px;">
+                    <div class="action-box" style="text-align:center; padding: 10px; border-radius: 4px;">
                         ${editButton}
-                        <button 
+                        <a 
                             hx-post="/delete/${pk}/" 
                             hx-target="#row-${pk}" 
                             hx-swap="outerHTML swap:0.5s" 
                             hx-confirm="Are you sure?"
                             hx-on::after-request="if(event.detail.successful) $('#actions-${pk}').remove();"
-                            class="button is-danger">
+                            class="button is-danger is-medium">
                             Delete
-                        </button>
+                        </a>
                     </div>
                 </td>
             </tr>

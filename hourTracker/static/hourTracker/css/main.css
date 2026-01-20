@@ -157,7 +157,6 @@ table{
         display: flex;
         gap: 1rem;
         padding: 0.5rem;
-        background-color: #f0f0f0;
         justify-content: center;
         border-radius: 0.25rem;
     }
