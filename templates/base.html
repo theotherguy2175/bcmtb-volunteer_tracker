@@ -34,27 +34,30 @@
 
             <div class="nav__menu" id="nav-menu">
                <ul class="nav__list">
-                  <li>
-                     <a href="{% url 'dashboard' %}" class="nav__link">My Hours</a>
+                  <li class="{% if active_tab == 'dashboard' %}active_tab{% endif %}">
+                     <a href="{% url 'dashboard' %}" class="nav__link ">My Hours</a>
                   </li>
+
                   {% if user.is_staff %}
-                  <li>
-                     <a href="/admin_dashboard/" class="nav__link">All Hours</a>
+                  <li class="{% if active_tab == 'admin_dashboard' %}active_tab{% endif %}">
+                     <a href="{% url 'admin_dashboard' %}" class="nav__link ">All Hours</a>
                   </li>
                   {% endif %}
-                  <li>
-                     <!-- <a href="https://images.squarespace-cdn.com/content/v1/6421e015566ba11c10666b68/f59c7e62-0cd3-4a89-8909-072d5eb011d4/Volunteer+Rewards.JPG?format=750w"  target="_blank" class="nav__link">Rewards</a> -->
-                     <a href="{% url 'rewards' %}" class="nav__link">Rewards</a>
+
+                  <li class="{% if active_tab == 'rewards' %}active_tab{% endif %}">
+                     <a href="{% url 'rewards' %}" class="nav__link ">Rewards</a>
                   </li>
+
                   {% if user.is_staff %}
-                  <li>
-                     <a href="{% url 'reports' %}" class="nav__link">Reports</a>
+                  <li class="{% if active_tab == 'reports' %}active_tab{% endif %}">
+                     <a href="{% url 'reports' %}" class="nav__link ">Reports</a>
+                  </li>
                   <li>
                      <a href="/admin/" class="nav__link">Admin</a>
                   </li>
                   {% endif %}
-
                </ul>
+
 
                <!-- Close button -->
                <div class="nav__close" id="nav-close">

@@ -9,6 +9,7 @@
   /*Color mode HSL(hue, saturation, lightness)*/
   --first-color: #7f392c;
   --white-color: #c7ae86;
+  --highlight-color: #b08542;
   --dark-color: #7f392c;
   --dark-color-light: hsl(216, 14%, 24%);
   --body-color: hsl(216, 96%, 98%);
@@ -102,7 +103,7 @@ nav a img {
   display: flex;
   font-size: 1.5rem;
   cursor: pointer;
-  margin-right: 1rem;
+
   ;
 }
 
@@ -135,7 +136,13 @@ nav a img {
 }
 
 .nav__link:hover {
-  color: #daa550;
+  color: var(--highlight-color);
+}
+
+.active_tab {
+    border-bottom: 3px solid var(--highlight-color);
+    padding-bottom: .5rem;
+    font-weight: 600;
 }
 
 .nav__close {
@@ -258,10 +265,30 @@ nav a img {
   transform: translateX(-50%);
 }
 
-/*=============== BREAKPOINTS ===============*/
-/*========== Responsive typography ==========*/
+/*=============== MOBILE VIEW ===============*/
 
+/* Navigation for mobile devices */
+@media screen and (max-width: 900px) {
+  /* .nav__menu{
+    background: linear-gradient(to bottom, #4a4e4a, #212721);
+  } */
+  .nav__list{
+    text-align: right;
+  }
+  .nav__link{
+    padding: 1rem;
+    padding-right: 5rem;
+  }
+  
+  .active_tab {
+  border-bottom: none;
+  font-weight: 600;
+  padding: 1rem 0 1rem 1rem;
+  margin: -1rem 0 -1rem 0;
+  background-color: #c7ae8738;
+  } 
 
+}
 
 /* For large devices */
 @media screen and (min-width: 900px) {
@@ -355,6 +382,8 @@ nav a img {
   .mobile-only {
     display: table-cell !important;
   }
+
+  
 }
 
 /* 2. Hide the Action Row (the sub-menu) on Desktop just in case */

@@ -66,6 +66,7 @@ def dashboard(request):
     total_hours = entries.aggregate(total=Sum('hours'))['total'] or 0
 
     context = {
+        'active_tab' : "dashboard",
         'entries': entries,
         'total_hours': total_hours,
         'selected_year': selected_year, # This could be an int or the string 'all'
@@ -107,6 +108,7 @@ def admin_dashboard(request):
     total_hours = filtered_entries.aggregate(total=Sum('hours'))['total'] or 0
 
     context = {
+        'active_tab' : "admin_dashboard",
         'entries': filtered_entries,
         'total_hours': total_hours,
         'selected_year': selected_year,
@@ -386,6 +388,7 @@ def rewards(request):
         ).aggregate(total=Sum('hours'))['total'] or 0  # Defaults to 0 if no entries
 
     context = {
+        'active_tab' : 'rewards',
         'rewards': rewards,
         'entries': entries,
         'total_hours': total_hours,
@@ -406,7 +409,10 @@ def if_staff_check(user):
 #=========================REPORTS VIEWS=========================#
 @user_passes_test(if_staff_check)
 def reports_page(request):
-    return render(request, 'reports.html')
+    context = {
+        'active_tab': 'reports',
+    }
+    return render(request, 'reports.html', context)
 
 @user_passes_test(if_staff_check)
 def export_volunteer_entries_csv(request):
