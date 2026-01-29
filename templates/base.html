@@ -35,25 +35,25 @@
             <div class="nav__menu" id="nav-menu">
                <ul class="nav__list">
                   <li class="{% if active_tab == 'dashboard' %}active_tab{% endif %}">
-                     <a href="{% url 'dashboard' %}" class="nav__link ">My Hours</a>
+                     <a href="{% url 'dashboard' %}" class="nav__link ">My Hours</a><i class="menu-icons fa-solid fa-clock"></i>
                   </li>
 
                   {% if user.is_staff %}
                   <li class="{% if active_tab == 'admin_dashboard' %}active_tab{% endif %}">
-                     <a href="{% url 'admin_dashboard' %}" class="nav__link ">All Hours</a>
+                     <a href="{% url 'admin_dashboard' %}" class="nav__link ">All Hours</a><i class="menu-icons fa-solid fa-list"></i>
                   </li>
                   {% endif %}
 
                   <li class="{% if active_tab == 'rewards' %}active_tab{% endif %}">
-                     <a href="{% url 'rewards' %}" class="nav__link ">Rewards</a>
+                     <a href="{% url 'rewards' %}" class="nav__link ">Rewards</a><i class="menu-icons fa-regular fa-gem"></i>
                   </li>
 
                   {% if user.is_staff %}
                   <li class="{% if active_tab == 'reports' %}active_tab{% endif %}">
-                     <a href="{% url 'reports' %}" class="nav__link ">Reports</a>
+                     <a href="{% url 'reports' %}" class="nav__link ">Reports</a><i class="menu-icons fa-solid fa-sheet-plastic"></i>
                   </li>
                   <li>
-                     <a href="/admin/" class="nav__link">Admin</a>
+                     <a href="/admin/" class="nav__link">Admin</a><i class="menu-icons fa-solid fa-user-tie"></i>
                   </li>
                   {% endif %}
                </ul>

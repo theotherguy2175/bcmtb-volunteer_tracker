@@ -107,7 +107,12 @@ nav a img {
   ;
 }
 
+.menu-icons{
+  display: none !important;
+}
+
 /* Navigation for mobile devices */
+/* THIS IS NOT 900px options*/
 @media screen and (max-width: 900px) {
   .nav__menu {
     position: fixed;
@@ -277,7 +282,7 @@ nav a img {
   }
   .nav__link{
     padding: 1rem;
-    padding-right: 5rem;
+
   }
   
   .active_tab {
@@ -288,6 +293,10 @@ nav a img {
   background-color: #c7ae8738;
   } 
 
+  .menu-icons{
+  display: inline !important;
+  padding-right: 10%;
+}
 }
 
 /* For large devices */
