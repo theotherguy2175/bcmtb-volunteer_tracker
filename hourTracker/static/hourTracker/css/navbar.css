@@ -121,7 +121,7 @@ nav a img {
     background-color: var(--dark-color);
     box-shadow: 0 8px 16px hsla(216, 24%, 8%, .2);
     width: 100%;
-    padding-block: 4rem;
+    padding-block: 2.5rem;
     z-index: var(--z-fixed);
     transition: top .4s;
   }

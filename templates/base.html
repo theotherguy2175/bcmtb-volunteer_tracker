@@ -34,6 +34,8 @@
 
             <div class="nav__menu" id="nav-menu">
                <ul class="nav__list">
+                  <i id="nav-close" class="menu-icons fa-solid fa-x"></i>
+
                   <li class="{% if active_tab == 'dashboard' %}active_tab{% endif %}">
                      <a href="{% url 'dashboard' %}" class="nav__link ">My Hours</a><i class="menu-icons fa-solid fa-clock"></i>
                   </li>
@@ -59,10 +61,7 @@
                </ul>
 
 
-               <!-- Close button -->
-               <div class="nav__close" id="nav-close">
-                  <i class="ri-close-large-line"></i>
-               </div>
+               
             </div>
 
             <div class="nav__actions">
